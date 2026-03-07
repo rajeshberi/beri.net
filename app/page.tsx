@@ -71,29 +71,18 @@ export default function Home() {
               <section className="mb-12">
                 <Link href={`/newsletter/${featured.slug}`} className="group block">
                   <div className="grid lg:grid-cols-2 gap-8 items-center p-8 rounded-2xl bg-gradient-to-br from-purple-950/30 to-black border border-purple-500/20 hover:border-fuchsia-500/40 transition-all">
-                    {/* Abstract visual */}
-                    <div className="h-[400px] rounded-xl bg-gradient-to-br from-fuchsia-600/20 to-purple-600/20 border border-fuchsia-500/20 overflow-hidden relative">
-                      <svg className="absolute inset-0 w-full h-full opacity-40" viewBox="0 0 400 400">
-                        <defs>
-                          <linearGradient id="feat-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#e879f9" />
-                            <stop offset="100%" stopColor="#a855f7" />
-                          </linearGradient>
-                        </defs>
-                        {Array.from({ length: 50 }).map((_, i) => (
-                          <circle
-                            key={i}
-                            cx={Math.random() * 400}
-                            cy={Math.random() * 400}
-                            r={Math.random() * 3 + 1}
-                            fill="url(#feat-grad)"
-                            opacity={Math.random() * 0.6 + 0.2}
-                          />
-                        ))}
-                      </svg>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-6xl font-bold text-fuchsia-400/30">FEATURED</div>
-                      </div>
+                    {/* Bot character visual */}
+                    <div className="h-[400px] rounded-xl bg-gradient-to-br from-fuchsia-600/20 to-purple-600/20 border border-fuchsia-500/20 overflow-hidden relative flex items-center justify-center">
+                      {/* Background glow */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 via-fuchsia-500/20 to-transparent blur-3xl" />
+                      
+                      {/* Bot image */}
+                      <img 
+                        src="/bots/bot-3.jpg" 
+                        alt="AI Bot" 
+                        className="relative z-10 w-80 h-80 object-contain mix-blend-lighten opacity-90 hover:scale-105 transition-transform duration-300"
+                        style={{ filter: 'drop-shadow(0 0 40px rgba(168, 85, 247, 0.4))' }}
+                      />
                     </div>
 
                     <div className="space-y-4">
@@ -247,31 +236,46 @@ export default function Home() {
             </div>
           )}
 
-          {/* Newsletter Signup - Sidebar style */}
+          {/* Newsletter Signup - Sidebar style with bot */}
           <section id="newsletter" className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-fuchsia-950/30 to-purple-950/30 border border-fuchsia-500/20">
-            <div className="max-w-2xl mx-auto text-center space-y-6">
-              <h3 className="text-3xl font-bold">
-                Get AI News in Your Inbox
-              </h3>
-              <p className="text-white/70 text-lg">
-                Twice-weekly deep dives into AI developments. No spam, just signal.
-              </p>
-              
-              <form className="flex gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="flex-1 px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent"
-                  required
-                />
-                <button className="px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-semibold rounded-lg transition-colors whitespace-nowrap">
-                  Subscribe →
-                </button>
-              </form>
+            <div className="max-w-4xl mx-auto">
+              <div className="grid md:grid-cols-[200px_1fr] gap-8 items-center">
+                {/* Bot mascot */}
+                <div className="flex justify-center">
+                  <img 
+                    src="/bots/bot-2.jpg" 
+                    alt="AI Assistant" 
+                    className="w-48 h-48 object-contain mix-blend-lighten opacity-90"
+                    style={{ filter: 'drop-shadow(0 0 30px rgba(168, 85, 247, 0.3))' }}
+                  />
+                </div>
 
-              <p className="text-xs text-white/30">
-                Every Tuesday & Thursday • Free forever • Unsubscribe anytime
-              </p>
+                {/* Content */}
+                <div className="text-center md:text-left space-y-6">
+                  <h3 className="text-3xl font-bold">
+                    Get AI News in Your Inbox
+                  </h3>
+                  <p className="text-white/70 text-lg">
+                    Twice-weekly deep dives into AI developments. No spam, just signal.
+                  </p>
+                  
+                  <form className="flex gap-3 max-w-md">
+                    <input
+                      type="email"
+                      placeholder="your@email.com"
+                      className="flex-1 px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent"
+                      required
+                    />
+                    <button className="px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-semibold rounded-lg transition-colors whitespace-nowrap">
+                      Subscribe →
+                    </button>
+                  </form>
+
+                  <p className="text-xs text-white/30">
+                    Every Tuesday & Thursday • Free forever • Unsubscribe anytime
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
 
