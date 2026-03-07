@@ -5,6 +5,11 @@
 **Production:** https://berinet.vercel.app  
 **Preview:** https://beri-3vgcrus2w-rajesh-beris-projects.vercel.app
 
+## GitHub Repository
+
+**Repo:** https://github.com/rajeshberi/beri.net  
+**Branch:** main
+
 ## Vercel Project
 
 **Project:** rajesh-beris-projects/beri.net  
