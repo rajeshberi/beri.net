@@ -64,12 +64,15 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
                 THE D<span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400">*AI*</span>LY BRIEF
               </h1>
             </Link>
-            <div className="flex gap-4">
-              <Link 
-                href="/archive"
-                className="text-sm text-white/60 hover:text-white transition-colors"
-              >
+            <div className="flex items-center gap-6">
+              <Link href="/archive" className="text-sm text-white/60 hover:text-white transition-colors">
                 Archive
+              </Link>
+              <Link href="/search" className="text-sm text-white/60 hover:text-white transition-colors">
+                Search
+              </Link>
+              <Link href="/tags" className="text-sm text-white/60 hover:text-white transition-colors">
+                Tags
               </Link>
               <a 
                 href="/#subscribe" 
@@ -117,12 +120,13 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
               {newsletter.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                   {newsletter.tags.map((tag) => (
-                    <span 
+                    <Link
                       key={tag}
-                      className="text-xs px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-300/70 border border-purple-500/20"
+                      href={`/tag/${encodeURIComponent(tag)}`}
+                      className="text-xs px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-300/70 border border-purple-500/20 hover:bg-fuchsia-600 hover:text-white hover:border-fuchsia-500 transition-all"
                     >
                       {tag}
-                    </span>
+                    </Link>
                   ))}
                 </div>
               )}

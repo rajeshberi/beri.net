@@ -35,6 +35,18 @@ export default function Home() {
               >
                 Archive
               </Link>
+              <Link 
+                href="/search"
+                className="text-sm text-white/60 hover:text-white transition-colors"
+              >
+                Search
+              </Link>
+              <Link 
+                href="/tags"
+                className="text-sm text-white/60 hover:text-white transition-colors"
+              >
+                Tags
+              </Link>
               <a 
                 href="#subscribe" 
                 className="px-6 py-2.5 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-sm font-medium rounded-full hover:from-fuchsia-500 hover:to-purple-500 transition-all shadow-lg shadow-fuchsia-500/30"
@@ -71,16 +83,25 @@ export default function Home() {
                   No hype, just insights from building at enterprise scale.
                 </p>
 
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <a 
                     href="#subscribe" 
-                    className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white font-semibold rounded-full hover:from-fuchsia-500 hover:to-purple-500 transition-all shadow-lg shadow-fuchsia-500/50 hover:shadow-fuchsia-500/70"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white font-semibold rounded-full hover:from-fuchsia-500 hover:to-purple-500 transition-all shadow-lg shadow-fuchsia-500/50 hover:shadow-fuchsia-500/70"
                   >
                     Get Started
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </a>
+                  <Link
+                    href="/search"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 border-2 border-purple-500/30 text-white font-semibold rounded-full hover:border-fuchsia-400/50 hover:bg-fuchsia-600/10 transition-all"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    Explore Topics
+                  </Link>
                 </div>
 
                 <div className="flex gap-6 text-sm text-white/40 font-mono pt-4">

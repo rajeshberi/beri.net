@@ -24,12 +24,20 @@ export default function ArchivePage() {
                 THE D<span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400">*AI*</span>LY BRIEF
               </h1>
             </Link>
-            <a 
-              href="/#subscribe" 
-              className="px-6 py-2.5 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-sm font-medium rounded-full hover:from-fuchsia-500 hover:to-purple-500 transition-all shadow-lg shadow-fuchsia-500/30"
-            >
-              Subscribe
-            </a>
+            <div className="flex items-center gap-6">
+              <Link href="/search" className="text-sm text-white/60 hover:text-white transition-colors">
+                Search
+              </Link>
+              <Link href="/tags" className="text-sm text-white/60 hover:text-white transition-colors">
+                Tags
+              </Link>
+              <a 
+                href="/#subscribe" 
+                className="px-6 py-2.5 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-sm font-medium rounded-full hover:from-fuchsia-500 hover:to-purple-500 transition-all shadow-lg shadow-fuchsia-500/30"
+              >
+                Subscribe
+              </a>
+            </div>
           </div>
         </header>
 
