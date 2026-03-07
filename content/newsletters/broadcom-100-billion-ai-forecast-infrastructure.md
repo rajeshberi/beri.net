@@ -3,7 +3,7 @@ title: "Broadcom's $100B AI Forecast: What It Means For Your Infrastructure Budg
 date: "2026-03-05"
 published: true
 excerpt: "Broadcom just signaled $100B in AI infrastructure demand. Whether you're building on-prem, hybrid, or cloud-first, here's how this shifts your 2026-2027 budget planning."
-tags: ["Infrastructure", "AI Hardware", "Enterprise", "Budget", "Cost Analysis"]
+tags: ["Infrastructure", "AI Hardware", "Enterprise", "Budget", "Cost Analysis", "IT", "Finance", "Operations", "Engineering", "Product Management"]
 type: "curated"
 originalUrl: "https://www.reuters.com/technology/"
 originalAuthor: "Reuters"

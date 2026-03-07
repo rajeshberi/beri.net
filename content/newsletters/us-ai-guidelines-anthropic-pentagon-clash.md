@@ -3,7 +3,7 @@ title: "The Anthropic-Pentagon Clash: What Every Business Leader Needs to Know A
 date: "2026-03-07"
 published: true
 excerpt: "The US government just cut off Anthropic overnight. If your sales automation, customer support, or operations run on Claude, here's what this means for your business continuity — and your budget."
-tags: ["Enterprise", "AI Policy", "Anthropic", "Claude", "Vendor Risk", "Government"]
+tags: ["Enterprise", "AI Policy", "Anthropic", "Claude", "Vendor Risk", "Government", "IT", "Legal", "Finance", "Operations", "Sales", "HR", "Product Management"]
 type: "curated"
 originalUrl: "https://www.reuters.com/business/media-telecom/us-draws-up-strict-new-ai-guidelines-amid-anthropic-clash-ft-reports-2026-03-07/"
 originalAuthor: "Bipasha Dey and Ananya Palyekar"

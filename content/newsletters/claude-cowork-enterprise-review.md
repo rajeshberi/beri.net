@@ -3,7 +3,7 @@ title: "Claude Cowork: Anthropic's Play to Put AI Inside Every Department (Hands
 date: "2026-03-06"
 published: true
 excerpt: "Anthropic just launched 'coworker' plugins for finance, HR, legal, and engineering. We tested them on real enterprise workflows. Here's what works, what doesn't, and whether the ROI justifies the $20-30/seat/month."
-tags: ["Claude", "Anthropic", "AI Tools", "Enterprise", "ROI", "Finance", "Legal", "HR", "Cowork"]
+tags: ["Claude", "Anthropic", "AI Tools", "Enterprise", "ROI", "Finance", "Legal", "HR", "Cowork", "IT", "Sales", "Marketing", "Engineering", "Operations", "Product Management"]
 type: "original"
 ---
 

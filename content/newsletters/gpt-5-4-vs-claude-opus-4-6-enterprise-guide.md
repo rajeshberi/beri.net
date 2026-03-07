@@ -3,7 +3,7 @@ title: "GPT-5.4 vs Claude Opus 4.6: The Enterprise AI Leader's Decision Framewor
 date: "2026-03-07"
 published: true
 excerpt: "GPT-5.4 just dropped. Claude Opus 4.6 holds the coding crown. But which one saves your team more money? Here's the enterprise decision framework — with benchmarks, cost analysis, and ROI by department."
-tags: ["AI Models", "LLMs", "GPT-5", "Claude", "Enterprise", "Benchmarks", "Architecture", "ROI", "Cost Analysis"]
+tags: ["AI Models", "LLMs", "GPT-5", "Claude", "Enterprise", "Benchmarks", "Architecture", "ROI", "Cost Analysis", "IT", "Engineering", "Finance", "Sales", "Legal", "Operations", "Product Management"]
 type: "original"
 ---
 

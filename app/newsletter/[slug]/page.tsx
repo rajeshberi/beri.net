@@ -2,10 +2,10 @@ import { getNewsletterBySlug, getAllSlugs } from '@/lib/newsletters';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { remark } from 'remark';
+import remarkGfm from 'remark-gfm';
 import html from 'remark-html';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ScrollReveal from '@/components/ScrollReveal';
 import NewsletterSignup from '@/components/NewsletterSignup';
 
 export async function generateStaticParams() {
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 async function markdownToHtml(markdown: string) {
-  const result = await remark().use(html).process(markdown);
+  const result = await remark().use(remarkGfm).use(html, { sanitize: false }).process(markdown);
   return result.toString();
 }
 
@@ -55,21 +55,18 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
         <main className="max-w-3xl mx-auto px-6 py-12 md:py-20">
 
           {/* Back */}
-          <ScrollReveal>
-            <Link
-              href="/archive"
-              className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-purple-400 transition-colors mb-10"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              Back to archive
-            </Link>
-          </ScrollReveal>
+          <Link
+            href="/archive"
+            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-purple-400 transition-colors mb-10"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to archive
+          </Link>
 
           <article>
             {/* Header */}
-            <ScrollReveal>
               <div className="space-y-5 mb-12">
                 <time className="text-sm font-mono text-purple-400/70">
                   {new Date(newsletter.date).toLocaleDateString('en-US', {
@@ -109,19 +106,15 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
 
                 <div className="w-12 h-[2px] bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
               </div>
-            </ScrollReveal>
 
             {/* Content */}
-            <ScrollReveal delay={100}>
               <div
                 className="article-content"
                 dangerouslySetInnerHTML={{ __html: contentHtml }}
               />
-            </ScrollReveal>
           </article>
 
           {/* Author CTA */}
-          <ScrollReveal delay={150}>
             <div className="mt-16 pt-12 border-t border-white/5 space-y-8">
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-xl font-bold">
@@ -133,7 +126,6 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
                 </div>
               </div>
             </div>
-          </ScrollReveal>
 
           <NewsletterSignup />
 
