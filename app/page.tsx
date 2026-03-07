@@ -34,16 +34,14 @@ export default function Home() {
                 <ScrollReveal>
                   <Link href={`/newsletter/${featured.slug}`} className="group block">
                     <div className="grid lg:grid-cols-2 gap-10 items-center">
-                      {/* Visual */}
-                      <div className="relative h-[320px] md:h-[400px] rounded-2xl overflow-hidden card-hover">
-                        <img
-                          src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80"
-                          alt="AI Technology"
-                          className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-[1.03] transition-all duration-700"
-                          loading="eager"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0a14] via-transparent to-transparent" />
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-fuchsia-600/10 mix-blend-multiply" />
+                      {/* Visual - Abstract gradient */}
+                      <div className="relative h-[320px] md:h-[400px] rounded-2xl overflow-hidden card-hover bg-gradient-to-br from-purple-900/40 via-fuchsia-900/30 to-indigo-900/40">
+                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(168,85,247,0.15),transparent_70%)]" />
+                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_80%,rgba(217,70,239,0.1),transparent_60%)]" />
+                        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="text-7xl md:text-8xl opacity-20 group-hover:opacity-30 transition-opacity duration-700 select-none">✦</div>
+                        </div>
                       </div>
 
                       {/* Content */}
@@ -105,22 +103,7 @@ export default function Home() {
                     {latest.map((article, i) => (
                       <ScrollReveal key={article.slug} delay={i * 80}>
                         <Link href={`/newsletter/${article.slug}`} className="group block h-full">
-                          <article className="h-full flex flex-col rounded-xl border border-white/5 bg-white/[0.02] p-5 card-hover">
-                            {/* Image */}
-                            <div className="h-44 rounded-lg mb-4 overflow-hidden relative">
-                              <img
-                                src={`https://images.unsplash.com/photo-${[
-                                  '1677442136019-21780ecad995',
-                                  '1655720828018-edd2daec01fe',
-                                  '1677756119517-756a188d2d94'
-                                ][article.slug.length % 3]}?w=600&q=80`}
-                                alt={article.title}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                loading="lazy"
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-[#0c0a14]/60 to-transparent" />
-                            </div>
-
+                          <article className="h-full flex flex-col rounded-xl border border-white/5 bg-white/[0.02] p-6 card-hover group-hover:border-purple-500/10 transition-colors duration-300">
                             <div className="flex-1 flex flex-col">
                               {article.tags[0] && (
                                 <span className="text-[10px] font-bold text-purple-400 uppercase tracking-wider mb-2">
