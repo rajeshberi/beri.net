@@ -75,19 +75,18 @@ export default function ArchivePage() {
                   className="group flex gap-6 pb-8 border-b border-white/5 hover:border-fuchsia-500/20 transition-all"
                 >
                   {/* Thumbnail */}
-                  <div className="w-64 h-40 flex-shrink-0 rounded-xl bg-gradient-to-br from-purple-600/20 to-fuchsia-600/20 border border-purple-500/20 group-hover:border-fuchsia-500/40 transition-all overflow-hidden relative">
-                    <svg className="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 200 200">
-                      {Array.from({ length: 15 }).map((_, i) => (
-                        <circle
-                          key={i}
-                          cx={Math.random() * 200}
-                          cy={Math.random() * 200}
-                          r={Math.random() * 2 + 1}
-                          fill={`hsl(${280 + Math.random() * 40}, 70%, 60%)`}
-                          opacity={Math.random() * 0.5 + 0.2}
-                        />
-                      ))}
-                    </svg>
+                  <div className="w-64 h-40 flex-shrink-0 rounded-xl overflow-hidden relative group-hover:ring-2 group-hover:ring-fuchsia-500/40 transition-all">
+                    <img 
+                      src={`https://images.unsplash.com/photo-${[
+                        '1677442136019-21780ecad995',
+                        '1655720828018-edd2daec01fe',
+                        '1677756119517-756a188d2d94',
+                        '1620712943543-bcc4659bd783'
+                      ][idx % 4]}?w=400&q=80`}
+                      alt={newsletter.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-fuchsia-600/20" />
                   </div>
 
                   {/* Content */}
