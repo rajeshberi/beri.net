@@ -55,67 +55,84 @@ export default function ArchivePage() {
             </p>
           </div>
 
-          {/* Newsletter List */}
+          {/* Newsletter List - TechCrunch compact style */}
           {newsletters.length === 0 ? (
             <div className="text-center py-16">
-              <div className="text-white/40 mb-4">No newsletters published yet</div>
+              <div className="text-white/40 mb-4">No stories published yet</div>
               <a 
-                href="/#subscribe"
+                href="/#newsletter"
                 className="text-fuchsia-400 hover:text-fuchsia-300 font-medium"
               >
                 Subscribe to get notified →
               </a>
             </div>
           ) : (
-            <div className="space-y-6">
-              {newsletters.map((newsletter) => (
+            <div className="space-y-8">
+              {newsletters.map((newsletter, idx) => (
                 <Link
                   key={newsletter.slug}
                   href={`/newsletter/${newsletter.slug}`}
-                  className="group block"
+                  className="group flex gap-6 pb-8 border-b border-white/5 hover:border-fuchsia-500/20 transition-all"
                 >
-                  <article className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/30 to-black border border-purple-500/20 hover:border-purple-400/40 transition-all p-8">
-                    
-                    {/* Date */}
-                    <div className="flex items-center gap-4 mb-4">
-                      <time className="text-sm font-mono text-fuchsia-400/80">
+                  {/* Thumbnail */}
+                  <div className="w-64 h-40 flex-shrink-0 rounded-xl bg-gradient-to-br from-purple-600/20 to-fuchsia-600/20 border border-purple-500/20 group-hover:border-fuchsia-500/40 transition-all overflow-hidden relative">
+                    <svg className="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 200 200">
+                      {Array.from({ length: 15 }).map((_, i) => (
+                        <circle
+                          key={i}
+                          cx={Math.random() * 200}
+                          cy={Math.random() * 200}
+                          r={Math.random() * 2 + 1}
+                          fill={`hsl(${280 + Math.random() * 40}, 70%, 60%)`}
+                          opacity={Math.random() * 0.5 + 0.2}
+                        />
+                      ))}
+                    </svg>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    {/* Category */}
+                    {newsletter.tags[0] && (
+                      <span className="text-xs font-semibold text-fuchsia-400 uppercase">
+                        {newsletter.tags[0]}
+                      </span>
+                    )}
+
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold mt-2 mb-3 group-hover:text-fuchsia-400 transition-colors">
+                      {newsletter.title}
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-white/60 leading-relaxed mb-4 line-clamp-2">
+                      {newsletter.excerpt}
+                    </p>
+
+                    {/* Meta */}
+                    <div className="flex items-center gap-4 text-sm">
+                      <span className="text-white/50">Rajesh Beri</span>
+                      <span className="text-white/30">•</span>
+                      <time className="text-white/50">
                         {new Date(newsletter.date).toLocaleDateString('en-US', { 
                           year: 'numeric', 
                           month: 'short', 
                           day: 'numeric' 
                         })}
                       </time>
+                      <span className="text-white/30">•</span>
                       <div className="flex gap-2">
-                        {newsletter.tags.slice(0, 3).map((tag) => (
+                        {newsletter.tags.slice(1, 3).map((tag) => (
                           <span 
                             key={tag}
-                            className="text-xs px-3 py-1 rounded-full bg-purple-500/10 text-purple-300/70 border border-purple-500/20"
+                            className="text-xs px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300/70"
                           >
                             {tag}
                           </span>
                         ))}
                       </div>
                     </div>
-
-                    {/* Title */}
-                    <h3 className="text-2xl font-semibold text-white group-hover:text-fuchsia-400 transition-colors mb-3">
-                      {newsletter.title}
-                    </h3>
-
-                    {/* Excerpt */}
-                    <p className="text-white/60 leading-relaxed mb-4">
-                      {newsletter.excerpt}
-                    </p>
-
-                    {/* Read more */}
-                    <div className="text-fuchsia-400 group-hover:text-fuchsia-300 font-medium text-sm inline-flex items-center gap-2">
-                      Read full article
-                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </div>
-
-                  </article>
+                  </div>
                 </Link>
               ))}
             </div>
