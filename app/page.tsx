@@ -1,321 +1,194 @@
 import { getAllNewsletters } from '@/lib/newsletters';
 import Link from 'next/link';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import ScrollReveal from '@/components/ScrollReveal';
+import NewsletterSignup from '@/components/NewsletterSignup';
 
 export default function Home() {
   const newsletters = getAllNewsletters();
-  const featured = newsletters[0]; // Most recent as featured
-  const latest = newsletters.slice(1, 7); // Next 6 for grid
-  const more = newsletters.slice(7, 13); // More stories
+  const featured = newsletters[0];
+  const latest = newsletters.slice(1, 7);
 
-  // Get all unique tags for category nav
   const allTags = Array.from(
     new Set(newsletters.flatMap(n => n.tags))
-  ).slice(0, 6); // Top 6 categories
+  ).slice(0, 8);
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Subtle background */}
-      <div className="fixed inset-0 bg-gradient-to-b from-purple-950/20 to-black pointer-events-none" />
-      
+    <div className="min-h-screen bg-[#0c0a14] text-white">
+      {/* Ambient background */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-purple-900/20 rounded-full blur-[120px] glow-orb" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-fuchsia-900/15 rounded-full blur-[120px] glow-orb-delayed" />
+      </div>
+
       <div className="relative">
-        {/* Header - TechCrunch style */}
-        <header className="border-b border-white/10 bg-black/95 backdrop-blur-sm sticky top-0 z-50">
-          <div className="max-w-[1400px] mx-auto">
-            {/* Top bar */}
-            <div className="px-6 py-4 flex items-center justify-between border-b border-white/5">
-              <Link href="/">
-                <h1 className="text-2xl font-bold tracking-tight cursor-pointer">
-                  THE D<span className="text-fuchsia-500">*AI*</span>LY BRIEF
-                </h1>
-              </Link>
-              
-              <div className="flex items-center gap-6">
-                <Link href="/search" className="text-sm text-white/60 hover:text-white transition-colors flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                  Search
-                </Link>
-                <a href="#newsletter" className="px-5 py-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-sm font-semibold rounded-md transition-colors">
-                  Subscribe
-                </a>
-              </div>
-            </div>
+        <Header tags={allTags} showCategoryNav />
 
-            {/* Category nav */}
-            <nav className="px-6 py-3 flex items-center gap-8 overflow-x-auto scrollbar-hide">
-              <Link href="/archive" className="text-sm font-medium text-white hover:text-fuchsia-400 transition-colors whitespace-nowrap">
-                Latest
-              </Link>
-              {allTags.map(tag => (
-                <Link 
-                  key={tag}
-                  href={`/tag/${encodeURIComponent(tag)}`}
-                  className="text-sm font-medium text-white/70 hover:text-fuchsia-400 transition-colors whitespace-nowrap"
-                >
-                  {tag}
-                </Link>
-              ))}
-              <Link href="/tags" className="text-sm font-medium text-white/70 hover:text-fuchsia-400 transition-colors whitespace-nowrap">
-                All Topics
-              </Link>
-            </nav>
-          </div>
-        </header>
+        <main className="max-w-[1200px] mx-auto px-6">
 
-        <main className="max-w-[1400px] mx-auto px-6 py-8">
-          
           {featured ? (
             <>
-              {/* Featured Story - TechCrunch hero style */}
-              <section className="mb-12">
-                <Link href={`/newsletter/${featured.slug}`} className="group block">
-                  <div className="grid lg:grid-cols-2 gap-8 items-center p-8 rounded-2xl bg-gradient-to-br from-purple-950/30 to-black border border-purple-500/20 hover:border-fuchsia-500/40 transition-all">
-                    {/* AI Visual */}
-                    <div className="h-[400px] rounded-xl overflow-hidden relative">
-                      <img 
-                        src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" 
-                        alt="AI Technology" 
-                        className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-br from-purple-600/40 to-fuchsia-600/40 mix-blend-multiply" />
-                    </div>
-
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-3">
-                        <span className="px-3 py-1 text-xs font-semibold bg-fuchsia-600 text-white rounded-md uppercase">
-                          Featured Story
-                        </span>
-                        <span className="text-sm text-white/50">
-                          {new Date(featured.date).toLocaleDateString('en-US', { 
-                            month: 'short', 
-                            day: 'numeric',
-                            year: 'numeric'
-                          })}
-                        </span>
+              {/* ===== HERO / FEATURED ===== */}
+              <section className="py-16 md:py-24">
+                <ScrollReveal>
+                  <Link href={`/newsletter/${featured.slug}`} className="group block">
+                    <div className="grid lg:grid-cols-2 gap-10 items-center">
+                      {/* Visual */}
+                      <div className="relative h-[320px] md:h-[400px] rounded-2xl overflow-hidden card-hover">
+                        <img
+                          src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80"
+                          alt="AI Technology"
+                          className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-[1.03] transition-all duration-700"
+                          loading="eager"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0a14] via-transparent to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-fuchsia-600/10 mix-blend-multiply" />
                       </div>
-                      
-                      <h2 className="text-4xl font-bold leading-tight group-hover:text-fuchsia-400 transition-colors">
-                        {featured.title}
-                      </h2>
-                      
-                      <p className="text-lg text-white/70 leading-relaxed line-clamp-3">
-                        {featured.excerpt}
-                      </p>
 
-                      <div className="flex gap-2 flex-wrap">
-                        {featured.tags.slice(0, 3).map(tag => (
-                          <span key={tag} className="text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
-                            {tag}
+                      {/* Content */}
+                      <div className="space-y-5">
+                        <div className="flex items-center gap-3">
+                          <span className="px-3 py-1 text-[10px] font-bold bg-purple-600/80 text-white rounded-md uppercase tracking-wider">
+                            Featured
                           </span>
-                        ))}
+                          <span className="text-sm text-white/40 font-mono">
+                            {new Date(featured.date).toLocaleDateString('en-US', {
+                              month: 'short',
+                              day: 'numeric',
+                              year: 'numeric'
+                            })}
+                          </span>
+                        </div>
+
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] group-hover:text-purple-300 transition-colors duration-300">
+                          {featured.title}
+                        </h2>
+
+                        <p className="text-lg text-white/50 leading-relaxed line-clamp-3">
+                          {featured.excerpt}
+                        </p>
+
+                        <div className="flex gap-2 flex-wrap">
+                          {featured.tags.slice(0, 3).map(tag => (
+                            <span key={tag} className="text-xs px-3 py-1 rounded-full bg-purple-500/10 text-purple-300/70 border border-purple-500/20">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+
+                        <div className="text-purple-400 font-medium text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+                          Read full analysis
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </section>
-
-              {/* Latest News - TechCrunch grid */}
-              <section className="mb-12">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-2xl font-bold">Latest News</h3>
-                  <Link href="/archive" className="text-sm text-fuchsia-400 hover:text-fuchsia-300 font-medium">
-                    View all →
                   </Link>
-                </div>
-
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {latest.map(article => (
-                    <Link 
-                      key={article.slug}
-                      href={`/newsletter/${article.slug}`}
-                      className="group"
-                    >
-                      <article className="h-full flex flex-col">
-                        {/* Article image */}
-                        <div className="h-48 rounded-lg mb-4 overflow-hidden relative group-hover:ring-2 group-hover:ring-fuchsia-500/40 transition-all">
-                          <img 
-                            src={`https://images.unsplash.com/photo-${[
-                              '1677442136019-21780ecad995',
-                              '1655720828018-edd2daec01fe',
-                              '1677756119517-756a188d2d94'
-                            ][article.slug.length % 3]}?w=600&q=80`}
-                            alt={article.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-fuchsia-600/20" />
-                        </div>
-
-                        <div className="flex-1 flex flex-col">
-                          {/* Category tag */}
-                          {article.tags[0] && (
-                            <span className="text-xs font-semibold text-fuchsia-400 uppercase mb-2">
-                              {article.tags[0]}
-                            </span>
-                          )}
-
-                          {/* Title */}
-                          <h4 className="text-xl font-bold mb-2 group-hover:text-fuchsia-400 transition-colors line-clamp-2">
-                            {article.title}
-                          </h4>
-
-                          {/* Excerpt */}
-                          <p className="text-sm text-white/60 mb-3 line-clamp-2 flex-1">
-                            {article.excerpt}
-                          </p>
-
-                          {/* Meta */}
-                          <div className="flex items-center gap-3 text-xs text-white/40">
-                            <span>Rajesh Beri</span>
-                            <span>•</span>
-                            <time>
-                              {new Date(article.date).toLocaleDateString('en-US', { 
-                                month: 'short', 
-                                day: 'numeric'
-                              })}
-                            </time>
-                          </div>
-                        </div>
-                      </article>
-                    </Link>
-                  ))}
-                </div>
+                </ScrollReveal>
               </section>
 
-              {/* More Stories - Compact list */}
-              {more.length > 0 && (
-                <section className="mb-12">
-                  <h3 className="text-2xl font-bold mb-6">More Stories</h3>
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {more.map(article => (
-                      <Link
-                        key={article.slug}
-                        href={`/newsletter/${article.slug}`}
-                        className="group flex gap-4 pb-6 border-b border-white/5 hover:border-fuchsia-500/20 transition-all"
-                      >
-                        {/* Small thumbnail */}
-                        <div className="w-24 h-24 flex-shrink-0 rounded-lg bg-gradient-to-br from-purple-600/20 to-fuchsia-600/20 border border-purple-500/20 group-hover:border-fuchsia-500/40 transition-all" />
-                        
-                        <div className="flex-1 min-w-0">
-                          {article.tags[0] && (
-                            <span className="text-xs font-semibold text-fuchsia-400 uppercase">
-                              {article.tags[0]}
-                            </span>
-                          )}
-                          <h4 className="font-bold group-hover:text-fuchsia-400 transition-colors line-clamp-2 mt-1">
-                            {article.title}
-                          </h4>
-                          <div className="flex items-center gap-2 text-xs text-white/40 mt-2">
-                            <time>
-                              {new Date(article.date).toLocaleDateString('en-US', { 
-                                month: 'short', 
-                                day: 'numeric'
-                              })}
-                            </time>
-                          </div>
-                        </div>
+              {/* ===== LATEST NEWS GRID ===== */}
+              {latest.length > 0 && (
+                <section className="pb-16">
+                  <ScrollReveal>
+                    <div className="flex items-center justify-between mb-8">
+                      <h3 className="text-xl font-bold text-white/90">Latest Analysis</h3>
+                      <Link href="/archive" className="text-sm text-purple-400 hover:text-purple-300 font-medium transition-colors">
+                        View all →
                       </Link>
+                    </div>
+                  </ScrollReveal>
+
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {latest.map((article, i) => (
+                      <ScrollReveal key={article.slug} delay={i * 80}>
+                        <Link href={`/newsletter/${article.slug}`} className="group block h-full">
+                          <article className="h-full flex flex-col rounded-xl border border-white/5 bg-white/[0.02] p-5 card-hover">
+                            {/* Image */}
+                            <div className="h-44 rounded-lg mb-4 overflow-hidden relative">
+                              <img
+                                src={`https://images.unsplash.com/photo-${[
+                                  '1677442136019-21780ecad995',
+                                  '1655720828018-edd2daec01fe',
+                                  '1677756119517-756a188d2d94'
+                                ][article.slug.length % 3]}?w=600&q=80`}
+                                alt={article.title}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                loading="lazy"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#0c0a14]/60 to-transparent" />
+                            </div>
+
+                            <div className="flex-1 flex flex-col">
+                              {article.tags[0] && (
+                                <span className="text-[10px] font-bold text-purple-400 uppercase tracking-wider mb-2">
+                                  {article.tags[0]}
+                                </span>
+                              )}
+
+                              <h4 className="text-lg font-bold mb-2 group-hover:text-purple-300 transition-colors line-clamp-2 leading-snug">
+                                {article.title}
+                              </h4>
+
+                              <p className="text-sm text-white/40 mb-4 line-clamp-2 flex-1 leading-relaxed">
+                                {article.excerpt}
+                              </p>
+
+                              <div className="flex items-center gap-2 text-xs text-white/30">
+                                <span className="font-medium">Rajesh Beri</span>
+                                <span>·</span>
+                                <time>
+                                  {new Date(article.date).toLocaleDateString('en-US', {
+                                    month: 'short',
+                                    day: 'numeric'
+                                  })}
+                                </time>
+                              </div>
+                            </div>
+                          </article>
+                        </Link>
+                      </ScrollReveal>
                     ))}
                   </div>
                 </section>
               )}
             </>
           ) : (
-            <div className="text-center py-24">
-              <div className="text-white/40 text-lg mb-6">No stories published yet</div>
-              <a href="#newsletter" className="inline-flex px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-semibold rounded-lg transition-colors">
-                Subscribe to get notified
-              </a>
+            <div className="text-center py-32">
+              <div className="text-white/30 text-lg mb-6">No stories published yet</div>
+              <a href="#newsletter" className="btn-primary">Subscribe to get notified</a>
             </div>
           )}
 
-          {/* Newsletter Signup */}
-          <section id="newsletter" className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-fuchsia-950/30 to-purple-950/30 border border-fuchsia-500/20">
-            <div className="max-w-2xl mx-auto text-center space-y-6">
-              <h3 className="text-3xl font-bold">
-                Get AI News in Your Inbox
-              </h3>
-              <p className="text-white/70 text-lg">
-                Twice-weekly deep dives into AI developments. No spam, just signal.
-              </p>
-              
-              <form className="flex gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="flex-1 px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent"
-                  required
-                />
-                <button className="px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-semibold rounded-lg transition-colors whitespace-nowrap">
-                  Subscribe →
-                </button>
-              </form>
+          {/* ===== ABOUT / VALUE PROP ===== */}
+          <ScrollReveal>
+            <section className="py-16 border-t border-white/5">
+              <div className="grid md:grid-cols-3 gap-8">
+                {[
+                  { icon: '📊', title: 'Data-Driven', desc: 'Real benchmarks from production workloads — not marketing claims.' },
+                  { icon: '🏢', title: 'Enterprise Focus', desc: 'Written for engineering leaders deploying AI at scale.' },
+                  { icon: '⚡', title: 'Signal Only', desc: 'Twice-weekly deep dives. No fluff, no hype — just what matters.' },
+                ].map((item, i) => (
+                  <ScrollReveal key={item.title} delay={i * 100}>
+                    <div className="p-6 rounded-xl border border-white/5 bg-white/[0.02] card-hover text-center">
+                      <div className="text-3xl mb-3">{item.icon}</div>
+                      <h4 className="font-bold mb-2">{item.title}</h4>
+                      <p className="text-sm text-white/40 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </section>
+          </ScrollReveal>
 
-              <p className="text-xs text-white/30">
-                Every Tuesday & Thursday • Free forever • Unsubscribe anytime
-              </p>
-            </div>
-          </section>
+          {/* ===== NEWSLETTER SIGNUP ===== */}
+          <NewsletterSignup />
 
         </main>
 
-        {/* Footer - TechCrunch style */}
-        <footer className="border-t border-white/10 mt-24 bg-black/95">
-          <div className="max-w-[1400px] mx-auto px-6 py-12">
-            <div className="grid md:grid-cols-4 gap-8 mb-12">
-              
-              {/* Col 1 */}
-              <div>
-                <div className="font-bold text-lg mb-4">
-                  THE D<span className="text-fuchsia-500">*AI*</span>LY BRIEF
-                </div>
-                <p className="text-sm text-white/50">
-                  Enterprise AI news and analysis for tech leaders
-                </p>
-              </div>
-
-              {/* Col 2 */}
-              <div>
-                <div className="font-semibold mb-4">Browse</div>
-                <div className="space-y-2 text-sm text-white/60">
-                  <div><Link href="/archive" className="hover:text-fuchsia-400 transition-colors">Latest</Link></div>
-                  <div><Link href="/search" className="hover:text-fuchsia-400 transition-colors">Search</Link></div>
-                  <div><Link href="/tags" className="hover:text-fuchsia-400 transition-colors">Topics</Link></div>
-                </div>
-              </div>
-
-              {/* Col 3 */}
-              <div>
-                <div className="font-semibold mb-4">Connect</div>
-                <div className="space-y-2 text-sm text-white/60">
-                  <div><a href="https://www.linkedin.com/in/rberi/" target="_blank" rel="noopener noreferrer" className="hover:text-fuchsia-400 transition-colors">LinkedIn</a></div>
-                  <div><a href="https://x.com/rajeshberi" target="_blank" rel="noopener noreferrer" className="hover:text-fuchsia-400 transition-colors">Twitter / X</a></div>
-                </div>
-              </div>
-
-              {/* Col 4 */}
-              <div>
-                <div className="font-semibold mb-4">Subscribe</div>
-                <p className="text-sm text-white/60 mb-3">Get AI insights twice a week</p>
-                <a href="#newsletter" className="inline-block px-4 py-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-sm font-semibold rounded-md transition-colors">
-                  Sign up →
-                </a>
-              </div>
-
-            </div>
-
-            {/* Bottom bar */}
-            <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
-              <div>© 2026 THE D*AI*LY BRIEF by Rajesh Beri</div>
-              <div className="flex gap-6">
-                <a href="#" className="hover:text-white transition-colors">Privacy</a>
-                <a href="#" className="hover:text-white transition-colors">Terms</a>
-              </div>
-            </div>
-          </div>
-        </footer>
-
+        <Footer />
       </div>
     </div>
   );

@@ -3,36 +3,210 @@
 @tailwind utilities;
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  --background: #0c0a14;
+  --foreground: #f0eef5;
+  --purple-deep: #1a1028;
+  --accent: #a855f7;
+  --accent-bright: #c084fc;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Selection color */
 ::selection {
-  background-color: rgba(59, 130, 246, 0.3);
+  background-color: rgba(168, 85, 247, 0.3);
   color: white;
 }
 
-/* Remove blue tap highlight on mobile */
 * {
   -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================
+   SCROLL REVEAL ANIMATIONS (hardware accelerated)
+   ============================================ */
+
+.reveal-up,
+.reveal-down,
+.reveal-left,
+.reveal-right,
+.reveal-fade {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-up { transform: translateY(32px); }
+.reveal-down { transform: translateY(-32px); }
+.reveal-left { transform: translateX(32px); }
+.reveal-right { transform: translateX(-32px); }
+.reveal-fade { transform: scale(0.97); }
+
+.reveal-up.revealed,
+.reveal-down.revealed,
+.reveal-left.revealed,
+.reveal-right.revealed,
+.reveal-fade.revealed {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* ============================================
+   CARD INTERACTIONS
+   ============================================ */
+
+.card-hover {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(168, 85, 247, 0.2),
+              0 0 0 1px rgba(168, 85, 247, 0.1);
+}
+
+/* ============================================
+   GRADIENT TEXT SHIMMER
+   ============================================ */
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #c084fc 0%,
+    #f0abfc 25%,
+    #a855f7 50%,
+    #f0abfc 75%,
+    #c084fc 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ============================================
+   FLOATING GLOW (hero bg effect)
+   ============================================ */
+
+@keyframes float-glow {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  33% { transform: translate(30px, -30px) scale(1.1); opacity: 0.4; }
+  66% { transform: translate(-20px, 20px) scale(0.95); opacity: 0.25; }
+}
+
+.glow-orb {
+  animation: float-glow 8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.glow-orb-delayed {
+  animation: float-glow 10s ease-in-out 2s infinite;
+  will-change: transform, opacity;
+}
+
+/* ============================================
+   BUTTON INTERACTIONS
+   ============================================ */
+
+.btn-primary {
+  @apply px-6 py-3 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white font-semibold rounded-xl
+         hover:from-purple-500 hover:to-fuchsia-500 
+         active:scale-[0.97]
+         transition-all duration-200
+         shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-white/5 border border-white/10 text-white font-medium rounded-xl
+         hover:bg-white/10 hover:border-purple-500/30
+         active:scale-[0.97]
+         transition-all duration-200;
+}
+
+/* ============================================
+   PROSE STYLES (article content)
+   ============================================ */
+
+.article-content h1 { @apply text-3xl md:text-4xl font-bold mt-10 mb-4 text-white; }
+.article-content h2 { @apply text-2xl md:text-3xl font-bold mt-12 mb-4 text-white; }
+.article-content h3 { @apply text-xl md:text-2xl font-semibold mt-8 mb-3 text-white/90; }
+.article-content p { @apply text-white/70 leading-relaxed mb-6 text-lg; }
+.article-content strong { @apply text-white font-semibold; }
+.article-content a { @apply text-purple-400 hover:text-purple-300 underline underline-offset-2 transition-colors; }
+.article-content ul { @apply text-white/70 space-y-2 mb-6 pl-6 list-disc; }
+.article-content ol { @apply text-white/70 space-y-2 mb-6 pl-6 list-decimal; }
+.article-content li { @apply text-white/70 text-lg; }
+.article-content blockquote {
+  @apply border-l-4 border-purple-500 pl-6 py-2 my-6 italic text-white/60 bg-purple-500/5 rounded-r-lg;
+}
+.article-content code {
+  @apply text-purple-300 bg-purple-950/40 px-2 py-0.5 rounded font-mono text-sm;
+}
+.article-content pre {
+  @apply bg-[#0d0a18] border border-white/5 rounded-xl p-6 overflow-x-auto mb-6;
+}
+.article-content pre code {
+  @apply bg-transparent px-0 py-0 text-white/80;
+}
+.article-content hr {
+  @apply border-white/10 my-10;
+}
+.article-content em {
+  @apply text-white/60;
+}
+
+/* ============================================
+   NAVIGATION UNDERLINE EFFECT
+   ============================================ */
+
+.nav-link {
+  @apply relative text-sm font-medium text-white/60 hover:text-white transition-colors;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-500 rounded-full transition-all duration-300;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.5);
 }

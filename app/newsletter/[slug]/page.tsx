@@ -3,23 +3,19 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { remark } from 'remark';
 import html from 'remark-html';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import ScrollReveal from '@/components/ScrollReveal';
+import NewsletterSignup from '@/components/NewsletterSignup';
 
 export async function generateStaticParams() {
-  const slugs = getAllSlugs();
-  return slugs.map((slug) => ({
-    slug,
-  }));
+  return getAllSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const newsletter = getNewsletterBySlug(slug);
-  
-  if (!newsletter) {
-    return {
-      title: 'Newsletter Not Found',
-    };
-  }
+  if (!newsletter) return { title: 'Not Found' };
 
   return {
     title: `${newsletter.title} | THE D*AI*LY BRIEF`,
@@ -42,157 +38,108 @@ async function markdownToHtml(markdown: string) {
 export default async function NewsletterPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const newsletter = getNewsletterBySlug(slug);
-
-  if (!newsletter) {
-    notFound();
-  }
+  if (!newsletter) notFound();
 
   const contentHtml = await markdownToHtml(newsletter.content);
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Background effects */}
-      <div className="fixed inset-0 bg-gradient-to-br from-purple-900 via-violet-950 to-black pointer-events-none" />
-      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-fuchsia-600/30 via-purple-900/20 to-transparent pointer-events-none" />
-      
+    <div className="min-h-screen bg-[#0c0a14] text-white">
+      {/* Ambient background */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-purple-900/15 rounded-full blur-[120px]" />
+      </div>
+
       <div className="relative">
-        {/* Header */}
-        <header className="border-b border-white/5 backdrop-blur-xl bg-black/40 sticky top-0 z-50">
-          <div className="max-w-4xl mx-auto px-6 py-6 flex justify-between items-center">
-            <Link href="/">
-              <h1 className="text-xl font-bold tracking-tight cursor-pointer hover:opacity-80 transition-opacity">
-                THE D<span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400">*AI*</span>LY BRIEF
-              </h1>
+        <Header />
+
+        <main className="max-w-3xl mx-auto px-6 py-12 md:py-20">
+
+          {/* Back */}
+          <ScrollReveal>
+            <Link
+              href="/archive"
+              className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-purple-400 transition-colors mb-10"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to archive
             </Link>
-            <div className="flex items-center gap-6">
-              <Link href="/archive" className="text-sm text-white/60 hover:text-white transition-colors">
-                Archive
-              </Link>
-              <Link href="/search" className="text-sm text-white/60 hover:text-white transition-colors">
-                Search
-              </Link>
-              <Link href="/tags" className="text-sm text-white/60 hover:text-white transition-colors">
-                Tags
-              </Link>
-              <a 
-                href="/#subscribe" 
-                className="px-6 py-2.5 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-sm font-medium rounded-full hover:from-fuchsia-500 hover:to-purple-500 transition-all shadow-lg shadow-fuchsia-500/30"
-              >
-                Subscribe
-              </a>
-            </div>
-          </div>
-        </header>
+          </ScrollReveal>
 
-        {/* Article */}
-        <main className="max-w-3xl mx-auto px-6 py-16">
-          
-          {/* Back link */}
-          <Link 
-            href="/archive"
-            className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-fuchsia-400 transition-colors mb-8"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to archive
-          </Link>
-
-          {/* Article Header */}
-          <article className="space-y-8">
-            
-            {/* Meta */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <time className="text-sm font-mono text-fuchsia-400/80">
-                  {new Date(newsletter.date).toLocaleDateString('en-US', { 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
+          <article>
+            {/* Header */}
+            <ScrollReveal>
+              <div className="space-y-5 mb-12">
+                <time className="text-sm font-mono text-purple-400/70">
+                  {new Date(newsletter.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
                   })}
                 </time>
-              </div>
-              
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-                {newsletter.title}
-              </h1>
 
-              {newsletter.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {newsletter.tags.map((tag) => (
-                    <Link
-                      key={tag}
-                      href={`/tag/${encodeURIComponent(tag)}`}
-                      className="text-xs px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-300/70 border border-purple-500/20 hover:bg-fuchsia-600 hover:text-white hover:border-fuchsia-500 transition-all"
-                    >
-                      {tag}
-                    </Link>
-                  ))}
+                <h1 className="text-3xl md:text-5xl font-bold leading-[1.1]">
+                  {newsletter.title}
+                </h1>
+
+                {newsletter.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {newsletter.tags.map((tag) => (
+                      <Link
+                        key={tag}
+                        href={`/tag/${encodeURIComponent(tag)}`}
+                        className="text-xs px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-300/60 border border-purple-500/15 hover:bg-purple-500/20 hover:text-purple-200 transition-all"
+                      >
+                        {tag}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+
+                {/* Author line */}
+                <div className="flex items-center gap-3 pt-2">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-xs font-bold">
+                    RB
+                  </div>
+                  <div className="text-sm text-white/40">
+                    <span className="text-white/70 font-medium">Rajesh Beri</span> · Head of AI Engineering at Zscaler
+                  </div>
                 </div>
-              )}
-            </div>
 
-            {/* Divider */}
-            <div className="w-12 h-[1px] bg-gradient-to-r from-fuchsia-500 via-purple-500 to-transparent" />
+                <div className="w-12 h-[2px] bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
+              </div>
+            </ScrollReveal>
 
             {/* Content */}
-            <div 
-              className="prose prose-invert prose-lg max-w-none
-                prose-headings:font-bold prose-headings:tracking-tight
-                prose-h1:text-4xl prose-h1:mb-4
-                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-white
-                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-white/90
-                prose-p:text-white/70 prose-p:leading-relaxed prose-p:mb-6
-                prose-strong:text-white prose-strong:font-semibold
-                prose-a:text-fuchsia-400 prose-a:no-underline hover:prose-a:text-fuchsia-300
-                prose-ul:text-white/70 prose-ul:space-y-2
-                prose-li:text-white/70
-                prose-code:text-purple-300 prose-code:bg-purple-950/30 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:font-mono prose-code:text-sm
-                prose-blockquote:border-l-4 prose-blockquote:border-fuchsia-500 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-white/60"
-              dangerouslySetInnerHTML={{ __html: contentHtml }}
-            />
-
+            <ScrollReveal delay={100}>
+              <div
+                className="article-content"
+                dangerouslySetInnerHTML={{ __html: contentHtml }}
+              />
+            </ScrollReveal>
           </article>
 
-          {/* Share / Subscribe CTA */}
-          <div className="mt-16 pt-12 border-t border-white/10 space-y-8">
-            
-            {/* Author */}
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-600 flex items-center justify-center text-2xl font-bold">
-                RB
-              </div>
-              <div>
-                <div className="font-semibold text-white">Rajesh Beri</div>
-                <div className="text-sm text-white/60">Head of AI Engineering at Zscaler</div>
-              </div>
-            </div>
-
-            {/* Subscribe CTA */}
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-purple-950/30 to-black border border-purple-500/20 backdrop-blur-sm">
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold">
-                  Get insights like this <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400">twice a week</span>
-                </h3>
-                <p className="text-white/60">
-                  Join engineering leaders getting AI insights delivered to their inbox every Tuesday and Thursday.
-                </p>
-                <a 
-                  href="/#subscribe"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white font-semibold rounded-full hover:from-fuchsia-500 hover:to-purple-500 transition-all shadow-lg shadow-fuchsia-500/50"
-                >
-                  Subscribe Free
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+          {/* Author CTA */}
+          <ScrollReveal delay={150}>
+            <div className="mt-16 pt-12 border-t border-white/5 space-y-8">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-xl font-bold">
+                  RB
+                </div>
+                <div>
+                  <div className="font-semibold">Rajesh Beri</div>
+                  <div className="text-sm text-white/40">Head of AI Engineering at Zscaler</div>
+                </div>
               </div>
             </div>
+          </ScrollReveal>
 
-          </div>
+          <NewsletterSignup />
 
         </main>
 
+        <Footer />
       </div>
     </div>
   );
