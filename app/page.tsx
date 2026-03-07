@@ -1,156 +1,236 @@
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      {/* Header */}
-      <header className="border-b border-blue-800/30 backdrop-blur-sm bg-slate-900/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex justify-between items-center">
+    <div className="min-h-screen bg-black text-white">
+      {/* Subtle animated gradient background */}
+      <div className="fixed inset-0 bg-gradient-to-br from-blue-950/20 via-black to-purple-950/20 pointer-events-none" />
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent pointer-events-none" />
+      
+      <div className="relative">
+        {/* Minimal Header */}
+        <header className="border-b border-white/5 backdrop-blur-xl bg-black/40">
+          <div className="max-w-4xl mx-auto px-6 py-8 flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-bold text-white">
+              <div className="text-sm font-mono text-white/40 mb-1">RAJESH BERI</div>
+              <h1 className="text-xl font-light tracking-tight">
                 THE D<span className="text-blue-400">*AI*</span>LY BRIEF
               </h1>
-              <p className="text-sm text-blue-300 mt-1">by Rajesh Beri</p>
             </div>
-            <nav className="flex gap-6">
-              <a href="#subscribe" className="text-blue-300 hover:text-white transition-colors">
-                Subscribe
-              </a>
-              <a href="#about" className="text-blue-300 hover:text-white transition-colors">
-                About
-              </a>
-              <a href="https://www.linkedin.com/in/rberi/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-white transition-colors">
-                LinkedIn
-              </a>
-            </nav>
+            <a 
+              href="#subscribe" 
+              className="text-sm text-white/60 hover:text-white transition-colors"
+            >
+              Subscribe
+            </a>
           </div>
-        </div>
-      </header>
+        </header>
 
-      {/* Hero Section */}
-      <main>
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-5xl sm:text-6xl font-bold text-white mb-6 leading-tight">
-              AI Insights That Actually <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Matter</span>
-            </h2>
-            <p className="text-xl text-blue-200 mb-8 leading-relaxed">
-              Twice-weekly deep dives into AI advancements. No hype, no fluff—just the insights engineering leaders and tech decision-makers need to stay ahead.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a 
-                href="#subscribe" 
-                className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-blue-500/50"
-              >
-                Subscribe Free
-              </a>
-              <a 
-                href="#recent" 
-                className="px-8 py-4 border-2 border-blue-400 text-blue-300 hover:bg-blue-900/30 font-semibold rounded-lg transition-colors"
-              >
-                Read Latest
-              </a>
-            </div>
-            <p className="text-sm text-blue-300/70 mt-6">
-              📰 Every Tuesday & Thursday · 📊 Data-driven · 🎯 Enterprise-focused
-            </p>
-          </div>
-        </section>
-
-        {/* Value Props */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-slate-800/50 backdrop-blur-sm border border-blue-800/30 rounded-lg p-8">
-              <div className="text-4xl mb-4">🎯</div>
-              <h3 className="text-xl font-bold text-white mb-3">Enterprise Perspective</h3>
-              <p className="text-blue-200">
-                Written from the trenches of building AI at scale at Zscaler. Real-world insights, not academic theory.
+        {/* Hero - Content First */}
+        <main className="max-w-4xl mx-auto px-6">
+          
+          {/* Opening Statement */}
+          <section className="pt-32 pb-24">
+            <div className="space-y-8">
+              <h2 className="text-6xl md:text-7xl font-light leading-[1.1] tracking-tight">
+                AI insights from
+                <br />
+                <span className="text-white/40">the trenches of</span>
+                <br />
+                enterprise scale
+              </h2>
+              
+              <div className="w-12 h-[1px] bg-gradient-to-r from-blue-500 to-transparent" />
+              
+              <p className="text-xl md:text-2xl text-white/60 font-light leading-relaxed max-w-2xl">
+                Twice weekly. No hype. No fluff. Just the AI advancements that matter, 
+                analyzed from the perspective of building at Zscaler.
               </p>
+
+              <div className="pt-8">
+                <a 
+                  href="#subscribe" 
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-all hover:gap-4"
+                >
+                  Get the Brief
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </div>
+
+              <div className="flex gap-8 text-sm text-white/30 font-mono pt-4">
+                <div>TUE + THU</div>
+                <div>•</div>
+                <div>FREE</div>
+                <div>•</div>
+                <div>ENTERPRISE FOCUSED</div>
+              </div>
             </div>
-            <div className="bg-slate-800/50 backdrop-blur-sm border border-blue-800/30 rounded-lg p-8">
-              <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-xl font-bold text-white mb-3">Numbers Over Noise</h3>
-              <p className="text-blue-200">
-                Data-driven analysis. We cut through the hype to show you what actually moves the needle.
+          </section>
+
+          {/* What You Get - Story-Driven */}
+          <section className="py-24 border-t border-white/5">
+            <div className="space-y-16">
+              
+              <div className="space-y-4">
+                <div className="text-sm font-mono text-white/40">WHAT YOU GET</div>
+                <h3 className="text-4xl font-light">
+                  Signal, not noise
+                </h3>
+              </div>
+
+              {/* Feature Grid - Bento Style */}
+              <div className="grid md:grid-cols-2 gap-6">
+                
+                {/* Card 1 */}
+                <div className="group p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 hover:border-white/20 transition-all">
+                  <div className="space-y-4">
+                    <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                      <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                      </svg>
+                    </div>
+                    <h4 className="text-xl font-medium">Data Over Hype</h4>
+                    <p className="text-white/50 leading-relaxed">
+                      Every claim backed by numbers. Benchmarks, metrics, real-world performance—not marketing speak.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Card 2 */}
+                <div className="group p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 hover:border-white/20 transition-all">
+                  <div className="space-y-4">
+                    <div className="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                      <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <h4 className="text-xl font-medium">Enterprise Lens</h4>
+                    <p className="text-white/50 leading-relaxed">
+                      Written from the perspective of deploying AI at scale. What works in production, not just demos.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Card 3 - Full Width */}
+                <div className="md:col-span-2 group p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 hover:border-white/20 transition-all">
+                  <div className="grid md:grid-cols-2 gap-8 items-center">
+                    <div className="space-y-4">
+                      <div className="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center">
+                        <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-medium">Actionable Monday Morning</h4>
+                      <p className="text-white/50 leading-relaxed">
+                        Every issue ends with "What This Means For You"—decisions you can make, experiments you can run, strategies you can adopt.
+                      </p>
+                    </div>
+                    <div className="bg-white/[0.02] border border-white/5 rounded-xl p-6 font-mono text-sm text-white/40 space-y-2">
+                      <div className="text-white/20">// Example takeaway</div>
+                      <div>if (model_performance &gt; threshold) {"{"}</div>
+                      <div className="pl-4">consider_migration();</div>
+                      <div className="pl-4">benchmark_costs();</div>
+                      <div className="pl-4">plan_rollout();</div>
+                      <div>{"}"}</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          {/* Subscribe - Clean CTA */}
+          <section id="subscribe" className="py-32">
+            <div className="max-w-xl mx-auto">
+              <div className="space-y-8 text-center">
+                <div className="space-y-4">
+                  <h3 className="text-4xl md:text-5xl font-light leading-tight">
+                    Stay ahead of
+                    <br />
+                    the AI curve
+                  </h3>
+                  <p className="text-white/40">
+                    Join engineering leaders getting insights twice a week
+                  </p>
+                </div>
+
+                <form className="space-y-3">
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    className="w-full px-6 py-4 rounded-full bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="w-full px-8 py-4 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-all"
+                  >
+                    Subscribe Free
+                  </button>
+                </form>
+
+                <p className="text-xs text-white/20">
+                  No spam. Unsubscribe anytime. Typically 2-3 min reads.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* About - Minimal */}
+          <section className="py-24 border-t border-white/5">
+            <div className="max-w-2xl space-y-8">
+              <div className="space-y-4">
+                <div className="text-sm font-mono text-white/40">WRITTEN BY</div>
+                <h3 className="text-3xl font-light">Rajesh Beri</h3>
+              </div>
+              
+              <p className="text-lg text-white/50 leading-relaxed">
+                Head of AI Engineering at Zscaler. I lead teams building and deploying AI 
+                systems at enterprise scale. This newsletter is my way of sharing what's 
+                actually working—and what's just noise.
               </p>
-            </div>
-            <div className="bg-slate-800/50 backdrop-blur-sm border border-blue-800/30 rounded-lg p-8">
-              <div className="text-4xl mb-4">⚡</div>
-              <h3 className="text-xl font-bold text-white mb-3">Actionable Takeaways</h3>
-              <p className="text-blue-200">
-                Every issue ends with "What This Means For You"—practical implications you can use Monday morning.
-              </p>
-            </div>
-          </div>
-        </section>
 
-        {/* Subscribe Form */}
-        <section id="subscribe" className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="bg-gradient-to-br from-blue-900/50 to-slate-800/50 backdrop-blur-sm border border-blue-700/50 rounded-2xl p-12 shadow-2xl">
-            <h3 className="text-3xl font-bold text-white mb-4 text-center">
-              Join the Brief
-            </h3>
-            <p className="text-blue-200 text-center mb-8">
-              Get AI insights twice a week. Unsubscribe anytime.
-            </p>
-            <form className="space-y-4">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="w-full px-6 py-4 rounded-lg bg-slate-900/50 border border-blue-700/50 text-white placeholder-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-              <button
-                type="submit"
-                className="w-full px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow-lg hover:shadow-blue-500/50"
-              >
-                Subscribe Free →
-              </button>
-            </form>
-            <p className="text-xs text-blue-300/60 text-center mt-4">
-              No spam. No ads (yet). Just AI insights you can use.
-            </p>
-          </div>
-        </section>
+              <div className="flex gap-6 pt-4">
+                <a 
+                  href="https://www.linkedin.com/in/rberi/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white/40 hover:text-white transition-colors text-sm"
+                >
+                  LinkedIn →
+                </a>
+                <a 
+                  href="https://x.com/rajeshberi" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white/40 hover:text-white transition-colors text-sm"
+                >
+                  X / Twitter →
+                </a>
+              </div>
+            </div>
+          </section>
 
-        {/* About Section */}
-        <section id="about" className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center">
-            <h3 className="text-3xl font-bold text-white mb-6">About Rajesh Beri</h3>
-            <p className="text-lg text-blue-200 leading-relaxed mb-6">
-              Head of AI Engineering at Zscaler, where I lead teams building AI at enterprise scale. 
-              I write THE D*AI*LY BRIEF to cut through AI hype and share what's actually working in production.
-            </p>
-            <div className="flex justify-center gap-6">
-              <a 
-                href="https://www.linkedin.com/in/rberi/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
-              >
-                LinkedIn →
-              </a>
-              <a 
-                href="https://x.com/rajeshberi" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
-              >
-                Twitter/X →
-              </a>
+        </main>
+
+        {/* Footer */}
+        <footer className="border-t border-white/5 mt-24">
+          <div className="max-w-4xl mx-auto px-6 py-12">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-sm text-white/30">
+              <div className="space-y-2">
+                <div className="font-mono">THE D*AI*LY BRIEF</div>
+                <div>© 2026 Rajesh Beri</div>
+              </div>
+              <div className="flex gap-8">
+                <div>Tue + Thu</div>
+                <div>Free</div>
+                <div>Enterprise AI</div>
+              </div>
             </div>
           </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="border-t border-blue-800/30 backdrop-blur-sm bg-slate-900/50 mt-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center text-blue-300/60 text-sm">
-            <p>© 2026 THE D*AI*LY BRIEF by Rajesh Beri</p>
-            <p className="mt-2">Twice weekly AI insights · No hype, just value</p>
-          </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </div>
   );
 }
