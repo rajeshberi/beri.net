@@ -1,4 +1,8 @@
+import { getAllNewsletters } from '@/lib/newsletters';
+import Link from 'next/link';
+
 export default function Home() {
+  const newsletters = getAllNewsletters().slice(0, 3); // Get latest 3
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Deep purple gradient background - more vibrant */}
@@ -24,12 +28,20 @@ export default function Home() {
                 THE D<span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400">*AI*</span>LY BRIEF
               </h1>
             </div>
-            <a 
-              href="#subscribe" 
-              className="px-6 py-2.5 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-sm font-medium rounded-full hover:from-fuchsia-500 hover:to-purple-500 transition-all shadow-lg shadow-fuchsia-500/30"
-            >
-              Subscribe
-            </a>
+            <div className="flex items-center gap-6">
+              <Link 
+                href="/archive"
+                className="text-sm text-white/60 hover:text-white transition-colors"
+              >
+                Archive
+              </Link>
+              <a 
+                href="#subscribe" 
+                className="px-6 py-2.5 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-sm font-medium rounded-full hover:from-fuchsia-500 hover:to-purple-500 transition-all shadow-lg shadow-fuchsia-500/30"
+              >
+                Subscribe
+              </a>
+            </div>
           </div>
         </header>
 
@@ -241,48 +253,54 @@ export default function Home() {
             {/* Edition Cards - Event Style */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               
-              {/* Example Edition Card */}
-              {[
-                { date: '14', month: 'MAR', title: 'GPT-4.5 Benchmarks', desc: 'Deep dive into performance gains and cost implications for enterprise deployment' },
-                { date: '11', month: 'MAR', title: 'Vector DB Showdown', desc: 'Pinecone vs Weaviate vs Qdrant - performance, cost, and developer experience' },
-                { date: '07', month: 'MAR', title: 'Fine-tuning vs RAG', desc: 'When to fine-tune, when to use RAG, and how to decide for your use case' }
-              ].map((edition, i) => (
-                <div key={i} className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/30 to-black border border-purple-500/20 hover:border-purple-400/40 transition-all">
-                  {/* Abstract background pattern */}
-                  <div className="absolute inset-0 opacity-10">
-                    <div className="w-full h-full bg-gradient-to-br from-fuchsia-600/20 to-purple-600/20" />
-                  </div>
-                  
-                  {/* Date badge */}
-                  <div className="absolute top-6 left-6 w-16 h-20 bg-gradient-to-br from-fuchsia-600 to-purple-600 rounded-lg flex flex-col items-center justify-center shadow-lg">
-                    <div className="text-2xl font-bold">{edition.date}</div>
-                    <div className="text-xs font-mono opacity-80">{edition.month}</div>
-                  </div>
-                  
-                  <div className="relative p-8 pt-32 space-y-4">
-                    <h4 className="text-xl font-semibold text-white group-hover:text-fuchsia-400 transition-colors">{edition.title}</h4>
-                    <p className="text-white/60 leading-relaxed text-sm">{edition.desc}</p>
-                    <div className="pt-4">
-                      <a href="#subscribe" className="text-fuchsia-400 hover:text-fuchsia-300 text-sm font-medium inline-flex items-center gap-2">
-                        Read more 
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
+              {newsletters.length === 0 ? (
+                <div className="col-span-full text-center py-12 text-white/40">
+                  First edition coming soon. <a href="#subscribe" className="text-fuchsia-400 hover:text-fuchsia-300">Subscribe to get notified</a>.
                 </div>
-              ))}
+              ) : (
+                newsletters.map((edition, i) => {
+                  const date = new Date(edition.date);
+                  return (
+                  <Link key={i} href={`/newsletter/${edition.slug}`} className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/30 to-black border border-purple-500/20 hover:border-purple-400/40 transition-all block">
+                    {/* Abstract background pattern */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="w-full h-full bg-gradient-to-br from-fuchsia-600/20 to-purple-600/20" />
+                    </div>
+                    
+                    {/* Date badge */}
+                    <div className="absolute top-6 left-6 w-16 h-20 bg-gradient-to-br from-fuchsia-600 to-purple-600 rounded-lg flex flex-col items-center justify-center shadow-lg">
+                      <div className="text-2xl font-bold">{date.getDate()}</div>
+                      <div className="text-xs font-mono opacity-80">{date.toLocaleString('en-US', { month: 'short' }).toUpperCase()}</div>
+                    </div>
+                    
+                    <div className="relative p-8 pt-32 space-y-4">
+                      <h4 className="text-xl font-semibold text-white group-hover:text-fuchsia-400 transition-colors">{edition.title}</h4>
+                      <p className="text-white/60 leading-relaxed text-sm">{edition.excerpt}</p>
+                      <div className="pt-4">
+                        <span className="text-fuchsia-400 group-hover:text-fuchsia-300 text-sm font-medium inline-flex items-center gap-2">
+                          Read more 
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })
+              )}
             </div>
 
-            <div className="text-center mt-12">
-              <a 
-                href="#subscribe" 
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white font-semibold rounded-full hover:from-fuchsia-500 hover:to-purple-500 transition-all shadow-lg shadow-fuchsia-500/50"
-              >
-                Load More
-              </a>
-            </div>
+            {newsletters.length > 0 && (
+              <div className="text-center mt-12">
+                <Link 
+                  href="/archive" 
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white font-semibold rounded-full hover:from-fuchsia-500 hover:to-purple-500 transition-all shadow-lg shadow-fuchsia-500/50"
+                >
+                  View All Editions
+                </Link>
+              </div>
+            )}
           </section>
 
           {/* Subscribe CTA */}
