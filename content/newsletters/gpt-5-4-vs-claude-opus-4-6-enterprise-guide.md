@@ -2,8 +2,8 @@
 title: "GPT-5.4 vs Claude Opus 4.6: The Enterprise AI Leader's Decision Framework"
 date: "2026-03-07"
 published: true
-excerpt: "GPT-5.4 just dropped with a 75% OSWorld score that beats human performance. Claude Opus 4.6 holds the coding crown at 80.8% SWE-Bench. Here's how to choose — with benchmarks, pricing, and the architecture that lets you use both."
-tags: ["AI Models", "LLMs", "GPT-5", "Claude", "Enterprise", "Benchmarks", "Architecture"]
+excerpt: "GPT-5.4 just dropped. Claude Opus 4.6 holds the coding crown. But which one saves your team more money? Here's the enterprise decision framework — with benchmarks, cost analysis, and ROI by department."
+tags: ["AI Models", "LLMs", "GPT-5", "Claude", "Enterprise", "Benchmarks", "Architecture", "ROI", "Cost Analysis"]
 type: "original"
 ---
 
