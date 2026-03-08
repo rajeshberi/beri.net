@@ -11,6 +11,9 @@ featured: true
 
 This week delivered the biggest vendor risk story in enterprise AI history. Let's cut through the noise and talk about what actually matters for your business.
 
+![AI vendor risk visualization](https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&auto=format&fit=crop&q=80)
+*Photo by [Markus Spiske](https://unsplash.com/@markusspiske) on Unsplash*
+
 ## The Anthropic-Pentagon Showdown
 
 Here's what happened: Anthropic walked away from a **$200M Department of Defense contract** because the Pentagon wanted to use Claude for mass surveillance and autonomous weapons guidance ([NYT](https://www.nytimes.com/2026/03/01/technology/anthropic-defense-dept-openai-talks.html), [CNBC](https://www.cnbc.com/2026/03/03/anthropic-pentagon-department-of-defense-ai-fcc-chair.html)).
@@ -50,6 +53,9 @@ That's expensive. But it's becoming reality.
 
 ## OpenAI's $110B Round: Platform Longevity Is Now a Safe Bet
 
+![Enterprise technology investment](https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80)
+*Photo by [Carlos Muza](https://unsplash.com/@kmuza) on Unsplash*
+
 While Anthropic was fighting the Pentagon, OpenAI closed the **largest private funding round in history** — **$110 billion at a $730B valuation** ([Business Insider](https://www.businessinsider.com/openai-funding-round-4-times-bigger-than-largest-ipo-2026-2), [Yahoo Finance](https://finance.yahoo.com/news/live/tech-stocks-today-openai-raises-110-billion-anthropic-rejects-defense-department-ai-demands-143452536.html)).
 
 Amazon led with ~$50B. SoftBank added $30B. Nvidia participated. OpenAI's ARR grew from **$2B to $20B**, with ChatGPT reaching **900M weekly active users**.
@@ -84,6 +90,9 @@ The jobs shift. They don't disappear.
 Will that hold true at 10% AI adoption? 50%? 90%? Unknown. But for now, the data says: invest in AI, and you'll likely be hiring.
 
 ## The Governance Gap Is Now a Market
+
+![AI governance and security](https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&auto=format&fit=crop&q=80)
+*Photo by [Markus Spiske](https://unsplash.com/@markusspiske) on Unsplash*
 
 One more signal from this week: **JetStream raised a $34M seed round** (massively oversubscribed) to build a real-time AI governance platform ([Fortune](https://fortune.com/2026/03/03/ai-governance-crowdstrike-sentinelone-veterans-raise-34m-enterprise-adoption-gap/), [Yahoo Finance](https://finance.yahoo.com/news/cybersecurity-heavyweights-launch-jetstream-34m-140000888.html)).
 

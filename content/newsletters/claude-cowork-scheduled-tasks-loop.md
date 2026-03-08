@@ -11,6 +11,9 @@ featured: true
 
 If you've been following Claude Cowork since it launched, you know the pitch: AI that does multi-step work autonomously while you're doing something else. The catch was always that **you had to remember to start it**.
 
+![Automation and scheduled workflows](https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1200&auto=format&fit=crop&q=80)
+*Photo by [Kevin Ku](https://unsplash.com/@ikukevk) on Unsplash*
+
 That catch is gone. Anthropic just shipped **scheduled tasks** for Cowork, and it's the single most useful feature they've released since Cowork itself ([Claude Help Center](https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-cowork), [TechRadar](https://www.techradar.com/pro/claude-cowork-can-now-handle-all-your-recurring-work-tasks)).
 
 Let's talk about why this matters — and what you can actually do with it.
@@ -45,6 +48,9 @@ You'll set:
 That's it. No YAML. No cron syntax. No deployment pipeline ([Medium](https://kotrotsos.medium.com/anthropic-just-made-claude-cowork-10x-more-valuable-b9807b6a714e)).
 
 ## Real Enterprise Use Cases (The Ones That Actually Matter)
+
+![Enterprise workflow automation](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80)
+*Photo by [Carlos Muza](https://unsplash.com/@kmuza) on Unsplash*
 
 I've talked to engineering leaders, ops managers, and sales VPs over the past week. Here's what they're already automating:
 
@@ -112,6 +118,9 @@ Before you go scheduling 47 tasks, here are the limits:
 4. **MCP integration control** — You choose which connectors/plugins Claude can use. Not everything is auto-enabled.
 
 ## Why This Is Different Than Zapier or n8n
+
+![Automation tools comparison](https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&auto=format&fit=crop&q=80)
+*Photo by [Marvin Meyer](https://unsplash.com/@marvelous) on Unsplash*
 
 Fair question. Workflow automation tools have existed forever. So why does this matter?
 

@@ -11,6 +11,9 @@ featured: true
 
 If you've ever tried to build an AI agent that interacts with websites, you know the pain: scraping HTML, burning tokens on screenshots, and praying the DOM structure doesn't change between deploys.
 
+![Browser automation and AI agents](https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=1200&auto=format&fit=crop&q=80)
+*Photo by [Markus Spiske](https://unsplash.com/@markusspiske) on Unsplash*
+
 That era might be ending.
 
 Google just shipped **WebMCP** (Web Model Context Protocol) in Chrome 146 Canary, and it's not another experimental browser API that developers will ignore. It's a **W3C-backed standard** co-authored by Google and Microsoft that lets any website expose structured tools directly to AI agents ([VentureBeat](https://venturebeat.com/infrastructure/google-chrome-ships-webmcp-in-early-preview-turning-every-website-into-a), [DEV Community](https://dev.to/onsen/webmcp-is-available-for-early-preview-what-you-need-to-know-3b32)).
@@ -75,6 +78,9 @@ This is **collaborative browsing** — the agent does the tedious filtering/sort
 
 ## The Enterprise Case: Cost, Reliability, Development Velocity
 
+![Enterprise AI deployment](https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=80)
+*Photo by [NASA](https://unsplash.com/@nasa) on Unsplash*
+
 If you're evaluating agentic AI deployments, WebMCP addresses three persistent pain points:
 
 ### 1. **Cost Reduction**
@@ -113,6 +119,9 @@ This is **not a headless browsing standard**. The spec explicitly states that fu
 For headless automation, use Google's A2A (Agent-to-Agent) protocol or traditional MCP servers. WebMCP is for the browser — where the user is present, watching, and collaborating.
 
 ## Real Enterprise Use Cases (The Ones That Matter)
+
+![Enterprise use cases for browser automation](https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&auto=format&fit=crop&q=80)
+*Photo by [Dylan Gillis](https://unsplash.com/@dylandgillis) on Unsplash*
 
 Based on conversations with engineering leaders over the past week, here are the use cases getting attention:
 
