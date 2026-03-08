@@ -128,13 +128,18 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
 
               {/* Featured Image */}
               {newsletter.image && (
-                <div className="relative rounded-2xl overflow-hidden my-8">
-                  <img 
-                    src={newsletter.image} 
-                    alt={newsletter.title}
-                    className="w-full h-auto"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0812]/40 via-transparent to-transparent pointer-events-none" />
+                <div className="my-8">
+                  <div className="relative rounded-2xl overflow-hidden">
+                    <img 
+                      src={newsletter.image} 
+                      alt={newsletter.title}
+                      className="w-full h-auto"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0812]/40 via-transparent to-transparent pointer-events-none" />
+                  </div>
+                  {newsletter.imageCredit && (
+                    <p className="text-xs text-white/30 mt-2 text-center" dangerouslySetInnerHTML={{ __html: newsletter.imageCredit }} />
+                  )}
                 </div>
               )}
 
