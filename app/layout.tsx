@@ -1,3 +1,4 @@
+// Deploy trigger: 2026-03-08 02:37 UTC
 import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
