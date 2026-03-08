@@ -1,4 +1,4 @@
-import clientPromise from './mongodb';
+import { connectToDatabase } from './mongodb';
 
 export interface Tool {
   slug: string;
@@ -41,7 +41,7 @@ export interface Tool {
 
 export async function getAllTools(): Promise<Tool[]> {
   try {
-    const client = await clientPromise;
+    const client = await connectToDatabase();
     const db = client.db('beri-newsletter');
     
     const tools = await db
@@ -64,7 +64,7 @@ export async function getAllTools(): Promise<Tool[]> {
 
 export async function getToolBySlug(slug: string): Promise<Tool | null> {
   try {
-    const client = await clientPromise;
+    const client = await connectToDatabase();
     const db = client.db('beri-newsletter');
     
     const tool = await db.collection('ai_tools').findOne({ slug });
@@ -85,7 +85,7 @@ export async function getToolBySlug(slug: string): Promise<Tool | null> {
 
 export async function getToolsByCategory(category: string): Promise<Tool[]> {
   try {
-    const client = await clientPromise;
+    const client = await connectToDatabase();
     const db = client.db('beri-newsletter');
     
     const tools = await db
@@ -108,7 +108,7 @@ export async function getToolsByCategory(category: string): Promise<Tool[]> {
 
 export async function getToolsByDomain(domain: string): Promise<Tool[]> {
   try {
-    const client = await clientPromise;
+    const client = await connectToDatabase();
     const db = client.db('beri-newsletter');
     
     const tools = await db
@@ -131,7 +131,7 @@ export async function getToolsByDomain(domain: string): Promise<Tool[]> {
 
 export async function getCategories() {
   try {
-    const client = await clientPromise;
+    const client = await connectToDatabase();
     const db = client.db('beri-newsletter');
     
     const categories = await db
@@ -151,7 +151,7 @@ export async function getCategories() {
 
 export async function getDomains() {
   try {
-    const client = await clientPromise;
+    const client = await connectToDatabase();
     const db = client.db('beri-newsletter');
     
     const domains = await db
