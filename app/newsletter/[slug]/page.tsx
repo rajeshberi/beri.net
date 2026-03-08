@@ -84,7 +84,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
           <nav className="flex items-center gap-2 text-xs text-white/30 mb-8" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-purple-400 transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/archive" className="hover:text-purple-400 transition-colors">Archive</Link>
+            <Link href="/articles" className="hover:text-purple-400 transition-colors">Articles</Link>
             <span>/</span>
             <span className="text-white/50 truncate max-w-[200px]">{newsletter.title}</span>
           </nav>

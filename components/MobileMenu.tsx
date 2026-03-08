@@ -72,11 +72,11 @@ export default function MobileMenu() {
                 About
               </Link>
               <Link
-                href="/archive"
+                href="/articles"
                 className="block text-lg font-medium text-white/80 hover:text-white transition-colors py-3"
                 onClick={() => setIsOpen(false)}
               >
-                Archive
+                Articles
               </Link>
               <Link
                 href="/search"

@@ -42,7 +42,7 @@ export default function CategoryNav() {
       <div className="max-w-[1200px] mx-auto px-6 py-3.5">
         {/* Desktop: horizontal pills with dropdowns */}
         <div className="hidden md:flex items-center gap-2">
-          <Link href="/archive" className="category-pill category-pill-active">
+          <Link href="/articles" className="category-pill category-pill-active">
             Latest
           </Link>
           {CATEGORY_TAXONOMY.map(cat => (
@@ -59,7 +59,7 @@ export default function CategoryNav() {
         {/* Mobile: accordion */}
         <div className="md:hidden">
           <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
-            <Link href="/archive" className="category-pill category-pill-active">
+            <Link href="/articles" className="category-pill category-pill-active">
               Latest
             </Link>
             {CATEGORY_TAXONOMY.map(cat => (

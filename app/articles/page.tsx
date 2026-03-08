@@ -6,11 +6,11 @@ import ScrollReveal from '@/components/ScrollReveal';
 import NewsletterSignup from '@/components/NewsletterSignup';
 
 export const metadata = {
-  title: 'Archive | THE D*AI*LY BRIEF',
-  description: 'All past editions of THE D*AI*LY BRIEF — Enterprise AI insights and deep dives',
+  title: 'Articles | THE D*AI*LY BRIEF',
+  description: 'All articles from THE D*AI*LY BRIEF — Enterprise AI insights and deep dives',
 };
 
-export default function ArchivePage() {
+export default function ArticlesPage() {
   const newsletters = getAllNewsletters();
 
   return (
@@ -25,9 +25,9 @@ export default function ArchivePage() {
         <main className="max-w-[1000px] mx-auto px-6 py-16 md:py-24">
           <ScrollReveal>
             <div className="mb-14 space-y-3">
-              <div className="label text-purple-400/60 mb-2">Newsletter Archive</div>
+              <div className="label text-purple-400/60 mb-2">All Articles</div>
               <h2 className="heading-xl">
-                All Editions
+                Latest Analysis
               </h2>
               <p className="text-lg text-white/40 max-w-xl">
                 Deep dives into AI advancements, benchmarks, and enterprise deployment strategies.

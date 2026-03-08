@@ -110,7 +110,7 @@ export default function Home() {
                   <ScrollReveal>
                     <div className="flex items-center justify-between mb-10">
                       <h3 className="heading-md text-white/90">Latest Analysis</h3>
-                      <Link href="/archive" className="text-sm text-purple-400 hover:text-purple-300 font-semibold transition-colors inline-flex items-center gap-1 group/link">
+                      <Link href="/articles" className="text-sm text-purple-400 hover:text-purple-300 font-semibold transition-colors inline-flex items-center gap-1 group/link">
                         View all 
                         <span className="transition-transform duration-200 group-hover/link:translate-x-0.5">→</span>
                       </Link>
