@@ -130,6 +130,6 @@ The AI market just got a lot more complicated. And a lot more interesting.
 
 ---
 
-**What are you seeing in your org?** Reply to this email — I read every response.
+**What are you seeing in your org?** Share your thoughts on [LinkedIn](https://www.linkedin.com/in/rberi/) or [Twitter/X](https://x.com/rajeshberi) — I read every message.
 
 *— Rajesh*

@@ -246,6 +246,6 @@ The companies that get ahead of this will have working WebMCP integrations by th
 
 ---
 
-**Are you experimenting with WebMCP or building browser-based AI agents?** I'm collecting real-world use cases — reply with what you're working on.
+**Are you experimenting with WebMCP or building browser-based AI agents?** I'm collecting real-world use cases — share what you're working on via [LinkedIn](https://www.linkedin.com/in/rberi/) or [Twitter/X](https://x.com/rajeshberi).
 
 *— Rajesh*

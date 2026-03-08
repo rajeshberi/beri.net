@@ -209,6 +209,6 @@ Just `/schedule` and go.
 
 ---
 
-**What recurring work are you automating?** I'm collecting real-world use cases — reply with yours.
+**What recurring work are you automating?** I'm collecting real-world use cases — share yours on [LinkedIn](https://www.linkedin.com/in/rberi/) or [Twitter/X](https://x.com/rajeshberi).
 
 *— Rajesh*

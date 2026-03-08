@@ -171,7 +171,7 @@ And stop arguing about benchmarks on Twitter. Nobody's mind has ever been change
 
 ---
 
-*I'm building a model cost calculator that compares GPT-5.4, Claude, and Gemini across common enterprise workflows. Want early access? Reply to this email and I'll send it when it's ready.*
+*I'm building a model cost calculator that compares GPT-5.4, Claude, and Gemini across common enterprise workflows. Want early access? [Connect with me on LinkedIn](https://www.linkedin.com/in/rberi/) and I'll send it when it's ready.*
 
 ## Related Reading
 
