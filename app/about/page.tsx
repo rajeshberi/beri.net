@@ -87,7 +87,7 @@ export default function AboutPage() {
 
                 <h2>Who This Is For</h2>
                 <p>
-                  You're an engineering leader, tech decision-maker, or just someone who wants to understand AI without the hype. You value data over opinions. You need insights you can act on Monday morning.
+                  You're an engineering leader, tech decision-maker, or just someone who wants to understand AI without the hype. You value data over opinions. You need insights you can act on immediately.
                 </p>
                 <p>
                   If that's you, <a href="#newsletter" className="text-purple-400 hover:text-purple-300">subscribe</a>. I send deep dives every Tuesday and Thursday — no fluff, just signal.
