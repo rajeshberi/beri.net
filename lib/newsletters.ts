@@ -65,6 +65,22 @@ export function getNewsletterBySlug(slug: string): Newsletter | null {
   }
 }
 
+export function getRelatedNewsletters(slug: string, tags: string[], limit = 3): Newsletter[] {
+  const all = getAllNewsletters().filter(n => n.slug !== slug);
+  // Score by shared tags
+  const scored = all.map(n => ({
+    ...n,
+    score: n.tags.filter(t => tags.includes(t)).length,
+  }));
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, limit);
+}
+
+export function getReadingTime(content: string): number {
+  const words = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 230));
+}
+
 export function getAllSlugs(): string[] {
   try {
     const fileNames = fs.readdirSync(newslettersDirectory);

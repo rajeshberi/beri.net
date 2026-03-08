@@ -165,3 +165,11 @@ Claude Opus 4.6 is the best model for production software engineering and comple
 The correct answer for most enterprise teams is both, behind a routing layer, with Gemini 3.1 Pro as a cost-optimized third option. The model wars are not a zero-sum game. They're a buyer's market, and the smartest buyers are shopping at all three stores.
 
 Build the abstraction. Route intelligently. Measure everything. That's the enterprise AI playbook for March 2026.
+
+---
+
+## Related Reading
+
+- [Claude Cowork: Anthropic's Play to Put AI Inside Every Department](/newsletter/claude-cowork-enterprise-review) — Hands-on review of Claude's enterprise coworker plugins with ROI analysis.
+- [Broadcom's $100B AI Forecast: What It Means For Your Infrastructure Budget](/newsletter/broadcom-100-billion-ai-forecast-infrastructure) — The infrastructure costs behind running these models at scale.
+- [The Anthropic-Pentagon Clash: AI Vendor Risk](/newsletter/us-ai-guidelines-anthropic-pentagon-clash) — Why multi-model architecture isn't optional anymore.

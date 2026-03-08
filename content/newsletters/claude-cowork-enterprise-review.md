@@ -139,3 +139,11 @@ Here's what that means in practice:
 Anthropic is making a serious enterprise play. The technology is genuinely impressive. The governance infrastructure is still catching up. Smart organizations will adopt aggressively on proven use cases while building the compliance framework that lets them scale safely.
 
 The AI coworker era isn't coming. It's here. The only question is whether you're measuring the ROI or your competitors are.
+
+---
+
+## Related Reading
+
+- [GPT-5.4 vs Claude Opus 4.6: The Enterprise Decision Framework](/newsletter/gpt-5-4-vs-claude-opus-4-6-enterprise-guide) — How Claude stacks up against GPT-5.4 on enterprise benchmarks and cost.
+- [The Anthropic-Pentagon Clash: AI Vendor Risk](/newsletter/us-ai-guidelines-anthropic-pentagon-clash) — Why the government just cut off Anthropic and what it means for Claude users.
+- [AI Agents Are Coming For Every Department](/newsletter/ai-agents-enterprise-adoption-2026) — The broader agent adoption wave Claude Cowork is riding.

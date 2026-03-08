@@ -32,3 +32,11 @@ Forget the political drama. Here's what this means for your P&L and operations.
 **The practical takeaway:** Any organization running AI in production should be able to swap foundation models without rebuilding the application layer. If your agent framework is hardcoded to one provider's API, you have a business continuity problem, not just a technical debt problem. The companies that navigate this well treat model selection as infrastructure — abstracted behind a routing layer — not a marriage.
 
 [Read the full article →](https://www.reuters.com/business/media-telecom/us-draws-up-strict-new-ai-guidelines-amid-anthropic-clash-ft-reports-2026-03-07/)
+
+---
+
+## Related Reading
+
+- [GPT-5.4 vs Claude Opus 4.6: The Enterprise Decision Framework](/newsletter/gpt-5-4-vs-claude-opus-4-6-enterprise-guide) — Build the multi-model architecture this article recommends, with benchmarks and costs.
+- [Claude Cowork: Anthropic's Play to Put AI Inside Every Department](/newsletter/claude-cowork-enterprise-review) — What Anthropic is building on the enterprise side while fighting the government battle.
+- [AI Agents Are Coming For Every Department](/newsletter/ai-agents-enterprise-adoption-2026) — Why vendor risk management is critical as agent adoption accelerates.

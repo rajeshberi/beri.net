@@ -1,4 +1,4 @@
-import { getNewsletterBySlug, getAllSlugs } from '@/lib/newsletters';
+import { getNewsletterBySlug, getAllSlugs, getRelatedNewsletters, getReadingTime } from '@/lib/newsletters';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { remark } from 'remark';
@@ -7,6 +7,12 @@ import html from 'remark-html';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import NewsletterSignup from '@/components/NewsletterSignup';
+import ReadingProgress from '@/components/ReadingProgress';
+import TableOfContents from '@/components/TableOfContents';
+import ShareButtons from '@/components/ShareButtons';
+import InlineSubscribe from '@/components/InlineSubscribe';
+import ExitIntent from '@/components/ExitIntent';
+import ScrollSubscribePrompt from '@/components/ScrollSubscribePrompt';
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -41,9 +47,15 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
   if (!newsletter) notFound();
 
   const contentHtml = await markdownToHtml(newsletter.content);
+  const readingTime = getReadingTime(newsletter.content);
+  const related = getRelatedNewsletters(slug, newsletter.tags, 3);
 
   return (
     <div className="min-h-screen bg-[#0c0a14] text-white">
+      <ReadingProgress />
+      <ExitIntent />
+      <ScrollSubscribePrompt />
+
       {/* Ambient background */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-purple-900/15 rounded-full blur-[120px]" />
@@ -54,48 +66,51 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
 
         <main className="max-w-3xl mx-auto px-6 py-12 md:py-20">
 
-          {/* Back */}
-          <Link
-            href="/archive"
-            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-purple-400 transition-colors mb-10"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to archive
-          </Link>
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-2 text-xs text-white/30 mb-8" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-purple-400 transition-colors">Home</Link>
+            <span>/</span>
+            <Link href="/archive" className="hover:text-purple-400 transition-colors">Archive</Link>
+            <span>/</span>
+            <span className="text-white/50 truncate max-w-[200px]">{newsletter.title}</span>
+          </nav>
 
           <article>
             {/* Header */}
-              <div className="space-y-5 mb-12">
-                <time className="text-sm font-mono text-purple-400/70">
+            <div className="space-y-5 mb-12">
+              <div className="flex items-center gap-3 text-sm">
+                <time className="font-mono text-purple-400/70">
                   {new Date(newsletter.date).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
                   })}
                 </time>
+                <span className="text-white/20">·</span>
+                <span className="text-white/40">{readingTime} min read</span>
+              </div>
 
-                <h1 className="text-3xl md:text-5xl font-bold leading-[1.1]">
-                  {newsletter.title}
-                </h1>
+              <h1 className="text-3xl md:text-5xl font-bold leading-[1.1]">
+                {newsletter.title}
+              </h1>
 
-                {newsletter.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {newsletter.tags.map((tag) => (
-                      <Link
-                        key={tag}
-                        href={`/tag/${encodeURIComponent(tag)}`}
-                        className="text-xs px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-300/60 border border-purple-500/15 hover:bg-purple-500/20 hover:text-purple-200 transition-all"
-                      >
-                        {tag}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+              {newsletter.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {newsletter.tags.map((tag) => (
+                    <Link
+                      key={tag}
+                      href={`/tag/${encodeURIComponent(tag)}`}
+                      className="text-xs px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-300/60 border border-purple-500/15 hover:bg-purple-500/20 hover:text-purple-200 transition-all"
+                    >
+                      {tag}
+                    </Link>
+                  ))}
+                </div>
+              )}
 
-                {/* Author line */}
-                <div className="flex items-center gap-3 pt-2">
+              {/* Author + Share */}
+              <div className="flex items-center justify-between flex-wrap gap-4 pt-2">
+                <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-xs font-bold">
                     RB
                   </div>
@@ -103,29 +118,69 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
                     <span className="text-white/70 font-medium">Rajesh Beri</span> · Head of AI Engineering at Zscaler
                   </div>
                 </div>
-
-                <div className="w-12 h-[2px] bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
+                <ShareButtons title={newsletter.title} slug={slug} />
               </div>
+
+              <div className="w-12 h-[2px] bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
+            </div>
+
+            {/* Table of Contents */}
+            <TableOfContents />
 
             {/* Content */}
-              <div
-                className="article-content"
-                dangerouslySetInnerHTML={{ __html: contentHtml }}
-              />
+            <div
+              className="article-content"
+              dangerouslySetInnerHTML={{ __html: contentHtml }}
+            />
+
+            {/* Mid-article subscribe prompt */}
+            <InlineSubscribe />
           </article>
 
+          {/* Bottom share */}
+          <div className="mt-12 pt-8 border-t border-white/5">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <p className="text-sm text-white/40">Found this useful? Share it with your team.</p>
+              <ShareButtons title={newsletter.title} slug={slug} />
+            </div>
+          </div>
+
           {/* Author CTA */}
-            <div className="mt-16 pt-12 border-t border-white/5 space-y-8">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-xl font-bold">
-                  RB
-                </div>
-                <div>
-                  <div className="font-semibold">Rajesh Beri</div>
-                  <div className="text-sm text-white/40">Head of AI Engineering at Zscaler</div>
-                </div>
+          <div className="mt-12 pt-12 border-t border-white/5">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-xl font-bold">
+                RB
+              </div>
+              <div>
+                <div className="font-semibold">Rajesh Beri</div>
+                <div className="text-sm text-white/40">Head of AI Engineering at Zscaler</div>
               </div>
             </div>
+          </div>
+
+          {/* Related Articles */}
+          {related.length > 0 && (
+            <section className="mt-16 pt-12 border-t border-white/5">
+              <h3 className="text-xl font-bold mb-6">You might also like</h3>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {related.map(article => (
+                  <Link key={article.slug} href={`/newsletter/${article.slug}`} className="group block">
+                    <article className="h-full rounded-xl border border-white/5 bg-white/[0.02] p-5 card-hover group-hover:border-purple-500/10 transition-colors">
+                      {article.tags[0] && (
+                        <span className="text-[10px] font-bold text-purple-400 uppercase tracking-wider">
+                          {article.tags[0]}
+                        </span>
+                      )}
+                      <h4 className="text-sm font-bold mt-2 mb-2 group-hover:text-purple-300 transition-colors line-clamp-2 leading-snug">
+                        {article.title}
+                      </h4>
+                      <p className="text-xs text-white/40 line-clamp-2">{article.excerpt}</p>
+                    </article>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
           <NewsletterSignup />
 

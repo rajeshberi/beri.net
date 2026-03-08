@@ -10,7 +10,7 @@ export default function Footer() {
               THE D<span className="text-shimmer">*AI*</span>LY BRIEF
             </div>
             <p className="text-sm text-white/40 max-w-sm leading-relaxed">
-              Enterprise AI news and analysis for engineering leaders. Twice-weekly deep dives — no hype, just signal.
+              The AI newsletter engineering leaders actually read. Real benchmarks, honest vendor analysis, and ROI frameworks from 15+ years in enterprise AI.
             </p>
           </div>
 

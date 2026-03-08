@@ -178,3 +178,11 @@ But "ready for developers" and "ready for business" are different standards. Tod
 The smart play in March 2026: run a 30-day pilot on one specific business workflow, measure the ROI, and make a data-driven decision. The organizations that start evaluating now will have a significant operational advantage by Q4.
 
 The AI agent era is here. The question isn't whether to adopt — it's how fast you can find the use case that pays for itself.
+
+---
+
+## Related Reading
+
+- [AI Agents Are Coming For Every Department](/newsletter/ai-agents-enterprise-adoption-2026) — The macro trend driving OpenClaw adoption: 79% of organizations now use AI agents.
+- [GPT-5.4 vs Claude Opus 4.6: The Enterprise Decision Framework](/newsletter/gpt-5-4-vs-claude-opus-4-6-enterprise-guide) — Which model to plug into OpenClaw for your use case.
+- [Broadcom's $100B AI Forecast: Infrastructure Budget Impact](/newsletter/broadcom-100-billion-ai-forecast-infrastructure) — The infrastructure economics of self-hosted AI agents.

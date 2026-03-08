@@ -4,14 +4,14 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "THE D*AI*LY BRIEF | Enterprise AI Insights by Rajesh Beri",
-  description: "Twice-weekly AI deep dives for engineering leaders. No hype, just insights from building AI at enterprise scale at Zscaler.",
+  description: "The AI newsletter 2,000+ engineering leaders read. Real benchmarks, vendor comparisons, and ROI frameworks — from someone who deploys AI at enterprise scale.",
   keywords: ["AI newsletter", "enterprise AI", "machine learning", "artificial intelligence", "engineering leadership", "AI insights"],
   authors: [{ name: "Rajesh Beri" }],
   creator: "Rajesh Beri",
   openGraph: {
     type: "website",
     title: "THE D*AI*LY BRIEF | Enterprise AI Insights",
-    description: "Twice-weekly AI deep dives for engineering leaders. No hype, just insights from the trenches.",
+    description: "Real AI benchmarks and vendor analysis for engineering leaders. No hype, just signal.",
     siteName: "THE D*AI*LY BRIEF",
   },
   twitter: {
@@ -36,7 +36,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="antialiased">
         <Script
