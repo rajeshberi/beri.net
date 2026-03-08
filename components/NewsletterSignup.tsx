@@ -12,7 +12,7 @@ export default function NewsletterSignup() {
           <h3 className="heading-lg text-gradient-subtle">
             Get AI insights in your inbox
           </h3>
-          <p className="body-lg text-white/45 max-w-md mx-auto">
+          <p className="body-lg text-white/60 max-w-md mx-auto">
             Twice-weekly deep dives into what matters in AI. No spam, just signal.
           </p>
 

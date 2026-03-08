@@ -35,7 +35,7 @@
 >
 > **What I won't send you:** hype, rumors, or anything I haven't tested myself.
 >
-> I'm the Head of AI Engineering at Zscaler. I write about AI the way I evaluate it for production — with data.
+> I'm an AI engineering leader with experience at Fortune 500 companies. I write about AI the way I evaluate it for production — with data.
 >
 > Hit reply if there's a topic you want me to cover. I read every email.
 >

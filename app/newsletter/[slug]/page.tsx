@@ -11,8 +11,7 @@ import ReadingProgress from '@/components/ReadingProgress';
 import TableOfContents from '@/components/TableOfContents';
 import ShareButtons from '@/components/ShareButtons';
 import InlineSubscribe from '@/components/InlineSubscribe';
-import ExitIntent from '@/components/ExitIntent';
-import ScrollSubscribePrompt from '@/components/ScrollSubscribePrompt';
+// ExitIntent and ScrollSubscribePrompt removed - too many subscribe prompts
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -53,8 +52,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
   return (
     <div className="min-h-screen bg-[#0a0812] text-white noise">
       <ReadingProgress />
-      <ExitIntent />
-      <ScrollSubscribePrompt />
+      {/* Subscribe prompts reduced to InlineSubscribe + bottom NewsletterSignup only */}
 
       {/* Ambient background */}
       <div className="fixed inset-0 pointer-events-none">
@@ -115,7 +113,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
                     RB
                   </div>
                   <div className="text-sm text-white/40">
-                    <span className="text-white/70 font-medium">Rajesh Beri</span> · Head of AI Engineering at Zscaler
+                    <span className="text-white/70 font-medium">Rajesh Beri</span> · AI Engineering Leader
                   </div>
                 </div>
                 <ShareButtons title={newsletter.title} slug={slug} />
@@ -153,7 +151,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
               </div>
               <div>
                 <div className="font-semibold">Rajesh Beri</div>
-                <div className="text-sm text-white/40">Head of AI Engineering at Zscaler</div>
+                <div className="text-sm text-white/40">AI Engineering Leader · Enterprise AI</div>
               </div>
             </div>
           </div>
@@ -174,7 +172,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
                       <h4 className="heading-sm text-sm mt-2 mb-2 group-hover:text-purple-200 transition-colors line-clamp-2">
                         {article.title}
                       </h4>
-                      <p className="body-sm text-white/35 line-clamp-2">{article.excerpt}</p>
+                      <p className="body-sm text-white/50 line-clamp-2">{article.excerpt}</p>
                     </article>
                   </Link>
                 ))}

@@ -18,9 +18,9 @@ export default function Home() {
     <div className="min-h-screen bg-[#0a0812] text-white noise">
       {/* Ambient background */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-purple-900/20 rounded-full blur-[140px] glow-orb" />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-fuchsia-900/15 rounded-full blur-[140px] glow-orb-delayed" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full grid-pattern opacity-50" />
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-purple-900/12 rounded-full blur-[140px] glow-orb" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-fuchsia-900/8 rounded-full blur-[140px] glow-orb-delayed" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full grid-pattern opacity-30" />
       </div>
 
       <div className="relative">
@@ -67,7 +67,7 @@ export default function Home() {
                           {featured.title}
                         </h2>
 
-                        <p className="body-lg text-white/45 line-clamp-3">
+                        <p className="body-lg text-white/60 line-clamp-3">
                           {featured.excerpt}
                         </p>
 
@@ -120,7 +120,7 @@ export default function Home() {
                                 {article.title}
                               </h4>
 
-                              <p className="body-sm text-white/35 mb-5 line-clamp-2 flex-1">
+                              <p className="body-sm text-white/50 mb-5 line-clamp-2 flex-1">
                                 {article.excerpt}
                               </p>
 
@@ -156,7 +156,7 @@ export default function Home() {
               <div className="flex items-center justify-center gap-8 flex-wrap text-sm text-white/30">
                 <span className="flex items-center gap-2">
                   <span className="text-lg">👥</span>
-                  <span>Trusted by <strong className="text-white/60">500+</strong> engineering leaders</span>
+                  <span>For <strong className="text-white/60">engineering leaders</strong></span>
                 </span>
                 <span className="hidden sm:inline text-white/10">|</span>
                 <span className="flex items-center gap-2">
@@ -185,7 +185,7 @@ export default function Home() {
                     <div className="value-card">
                       <div className="icon">{item.icon}</div>
                       <h4 className="font-display font-bold text-lg mb-2">{item.title}</h4>
-                      <p className="body-sm text-white/40">{item.desc}</p>
+                      <p className="body-sm text-white/55">{item.desc}</p>
                     </div>
                   </ScrollReveal>
                 ))}
@@ -193,14 +193,14 @@ export default function Home() {
             </section>
           </ScrollReveal>
 
-          {/* ===== TESTIMONIAL ===== */}
+          {/* ===== ABOUT ===== */}
           <ScrollReveal>
             <section className="pb-16">
               <div className="rounded-xl border border-white/5 bg-white/[0.02] p-8 text-center max-w-2xl mx-auto">
-                <blockquote className="text-lg text-white/60 italic leading-relaxed mb-4">
-                  &ldquo;The only AI newsletter I actually read. Every issue has something I can use Monday morning.&rdquo;
-                </blockquote>
-                <div className="text-sm text-white/30">— Engineering leader at a Fortune 500 company</div>
+                <p className="text-lg text-white/60 leading-relaxed mb-4">
+                  Written by <strong className="text-white/80">Rajesh Beri</strong> — an AI engineering leader with experience deploying AI at enterprise scale across Fortune 500 companies.
+                </p>
+                <p className="text-sm text-white/40">Real benchmarks. Real architectures. No hype.</p>
               </div>
             </section>
           </ScrollReveal>

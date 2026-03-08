@@ -46,7 +46,7 @@ export default function ExitIntent() {
         <div className="text-4xl">📬</div>
         <h3 className="text-2xl font-bold">Before you go...</h3>
         <p className="text-white/50">
-          Join 500+ engineering leaders getting enterprise AI insights every Tuesday & Thursday. No spam — just signal.
+          Get enterprise AI insights every Tuesday & Thursday. No spam — just signal.
         </p>
         <a href="#newsletter" onClick={() => setShow(false)} className="btn-primary inline-block w-full">
           Subscribe free →

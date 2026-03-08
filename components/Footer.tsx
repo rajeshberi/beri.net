@@ -10,7 +10,7 @@ export default function Footer() {
             <div className="font-display font-bold text-xl mb-4">
               THE D<span className="text-shimmer">*AI*</span>LY BRIEF
             </div>
-            <p className="body-sm text-white/35 max-w-sm leading-relaxed">
+            <p className="body-sm text-white/50 max-w-sm leading-relaxed">
               Enterprise AI news and analysis for engineering leaders. Twice-weekly deep dives — no hype, just signal.
             </p>
           </div>
