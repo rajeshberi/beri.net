@@ -10,7 +10,7 @@ export default function Header({ showCategoryNav = false }: HeaderProps) {
   return (
     <>
       {/* Main Header */}
-      <header className="glass-strong sticky top-0 z-50 border-b border-white/5" role="banner">
+      <header className="glass-strong sticky top-0 z-50" role="banner">
         <div className="max-w-[1200px] mx-auto">
           <div className="px-6 py-5 flex items-center justify-between">
             <Link href="/" aria-label="THE DAILY BRIEF - Home">
