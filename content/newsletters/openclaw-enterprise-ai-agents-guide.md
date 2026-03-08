@@ -4,7 +4,8 @@ date: "2026-03-04"
 published: true
 excerpt: "200K+ GitHub stars. Andrej Karpathy's endorsement. Amazon launching it on Lightsail. But can it actually run your business operations? I tested it. Here's what nobody else is telling you."
 tags: ["AI Agents", "OpenClaw", "Enterprise", "Automation", "ROI", "Production", "Tools", "IT", "Engineering", "Operations", "Sales", "Marketing", "Finance", "Product Management"]
-image: "/images/featured/openclaw-enterprise-ai-agents-guide.png"
+image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1792&h=1024&auto=format&fit=crop&q=80"
+imageCredit: "Photo by [ThisisEngineering RAEng](https://unsplash.com/@thisisengineering) on Unsplash"
 type: "original"
 ---
 

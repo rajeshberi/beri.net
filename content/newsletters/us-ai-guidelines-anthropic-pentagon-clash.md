@@ -4,7 +4,8 @@ date: "2026-03-06"
 published: true
 excerpt: "The Pentagon designated Anthropic a 'supply-chain risk' and killed their federal contracts overnight. If any part of your business runs on Claude, stop what you're doing and read this."
 tags: ["Enterprise", "AI Policy", "Anthropic", "Claude", "Vendor Risk", "Government", "IT", "Legal", "Finance", "Operations", "Sales", "HR", "Product Management"]
-image: "/images/featured/us-ai-guidelines-anthropic-pentagon-clash.png"
+image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1792&h=1024&auto=format&fit=crop&q=80"
+imageCredit: "Photo by [Scott Graham](https://unsplash.com/@homajob) on Unsplash"
 type: "curated"
 originalUrl: "https://www.reuters.com/business/media-telecom/us-draws-up-strict-new-ai-guidelines-amid-anthropic-clash-ft-reports-2026-03-07/"
 originalAuthor: "Bipasha Dey and Ananya Palyekar"

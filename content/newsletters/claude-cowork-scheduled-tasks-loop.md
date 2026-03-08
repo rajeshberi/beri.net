@@ -5,7 +5,8 @@ excerpt: "Anthropic quietly shipped the most useful feature since Cowork itself 
 author: "Rajesh Beri"
 tags: ["Claude", "AI Automation", "Cowork", "Enterprise AI", "Productivity", "Recurring Tasks"]
 category: "Product Analysis"
-image: "/images/featured/claude-cowork-scheduled-tasks-loop.png"
+image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1792&h=1024&auto=format&fit=crop&q=80"
+imageCredit: "Photo by [Kevin Ku](https://unsplash.com/@ikukevk) on Unsplash"
 featured: true
 ---
 

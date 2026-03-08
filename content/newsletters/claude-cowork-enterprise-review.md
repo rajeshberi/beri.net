@@ -4,7 +4,8 @@ date: "2026-03-01"
 published: true
 excerpt: "Anthropic launched 'coworker' plugins for finance, HR, legal, and engineering. I tested them on real workflows and tracked every minute. The ROI numbers are absurd — but there's a catch."
 tags: ["Claude", "Anthropic", "AI Tools", "Enterprise", "ROI", "Finance", "Legal", "HR", "Cowork", "IT", "Sales", "Marketing", "Engineering", "Operations", "Product Management"]
-image: "/images/featured/claude-cowork-enterprise-review.png"
+image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1792&h=1024&auto=format&fit=crop&q=80"
+imageCredit: "Photo by [Ales Nesetril](https://unsplash.com/@alesnesetril) on Unsplash"
 type: "original"
 ---
 
