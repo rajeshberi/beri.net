@@ -25,7 +25,7 @@ export async function getAllNewsletters(): Promise<Newsletter[]> {
     const newsletters = await db
       .collection('newsletters')
       .find({})
-      .sort({ date: -1 })
+      .sort({ date: -1, addedDate: -1, _id: -1 })
       .toArray();
     
     return newsletters.map(n => ({
