@@ -22,6 +22,8 @@ Short answer: not worried. But definitely paying attention.
 ![Data center with rows of servers illuminated by blue LED lights](https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80)
 *The $100B question: Where does all this infrastructure actually go?*
 
+> **⚡ TL;DR:** The $100B number is a TAM forecast, not revenue. Networking (not GPUs) is the real bottleneck — budget 40% on it. Don't expect cloud price drops in 2026. On-prem breaks even at 10K+ daily inference requests. Below that, stay on cloud. Negotiate 2027 price-adjustment clauses into every contract.
+
 ## What Actually Happened
 
 Broadcom raised its AI-related revenue forecast to $100 billion. Not revenue — *forecast of total addressable market.* Important distinction that every headline conveniently skipped. The stock surged because Wall Street loves big round numbers, and $100B is as round as they come.

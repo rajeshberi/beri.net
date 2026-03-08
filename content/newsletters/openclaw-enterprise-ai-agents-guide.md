@@ -20,6 +20,8 @@ That trajectory — from "what is this thing doing" to "I can't imagine working 
 
 OpenClaw is the most talked-about AI tool in tech right now. In three months: 200,000+ GitHub stars, front page of every tech publication, Andrej Karpathy calling it the "orchestration layer for agents," Amazon launching it on Lightsail, and an OpenClaw-powered agent that nearly passed a job interview (which is both impressive and slightly terrifying).
 
+> **⚡ TL;DR:** OpenClaw delivers 5-53x ROI for technically capable organizations. Sales ops: $3K-7K/year → $160K recaptured. Support: $6K-18K/year → $82K saved. Cost is 2-10x cheaper than Copilot or Agentforce. The catch: you need technical capacity to deploy and maintain it. No enterprise compliance out of the box yet. Run a 30-day pilot on one workflow before committing.
+
 But here's the question nobody in tech media is answering: **Is OpenClaw ready for your business?** Not for developers tinkering on weekends — for sales teams, ops leaders, finance departments, and marketing organizations that need AI agents that work reliably, securely, and at scale.
 
 After three weeks of real-world testing, the answer is: **yes, with asterisks.**

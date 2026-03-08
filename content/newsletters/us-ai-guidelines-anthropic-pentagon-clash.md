@@ -86,6 +86,13 @@ I'm going to be blunt because I think this is important:
 ![Laptop showing code with multiple windows open](https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1200&q=80)
 *Your code should call YOUR abstraction layer, not a vendor API directly. This is the lesson.*
 
+> **🚨 Your Action Items (This Week — Not Next Quarter):**
+> 1. **Audit** every AI workflow for single-vendor dependency
+> 2. **Test** your fallback — can you swap Claude → GPT in under 24 hours?
+> 3. **Review** your AI vendor contracts for termination clauses
+> 4. **Budget** for a routing layer ($0 if you use open-source tools)
+> 5. **Brief** your leadership — this isn't theoretical anymore
+
 ## The Bigger Picture
 
 This isn't just about Anthropic. This is about the maturation of AI as enterprise infrastructure.

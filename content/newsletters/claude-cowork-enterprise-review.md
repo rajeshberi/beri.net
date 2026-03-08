@@ -18,6 +18,8 @@ Anthropic just launched a wave of "coworker" plugins that embed Claude directly 
 ![Person working at a desk with multiple monitors showing data dashboards](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80)
 *Claude Cowork in action: it controls your desktop like a slightly overeager intern who never sleeps.*
 
+> **⚡ TL;DR:** Claude Cowork at $20/mo delivers 42-217x ROI depending on department. Finance: 22-min M&A analysis (vs 5 hours). Legal: 12 contracts in 35 minutes (vs 20 hours). Marketing: 62-83x ROI on content ops. The math works even at a quarter of these numbers. But human review isn't optional — it's the whole point.
+
 This isn't a chatbot upgrade. This is Anthropic saying, "We're done being a developer tool company. We want to be inside every department."
 
 So I did what any reasonable person would do: I tested it on real work, tracked the time savings, and calculated whether the ROI justifies adding another $20/seat/month to the software budget. Spoiler: the math is kind of insane.
@@ -98,6 +100,13 @@ Here's what surprised me: the competitive analysis was genuinely useful. Not jus
 | Microsoft 365 | ⚠️ Partial | ✅ Full native | ⚠️ Partial | ⚠️ Partial |
 | Coding (SWE-Bench) | 80.8% (Best) | ~72% | 80.6% | 77.2% |
 | Autonomous tasks | ✅ | ❌ | ❌ | ⚠️ Limited |
+
+> **📌 Claude Cowork ROI by Department (screenshot this):**
+> - Finance: **167-217x** (22-min M&A analysis vs 5 hours)
+> - Legal: **83-104x** (12 contracts in 35 minutes vs 15-20 hours)
+> - Marketing: **62-83x** (full content calendar generation)
+> - HR: **42-54x** (resume screening + job descriptions)
+> - Even at half these numbers, the math works.
 
 **Translation:** Claude Cowork wins on business integration depth and coding. Copilot wins if you're all-Microsoft. Gemini wins on cost for Google Workspace shops. ChatGPT wins on computer use and general knowledge work.
 

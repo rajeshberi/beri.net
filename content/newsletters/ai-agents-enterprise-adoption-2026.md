@@ -22,6 +22,8 @@ Gartner says 40% of enterprise apps will embed AI agents by end of 2026. Deloitt
 ![Person looking skeptically at a laptop screen in an office](https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=80)
 *"So you're telling me this chatbot is an 'autonomous agent'?" — Every IT leader in 2026*
 
+> **⚡ TL;DR:** 79% of orgs claim AI agents. Real autonomous adoption? ~12%. Sales is the one department where agents actually deliver ROI. Operations needs 3-6 months of integration. Finance ROI is real but the cost model will confuse your CFO. Legal is right to be cautious. Start with ONE workflow per department, measure for 90 days.
+
 Let me break down what's actually happening department by department, because the gap between the marketing pitch and reality is... significant.
 
 ## Sales: The One Place AI Agents Are Actually Working
