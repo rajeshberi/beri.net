@@ -519,12 +519,14 @@ html {
    ============================================ */
 
 .nav-link {
-  @apply relative text-sm font-medium transition-colors duration-200;
+  @apply relative text-xs font-bold uppercase tracking-widest transition-all duration-200;
   color: var(--text-tertiary);
+  letter-spacing: 0.12em;
 }
 
 .nav-link:hover {
   color: var(--text-primary);
+  transform: translateY(-1px);
 }
 
 .nav-link::after {

@@ -66,28 +66,32 @@ export default function MobileMenu() {
             <nav className="px-6 py-8 space-y-6" role="navigation">
               <Link
                 href="/about"
-                className="block text-lg font-medium text-white/80 hover:text-white transition-colors py-3"
+                className="block text-base font-bold uppercase tracking-widest text-white/80 hover:text-white transition-colors py-3"
+                style={{ letterSpacing: '0.12em' }}
                 onClick={() => setIsOpen(false)}
               >
                 About
               </Link>
               <Link
                 href="/articles"
-                className="block text-lg font-medium text-white/80 hover:text-white transition-colors py-3"
+                className="block text-base font-bold uppercase tracking-widest text-white/80 hover:text-white transition-colors py-3"
+                style={{ letterSpacing: '0.12em' }}
                 onClick={() => setIsOpen(false)}
               >
                 Articles
               </Link>
               <Link
                 href="/search"
-                className="block text-lg font-medium text-white/80 hover:text-white transition-colors py-3"
+                className="block text-base font-bold uppercase tracking-widest text-white/80 hover:text-white transition-colors py-3"
+                style={{ letterSpacing: '0.12em' }}
                 onClick={() => setIsOpen(false)}
               >
                 Search
               </Link>
               <Link
                 href="/tags"
-                className="block text-lg font-medium text-white/80 hover:text-white transition-colors py-3"
+                className="block text-base font-bold uppercase tracking-widest text-white/80 hover:text-white transition-colors py-3"
+                style={{ letterSpacing: '0.12em' }}
                 onClick={() => setIsOpen(false)}
               >
                 Topics
