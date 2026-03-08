@@ -219,11 +219,20 @@ export default function Home() {
           {/* ===== ABOUT ===== */}
           <ScrollReveal>
             <section className="pb-16">
-              <div className="rounded-xl border border-white/5 bg-white/[0.02] p-8 text-center max-w-2xl mx-auto">
-                <p className="text-lg text-white/60 leading-relaxed mb-4">
-                  Curated and managed by <strong className="text-white/80">Rajesh Beri</strong> — bringing 30+ years of enterprise software experience to AI deployment insights. AI-assisted research and writing, human-driven analysis and perspective.
-                </p>
-                <p className="text-sm text-white/40">Real benchmarks. Real architectures. No hype. <Link href="/about" className="text-purple-400 hover:text-purple-300 transition-colors">Learn more →</Link></p>
+              <div className="rounded-xl border border-white/5 bg-white/[0.02] p-8 max-w-2xl mx-auto">
+                <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+                  <img 
+                    src="/images/rajesh-beri.jpg" 
+                    alt="Rajesh Beri"
+                    className="w-20 h-20 rounded-full object-cover shrink-0 ring-2 ring-purple-500/20"
+                  />
+                  <div className="flex-1">
+                    <p className="text-lg text-white/60 leading-relaxed mb-3">
+                      Curated and managed by <strong className="text-white/80">Rajesh Beri</strong> — bringing 30+ years of enterprise software experience to AI deployment insights. AI-assisted research and writing, human-driven analysis and perspective.
+                    </p>
+                    <p className="text-sm text-white/40">Real benchmarks. Real architectures. No hype. <Link href="/about" className="text-purple-400 hover:text-purple-300 transition-colors">Learn more →</Link></p>
+                  </div>
+                </div>
               </div>
             </section>
           </ScrollReveal>
