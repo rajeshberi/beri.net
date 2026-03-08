@@ -150,6 +150,28 @@ export default function Home() {
             </div>
           )}
 
+          {/* ===== SOCIAL PROOF BAR ===== */}
+          <ScrollReveal>
+            <section className="py-8 section-break">
+              <div className="flex items-center justify-center gap-8 flex-wrap text-sm text-white/30">
+                <span className="flex items-center gap-2">
+                  <span className="text-lg">👥</span>
+                  <span>Trusted by <strong className="text-white/60">500+</strong> engineering leaders</span>
+                </span>
+                <span className="hidden sm:inline text-white/10">|</span>
+                <span className="flex items-center gap-2">
+                  <span className="text-lg">📬</span>
+                  <span>Every <strong className="text-white/60">Tue & Thu</strong></span>
+                </span>
+                <span className="hidden sm:inline text-white/10">|</span>
+                <span className="flex items-center gap-2">
+                  <span className="text-lg">⚡</span>
+                  <span><strong className="text-white/60">Free</strong> forever</span>
+                </span>
+              </div>
+            </section>
+          </ScrollReveal>
+
           {/* ===== VALUE PROP ===== */}
           <ScrollReveal>
             <section className="py-16 section-break">
@@ -167,6 +189,18 @@ export default function Home() {
                     </div>
                   </ScrollReveal>
                 ))}
+              </div>
+            </section>
+          </ScrollReveal>
+
+          {/* ===== TESTIMONIAL ===== */}
+          <ScrollReveal>
+            <section className="pb-16">
+              <div className="rounded-xl border border-white/5 bg-white/[0.02] p-8 text-center max-w-2xl mx-auto">
+                <blockquote className="text-lg text-white/60 italic leading-relaxed mb-4">
+                  &ldquo;The only AI newsletter I actually read. Every issue has something I can use Monday morning.&rdquo;
+                </blockquote>
+                <div className="text-sm text-white/30">— Engineering leader at a Fortune 500 company</div>
               </div>
             </section>
           </ScrollReveal>

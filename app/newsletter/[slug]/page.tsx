@@ -51,7 +51,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
   const related = getRelatedNewsletters(slug, newsletter.tags, 3);
 
   return (
-    <div className="min-h-screen bg-[#0c0a14] text-white">
+    <div className="min-h-screen bg-[#0a0812] text-white noise">
       <ReadingProgress />
       <ExitIntent />
       <ScrollSubscribePrompt />
@@ -90,7 +90,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
                 <span className="text-white/40">{readingTime} min read</span>
               </div>
 
-              <h1 className="text-3xl md:text-5xl font-bold leading-[1.1]">
+              <h1 className="heading-xl">
                 {newsletter.title}
               </h1>
 
@@ -100,7 +100,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
                     <Link
                       key={tag}
                       href={`/tag/${encodeURIComponent(tag)}`}
-                      className="text-xs px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-300/60 border border-purple-500/15 hover:bg-purple-500/20 hover:text-purple-200 transition-all"
+                      className="tag"
                     >
                       {tag}
                     </Link>
@@ -121,7 +121,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
                 <ShareButtons title={newsletter.title} slug={slug} />
               </div>
 
-              <div className="w-12 h-[2px] bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
+              <div className="w-16 h-[2px] bg-gradient-to-r from-purple-500 via-fuchsia-500 to-transparent rounded-full" />
             </div>
 
             {/* Table of Contents */}
@@ -161,20 +161,20 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
           {/* Related Articles */}
           {related.length > 0 && (
             <section className="mt-16 pt-12 border-t border-white/5">
-              <h3 className="text-xl font-bold mb-6">You might also like</h3>
+              <h3 className="heading-md mb-8">You might also like</h3>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {related.map(article => (
                   <Link key={article.slug} href={`/newsletter/${article.slug}`} className="group block">
-                    <article className="h-full rounded-xl border border-white/5 bg-white/[0.02] p-5 card-hover group-hover:border-purple-500/10 transition-colors">
+                    <article className="card card-glow h-full p-5">
                       {article.tags[0] && (
-                        <span className="text-[10px] font-bold text-purple-400 uppercase tracking-wider">
+                        <span className="label text-purple-400/80">
                           {article.tags[0]}
                         </span>
                       )}
-                      <h4 className="text-sm font-bold mt-2 mb-2 group-hover:text-purple-300 transition-colors line-clamp-2 leading-snug">
+                      <h4 className="heading-sm text-sm mt-2 mb-2 group-hover:text-purple-200 transition-colors line-clamp-2">
                         {article.title}
                       </h4>
-                      <p className="text-xs text-white/40 line-clamp-2">{article.excerpt}</p>
+                      <p className="body-sm text-white/35 line-clamp-2">{article.excerpt}</p>
                     </article>
                   </Link>
                 ))}

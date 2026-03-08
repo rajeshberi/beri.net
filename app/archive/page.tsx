@@ -14,7 +14,7 @@ export default function ArchivePage() {
   const newsletters = getAllNewsletters();
 
   return (
-    <div className="min-h-screen bg-[#0c0a14] text-white">
+    <div className="min-h-screen bg-[#0a0812] text-white noise">
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-900/15 rounded-full blur-[120px]" />
       </div>
@@ -25,8 +25,8 @@ export default function ArchivePage() {
         <main className="max-w-[1000px] mx-auto px-6 py-16 md:py-24">
           <ScrollReveal>
             <div className="mb-14 space-y-3">
-              <div className="text-xs font-mono text-purple-400/60 tracking-widest uppercase">Newsletter Archive</div>
-              <h2 className="text-4xl md:text-5xl font-bold">
+              <div className="label text-purple-400/60 mb-2">Newsletter Archive</div>
+              <h2 className="heading-xl">
                 All Editions
               </h2>
               <p className="text-lg text-white/40 max-w-xl">
