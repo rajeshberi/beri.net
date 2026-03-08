@@ -4,6 +4,7 @@ date: "2026-02-24"
 published: true
 excerpt: "Broadcom raised its AI infrastructure forecast to $100B. I've been in enterprise tech long enough to know what that number actually means for your budget — and it's not what the headlines say."
 tags: ["Infrastructure", "AI Hardware", "Enterprise", "Budget", "Cost Analysis", "IT", "Finance", "Operations", "Engineering", "Product Management"]
+image: "/images/featured/broadcom-100-billion-ai-forecast-infrastructure.png"
 type: "curated"
 originalUrl: "https://www.reuters.com/technology/"
 originalAuthor: "Reuters"
