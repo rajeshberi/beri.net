@@ -41,9 +41,11 @@ export default function AboutPage() {
 
               {/* Profile Card */}
               <div className="card card-glow p-8 flex items-start gap-6 flex-col sm:flex-row">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-3xl font-bold shrink-0">
-                  RB
-                </div>
+                <img 
+                  src="/images/rajesh-beri.jpg" 
+                  alt="Rajesh Beri"
+                  className="w-32 h-32 rounded-full object-cover shrink-0 ring-2 ring-purple-500/20"
+                />
                 <div>
                   <h2 className="text-2xl font-bold mb-2">Rajesh Beri</h2>
                   <p className="text-white/50 mb-4">Enterprise AI Practitioner</p>
