@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import MobileMenu from './MobileMenu';
+import CategoryNav from './CategoryNav';
 
 interface HeaderProps {
-  tags?: string[];
   showCategoryNav?: boolean;
 }
 
-export default function Header({ tags = [], showCategoryNav = false }: HeaderProps) {
+export default function Header({ showCategoryNav = false }: HeaderProps) {
   return (
     <>
       {/* Main Header */}
@@ -33,29 +33,8 @@ export default function Header({ tags = [], showCategoryNav = false }: HeaderPro
         </div>
       </header>
 
-      {/* Sub-Header: Category Navigation */}
-      {showCategoryNav && tags.length > 0 && (
-        <nav 
-          className="glass-strong sticky top-[73px] z-40 px-6 py-3.5 border-b-[3px] border-purple-500/30" 
-          role="navigation" 
-          aria-label="Categories"
-        >
-          <div className="max-w-[1200px] mx-auto flex items-center gap-2 overflow-x-auto scrollbar-hide">
-            <Link href="/archive" className="category-pill category-pill-active">
-              Latest
-            </Link>
-            {tags.map(tag => (
-              <Link
-                key={tag}
-                href={`/tag/${encodeURIComponent(tag)}`}
-                className="category-pill"
-              >
-                {tag}
-              </Link>
-            ))}
-          </div>
-        </nav>
-      )}
+      {/* Sub-Header: Hierarchical Category Navigation */}
+      {showCategoryNav && <CategoryNav />}
     </>
   );
 }

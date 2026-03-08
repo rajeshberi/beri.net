@@ -24,7 +24,7 @@ export default function Home() {
       </div>
 
       <div className="relative">
-        <Header tags={allTags} showCategoryNav />
+        <Header showCategoryNav />
 
         <main className="max-w-[1200px] mx-auto px-6">
 
