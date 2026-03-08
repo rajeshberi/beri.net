@@ -1,4 +1,4 @@
-import { getNewsletterBySlug, getAllSlugs, getRelatedNewsletters, getReadingTime } from '@/lib/newsletters';
+import { getNewsletterBySlug, getAllSlugs, getRelatedNewsletters, getReadingTime, getAllTags } from '@/lib/newsletters';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { remark } from 'remark';
@@ -11,6 +11,7 @@ import ReadingProgress from '@/components/ReadingProgress';
 import TableOfContents from '@/components/TableOfContents';
 import ShareButtons from '@/components/ShareButtons';
 import InlineSubscribe from '@/components/InlineSubscribe';
+import ArticleSidebar from '@/components/ArticleSidebar';
 // ExitIntent and ScrollSubscribePrompt removed - too many subscribe prompts
 
 export async function generateStaticParams() {
@@ -47,7 +48,8 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
 
   const contentHtml = await markdownToHtml(newsletter.content);
   const readingTime = getReadingTime(newsletter.content);
-  const related = getRelatedNewsletters(slug, newsletter.tags, 3);
+  const related = getRelatedNewsletters(slug, newsletter.tags, 5);
+  const allTags = getAllTags();
 
   return (
     <div className="min-h-screen bg-[#0a0812] text-white noise">
@@ -62,7 +64,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
       <div className="relative">
         <Header />
 
-        <main className="max-w-3xl mx-auto px-6 py-12 md:py-20">
+        <main className="max-w-[1200px] mx-auto px-6 py-12 md:py-20">
 
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-xs text-white/30 mb-8" aria-label="Breadcrumb">
@@ -73,7 +75,11 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
             <span className="text-white/50 truncate max-w-[200px]">{newsletter.title}</span>
           </nav>
 
-          <article>
+          {/* Two-column layout: Article + Sidebar */}
+          <div className="grid lg:grid-cols-[1fr_320px] gap-12 items-start">
+            
+            {/* Main Article Column */}
+            <article className="min-w-0">
             {/* Header */}
             <div className="space-y-5 mb-12">
               <div className="flex items-center gap-3 text-sm">
@@ -133,10 +139,9 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
 
             {/* Mid-article subscribe prompt */}
             <InlineSubscribe />
-          </article>
 
-          {/* Bottom share */}
-          <div className="mt-12 pt-8 border-t border-white/5">
+            {/* Bottom share */}
+            <div className="mt-12 pt-8 border-t border-white/5">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <p className="text-sm text-white/40">Found this useful? Share it with your team.</p>
               <ShareButtons title={newsletter.title} slug={slug} />
@@ -156,12 +161,26 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
             </div>
           </div>
 
-          {/* Related Articles */}
+            </article>
+            
+            {/* Sidebar Column - Hidden on mobile */}
+            <div className="hidden lg:block">
+              <ArticleSidebar
+                currentSlug={slug}
+                tags={newsletter.tags}
+                relatedArticles={related.slice(0, 3)}
+                allTags={allTags}
+              />
+            </div>
+
+          </div>
+
+          {/* Related Articles - Full Width on mobile, hidden on desktop (sidebar shows them) */}
           {related.length > 0 && (
-            <section className="mt-16 pt-12 border-t border-white/5">
+            <section className="mt-16 pt-12 border-t border-white/5 lg:hidden">
               <h3 className="heading-md mb-8">You might also like</h3>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {related.map(article => (
+              <div className="grid sm:grid-cols-2 gap-5">
+                {related.slice(0, 3).map(article => (
                   <Link key={article.slug} href={`/newsletter/${article.slug}`} className="group block">
                     <article className="card card-glow h-full p-5">
                       {article.tags[0] && (

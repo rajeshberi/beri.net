@@ -91,3 +91,12 @@ export function getAllSlugs(): string[] {
     return [];
   }
 }
+
+export function getAllTags(): string[] {
+  const all = getAllNewsletters();
+  const tagSet = new Set<string>();
+  all.forEach(newsletter => {
+    newsletter.tags.forEach(tag => tagSet.add(tag));
+  });
+  return Array.from(tagSet).sort();
+}
