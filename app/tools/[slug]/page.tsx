@@ -326,6 +326,42 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             </div>
           )}
 
+          {/* Related Articles */}
+          {tool.relatedArticles && tool.relatedArticles.length > 0 && (
+            <div className="card card-glow p-8 mb-8">
+              <h2 className="heading-sm mb-4">Featured In Our Analysis</h2>
+              <p className="text-white/50 text-sm mb-6">
+                {tool.productName} is mentioned in {tool.relatedArticles.length} article{tool.relatedArticles.length > 1 ? 's' : ''} on our site:
+              </p>
+              <div className="space-y-4">
+                {tool.relatedArticles.slice(0, 5).map((article: any) => (
+                  <Link 
+                    key={article.slug}
+                    href={`/article/${article.slug}`}
+                    className="block p-4 rounded-lg bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all group"
+                  >
+                    <h3 className="font-bold text-white/90 mb-2 group-hover:text-purple-300 transition-colors">
+                      {article.title}
+                    </h3>
+                    <p className="text-sm text-white/50 line-clamp-2">
+                      {article.excerpt}
+                    </p>
+                    <div className="text-xs text-white/30 mt-2">
+                      {new Date(article.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+              {tool.relatedArticles.length > 5 && (
+                <div className="text-center mt-4">
+                  <Link href="/search" className="text-sm text-purple-400 hover:text-purple-300 transition-colors">
+                    See all {tool.relatedArticles.length} articles →
+                  </Link>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Back Link */}
           <div className="text-center">
             <Link href="/tools" className="text-purple-400 hover:text-purple-300 transition-colors inline-flex items-center gap-2">

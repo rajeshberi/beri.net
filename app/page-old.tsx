@@ -1,19 +1,14 @@
 import { getAllNewsletters } from '@/lib/newsletters';
-import { getAllTools } from '@/lib/tools';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import NewsletterSignup from '@/components/NewsletterSignup';
 
-export default async function Home() {
-  const newsletters = await getAllNewsletters();
-  const tools = await getAllTools();
+export default function Home() {
+  const newsletters = getAllNewsletters();
   const featured = newsletters[0];
   const latest = newsletters.slice(1, 7);
-  const newTools = tools
-    .sort((a, b) => new Date(b.added || 0).getTime() - new Date(a.added || 0).getTime())
-    .slice(0, 6);
 
   const allTags = Array.from(
     new Set(newsletters.flatMap(n => n.tags))
@@ -170,69 +165,6 @@ export default async function Home() {
                     ))}
                   </div>
                 </section>
-              )}
-
-              {/* ===== NEW TOOLS DISCOVERY ===== */}
-              {newTools.length > 0 && (
-                <ScrollReveal>
-                  <section className="pb-16">
-                    <div className="flex items-center justify-between mb-10">
-                      <div>
-                        <h3 className="heading-md text-white/90">New in Our Tools Directory</h3>
-                        <p className="text-white/40 text-sm mt-2">Recently added AI tools and platforms</p>
-                      </div>
-                      <Link href="/tools" className="text-sm text-purple-400 hover:text-purple-300 font-semibold transition-colors inline-flex items-center gap-1 group/link">
-                        View all tools
-                        <span className="transition-transform duration-200 group-hover/link:translate-x-0.5">→</span>
-                      </Link>
-                    </div>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {newTools.map((tool, i) => (
-                        <ScrollReveal key={tool.slug} delay={i * 50}>
-                          <Link href={`/tools/${tool.slug}`} className="group block h-full">
-                            <article className="card card-glow h-full flex flex-col p-6 hover:border-purple-500/30 transition-all">
-                              {/* Logo/Name */}
-                              <div className="flex items-start gap-4 mb-4">
-                                {tool.logoUrl ? (
-                                  <img 
-                                    src={tool.logoUrl} 
-                                    alt={tool.productName}
-                                    className="w-12 h-12 rounded-lg object-cover"
-                                  />
-                                ) : (
-                                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-white font-bold">
-                                    {tool.productName.charAt(0)}
-                                  </div>
-                                )}
-                                <div className="flex-1 min-w-0">
-                                  <h4 className="font-bold text-base mb-1 group-hover:text-purple-200 transition-colors line-clamp-1">
-                                    {tool.productName}
-                                  </h4>
-                                  <p className="text-xs text-white/40">by {tool.vendorName}</p>
-                                </div>
-                              </div>
-
-                              {/* Description */}
-                              <p className="text-sm text-white/60 mb-4 line-clamp-2 flex-1">
-                                {tool.description}
-                              </p>
-
-                              {/* Tags */}
-                              <div className="flex items-center gap-2 text-xs flex-wrap">
-                                <span className="px-2 py-1 rounded bg-white/5 text-white/50">
-                                  {tool.category}
-                                </span>
-                                <span className="px-2 py-1 rounded bg-purple-500/10 text-purple-400">
-                                  {tool.pricingModel}
-                                </span>
-                              </div>
-                            </article>
-                          </Link>
-                        </ScrollReveal>
-                      ))}
-                    </div>
-                  </section>
-                </ScrollReveal>
               )}
             </>
           ) : (
