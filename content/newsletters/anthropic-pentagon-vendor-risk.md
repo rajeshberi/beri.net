@@ -5,6 +5,7 @@ excerpt: "When a $200M government contract collapses over AI ethics, every CIO n
 author: "Rajesh Beri"
 tags: ["Enterprise AI", "Vendor Risk", "Government Contracts", "AI Governance", "OpenAI", "Anthropic"]
 category: "Weekly Digest"
+image: "/images/featured/anthropic-pentagon-vendor-risk.png"
 featured: true
 ---
 

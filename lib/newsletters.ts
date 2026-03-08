@@ -12,6 +12,7 @@ export interface Newsletter {
   excerpt: string;
   tags: string[];
   content: string;
+  image?: string;
 }
 
 export function getAllNewsletters(): Newsletter[] {
@@ -33,6 +34,7 @@ export function getAllNewsletters(): Newsletter[] {
           excerpt: data.excerpt || '',
           tags: data.tags || [],
           content,
+          image: data.image || undefined,
         } as Newsletter;
       })
       .filter(newsletter => newsletter.published)
@@ -59,6 +61,7 @@ export function getNewsletterBySlug(slug: string): Newsletter | null {
       excerpt: data.excerpt || '',
       tags: data.tags || [],
       content,
+      image: data.image || undefined,
     };
   } catch (error) {
     return null;

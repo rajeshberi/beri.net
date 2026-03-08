@@ -32,6 +32,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: 'article',
       publishedTime: newsletter.date,
       tags: newsletter.tags,
+      images: newsletter.image ? [
+        {
+          url: `https://beri.net${newsletter.image}`,
+          width: 1792,
+          height: 1024,
+          alt: newsletter.title,
+        }
+      ] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: newsletter.title,
+      description: newsletter.excerpt,
+      images: newsletter.image ? [`https://beri.net${newsletter.image}`] : [],
     },
   };
 }
@@ -109,6 +123,18 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
                       {tag}
                     </Link>
                   ))}
+                </div>
+              )}
+
+              {/* Featured Image */}
+              {newsletter.image && (
+                <div className="relative rounded-2xl overflow-hidden my-8">
+                  <img 
+                    src={newsletter.image} 
+                    alt={newsletter.title}
+                    className="w-full h-auto"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0812]/40 via-transparent to-transparent pointer-events-none" />
                 </div>
               )}
 

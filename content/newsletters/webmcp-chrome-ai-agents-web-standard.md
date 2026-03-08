@@ -5,6 +5,7 @@ excerpt: "Google shipped WebMCP in Chrome 146, and it's not just another browser
 author: "Rajesh Beri"
 tags: ["WebMCP", "Chrome", "AI Agents", "Web Standards", "Enterprise AI", "Browser Automation", "MCP"]
 category: "Infrastructure"
+image: "/images/featured/webmcp-chrome-ai-agents-web-standard.png"
 featured: true
 ---
 
