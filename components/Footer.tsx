@@ -18,6 +18,7 @@ export default function Footer() {
           <div>
             <div className="label text-white/25 mb-5">Navigate</div>
             <div className="space-y-3 body-sm">
+              <div><Link href="/about" className="text-white/45 hover:text-purple-400 transition-colors duration-200">About</Link></div>
               <div><Link href="/archive" className="text-white/45 hover:text-purple-400 transition-colors duration-200">Archive</Link></div>
               <div><Link href="/search" className="text-white/45 hover:text-purple-400 transition-colors duration-200">Search</Link></div>
               <div><Link href="/tags" className="text-white/45 hover:text-purple-400 transition-colors duration-200">Topics</Link></div>

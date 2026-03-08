@@ -18,6 +18,7 @@ export default function Header({ tags = [], showCategoryNav = false }: HeaderPro
           </Link>
 
           <nav className="flex items-center gap-6" role="navigation" aria-label="Main navigation">
+            <Link href="/about" className="nav-link hidden sm:block">About</Link>
             <Link href="/archive" className="nav-link hidden sm:block">Archive</Link>
             <Link href="/search" className="nav-link hidden sm:block">Search</Link>
             <Link href="/tags" className="nav-link hidden sm:block">Topics</Link>

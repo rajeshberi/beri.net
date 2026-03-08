@@ -65,6 +65,13 @@ export default function MobileMenu() {
           <div className="fixed top-[73px] left-0 right-0 bottom-0 bg-[#0a0812] z-50 sm:hidden overflow-y-auto">
             <nav className="px-6 py-8 space-y-6" role="navigation">
               <Link
+                href="/about"
+                className="block text-lg font-medium text-white/80 hover:text-white transition-colors py-3"
+                onClick={() => setIsOpen(false)}
+              >
+                About
+              </Link>
+              <Link
                 href="/archive"
                 className="block text-lg font-medium text-white/80 hover:text-white transition-colors py-3"
                 onClick={() => setIsOpen(false)}
