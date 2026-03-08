@@ -113,7 +113,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
                     RB
                   </div>
                   <div className="text-sm text-white/40">
-                    <span className="text-white/70 font-medium">Rajesh Beri</span> · AI Engineering Leader
+                    <span className="text-white/70 font-medium">Rajesh Beri</span> · Enterprise AI Practitioner
                   </div>
                 </div>
                 <ShareButtons title={newsletter.title} slug={slug} />
@@ -151,7 +151,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
               </div>
               <div>
                 <div className="font-semibold">Rajesh Beri</div>
-                <div className="text-sm text-white/40">AI Engineering Leader · Enterprise AI</div>
+                <div className="text-sm text-white/40">Enterprise AI Practitioner</div>
               </div>
             </div>
           </div>

@@ -7,6 +7,48 @@
 - 15+ years enterprise = earned authority
 - Conversational but never sloppy
 
+## Examples & Attribution (CRITICAL)
+**NEVER reference:**
+- Specific company names (current or past employers)
+- Named individuals (colleagues, clients, partners)
+- Identifiable projects or internal systems
+- Anything that could be traced back to specific work
+
+**DO use generic examples:**
+- "A CFO friend mentioned..."
+- "I was talking to a CIO last week who..."
+- "In a recent conversation with security leaders..."
+- "At a Fortune 500 company I worked with..."
+- "A CISO peer shared that..."
+
+**Voice should be:**
+- Personal perspective only
+- Based on industry experience
+- Drawing from conversations with peers across the industry
+- Generic enough to protect confidentiality
+- Specific enough to be credible (data, outcomes, not names)
+
+**This is a legal/compliance requirement. No exceptions.**
+
+## Facts & Citations (CRITICAL)
+**Every factual claim MUST be sourced:**
+- Link to original source when citing data, benchmarks, or studies
+- Never fabricate statistics or performance numbers
+- If you can't find a source, don't make the claim
+- Better to say "I don't have data on this" than to invent numbers
+
+**Citation format:**
+- Inline links: "According to [OpenAI's latest benchmarks](url)..."
+- Footnotes: "GPT-4 achieves 89% accuracy[^1]" → [^1]: [Source](url)
+- Block quotes with attribution for longer excerpts
+
+**If unsure:**
+- Use qualifiers: "In my experience...", "Based on conversations with peers..."
+- Share perspective, not fabricated facts
+- Link to sources so readers can verify
+
+**This protects credibility. No exceptions.**
+
 ## Micro-Copy
 
 ### Loading States
