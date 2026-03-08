@@ -30,7 +30,7 @@ Short answer: not worried. But definitely paying attention.
 
 Broadcom raised its AI-related revenue forecast to $100 billion. Not revenue — *forecast of total addressable market.* Important distinction that every headline conveniently skipped. The stock surged because Wall Street loves big round numbers, and $100B is as round as they come.
 
-The real story isn't the headline number. It's *what's driving it*: custom AI chips (ASICs), networking silicon, and data center connectivity. Translation? The companies building AI aren't just buying GPUs anymore. They're building entire custom silicon ecosystems. And that changes the cost equation for everyone.
+The real story isn't the headline number. It's *what's driving it*: custom AI chips (ASICs), networking silicon, and data center connectivity. Translation? The companies building AI aren't just buying GPUs anymore. They're building entire custom silicon ecosystems driven by [enterprise AI adoption patterns](/article/ai-agents-enterprise-adoption-2026). And that changes the cost equation for everyone.
 
 ## What This Actually Means For Your Budget
 

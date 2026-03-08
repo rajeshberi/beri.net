@@ -144,8 +144,11 @@ The AI coworker era isn't coming. It showed up Monday and already reorganized th
 
 *I'm tracking Claude Cowork performance metrics over the next 90 days. If you're running a similar evaluation, I'd love to compare notes. What department are you testing first?*
 
-## Related Reading
+---
 
-- [GPT-5.4 vs Claude Opus 4.6: Which Model Should You Actually Use?](/newsletter/gpt-5-4-vs-claude-opus-4-6-enterprise-guide) — How Claude stacks up against GPT-5.4 on benchmarks and cost.
-- [The Anthropic-Pentagon Clash: AI Vendor Risk](/newsletter/us-ai-guidelines-anthropic-pentagon-clash) — Why the government just cut off Anthropic and what it means for Claude users.
-- [AI Agents Are Coming For Every Department](/newsletter/ai-agents-enterprise-adoption-2026) — The broader agent wave Claude Cowork is riding.
+## Continue Reading
+
+**More on Claude and enterprise AI:**
+- [Claude Scheduled Tasks: Automation Breakthrough](/article/claude-cowork-scheduled-tasks-loop) — The latest feature that makes Claude even more powerful
+- [GPT-5.4 vs Claude Opus 4.6: Model Comparison](/article/gpt-5-4-vs-claude-opus-4-6-enterprise-guide) — How Claude stacks up against GPT-5.4
+- [Anthropic vs Pentagon: Vendor Risk](/article/anthropic-pentagon-vendor-risk) — Why the government clash matters for Claude users

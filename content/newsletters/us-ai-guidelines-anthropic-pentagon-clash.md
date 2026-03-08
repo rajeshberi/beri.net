@@ -111,8 +111,11 @@ The companies that treat model selection as infrastructure — abstracted behind
 
 *Has your team done an AI vendor risk assessment? Genuinely curious — I'm compiling data on how many organizations have multi-model fallback plans in place. Reply and let me know where you stand.*
 
-## Related Reading
+---
 
-- [GPT-5.4 vs Claude Opus 4.6: Build the Multi-Model Architecture](/newsletter/gpt-5-4-vs-claude-opus-4-6-enterprise-guide) — The decision framework with benchmarks, costs, and the routing architecture this article recommends.
-- [Claude Cowork: What Anthropic Is Building on the Enterprise Side](/newsletter/claude-cowork-enterprise-review) — What Anthropic is doing while fighting the government battle.
-- [AI Agents Are Coming For Every Department](/newsletter/ai-agents-enterprise-adoption-2026) — Why vendor risk management is critical as agent adoption accelerates.
+## Continue Reading
+
+**Related AI governance and vendor strategy:**
+- [Anthropic vs Pentagon: Full Vendor Risk Analysis](/article/anthropic-pentagon-vendor-risk) — The complete story of the government clash
+- [GPT-5.4 vs Claude: Multi-Model Architecture](/article/gpt-5-4-vs-claude-opus-4-6-enterprise-guide) — Building vendor-agnostic AI infrastructure
+- [AI Governance Tools for Enterprise](/article/ai-agents-enterprise-adoption-2026) — Risk management as agent adoption accelerates

@@ -156,8 +156,11 @@ And for the record, Gary says hi.
 
 *I'm documenting our full OpenClaw deployment experience — the wins, the failures, the weird edge cases. Want me to go deeper on any specific use case? Reply and tell me what you're trying to automate.*
 
-## Related Reading
+---
 
-- [AI Agents Are Coming For Every Department](/newsletter/ai-agents-enterprise-adoption-2026) — The macro trend driving OpenClaw adoption.
-- [GPT-5.4 vs Claude Opus 4.6: Which Model to Plug Into OpenClaw](/newsletter/gpt-5-4-vs-claude-opus-4-6-enterprise-guide) — Choosing the right model for your use case.
-- [Broadcom's $100B Forecast: Infrastructure Budget Impact](/newsletter/broadcom-100-billion-ai-forecast-infrastructure) — The economics of self-hosted AI.
+## Continue Reading
+
+**Related AI agent tools and infrastructure:**
+- [AI Agents Enterprise Adoption Guide](/article/ai-agents-enterprise-adoption-2026) — The macro trend driving OpenClaw adoption
+- [WebMCP: Browser Automation Standard](/article/webmcp-chrome-ai-agents-web-standard) — Another agent automation breakthrough
+- [Claude Scheduled Tasks](/article/claude-cowork-scheduled-tasks-loop) — Alternative automation approach for different use cases
