@@ -32,7 +32,7 @@ In conversations with CIOs over the past week, the common refrain is: *"We didn'
 
 ## New Federal AI Procurement Rules: The Fine Print Matters
 
-The fallout didn't stop at one contract. The Trump administration drafted **new AI procurement rules** requiring vendors to permit "any lawful use" of their models and disclose compliance with non-US regulatory frameworks ([Reuters](https://www.reuters.com/business/media-telecom/us-draws-up-strict-new-ai-guidelines-amid-anthropic-clash-ft-reports-2026-03-07/)).
+The fallout didn't stop at one contract. The Trump administration drafted **new AI procurement rules** requiring vendors to permit "any lawful use" of their models and disclose compliance with non-US regulatory frameworks ([Reuters](https://www.reuters.com/business/media-telecom/us-draws-up-strict-new-ai-guidelines-amid-anthropic-clash-ft-reports-2026-03-07/)). We covered the full implications in our [deep-dive on US AI procurement guidelines](/article/us-ai-guidelines-anthropic-pentagon-clash).
 
 This is a **vendor terms-of-service overhaul** disguised as a procurement policy.
 
@@ -129,5 +129,14 @@ The AI market just got a lot more complicated. And a lot more interesting.
 ---
 
 **What are you seeing in your org?** Share your thoughts on [LinkedIn](https://www.linkedin.com/in/rberi/) or [Twitter/X](https://x.com/rajeshberi) — I read every message.
+
+---
+
+## Continue Reading
+
+**Related AI governance and vendor analysis:**
+- [US AI Procurement Guidelines: Full Analysis](/article/us-ai-guidelines-anthropic-pentagon-clash) — Detailed breakdown of the new federal AI rules
+- [Claude Cowork Enterprise Review](/article/claude-cowork-enterprise-review) — Evaluating Anthropic's flagship product for enterprise
+- [AI Governance Tools for Enterprise](/article/openclaw-enterprise-ai-agents-guide) — Building internal AI oversight
 
 *— Rajesh*

@@ -10,7 +10,7 @@ imageCredit: "Photo by [Kevin Ku](https://unsplash.com/@ikukevk) on Unsplash"
 featured: true
 ---
 
-If you've been following Claude Cowork since it launched, you know the pitch: AI that does multi-step work autonomously while you're doing something else. The catch was always that **you had to remember to start it**.
+If you've been following [Claude Cowork](/article/claude-cowork-enterprise-review) since it launched, you know the pitch: AI that does multi-step work autonomously while you're doing something else. The catch was always that **you had to remember to start it**.
 
 That catch is gone. Anthropic just shipped **scheduled tasks** for Cowork, and it's the single most useful feature they've released since Cowork itself ([Claude Help Center](https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-cowork), [TechRadar](https://www.techradar.com/pro/claude-cowork-can-now-handle-all-your-recurring-work-tasks)).
 
@@ -208,5 +208,14 @@ Just `/schedule` and go.
 ---
 
 **What recurring work are you automating?** I'm collecting real-world use cases — share yours on [LinkedIn](https://www.linkedin.com/in/rberi/) or [Twitter/X](https://x.com/rajeshberi).
+
+---
+
+## Continue Reading
+
+**More on AI automation and enterprise tools:**
+- [Claude Cowork Enterprise Review](/article/claude-cowork-enterprise-review) — Full analysis of Cowork's capabilities and limitations
+- [AI Agents for Enterprise Adoption](/article/ai-agents-enterprise-adoption-2026) — Real-world automation use cases across functions
+- [WebMCP: Browser Automation Standard](/article/webmcp-chrome-ai-agents-web-standard) — Another automation breakthrough for enterprise
 
 *— Rajesh*

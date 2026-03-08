@@ -100,3 +100,12 @@ If I had a dollar for every "ChatGPT will replace [job title]" take I've read th
 - [OpenClaw For Business: The AI Agent Platform That Actually Delivers](/newsletter/openclaw-enterprise-ai-agents-guide) — A deep dive into the most talked-about AI agent platform and whether it's ready for enterprise.
 - [GPT-5.4 vs Claude Opus 4.6: Which Model Powers Your Agents?](/newsletter/gpt-5-4-vs-claude-opus-4-6-enterprise-guide) — Benchmarks, costs, and ROI by department.
 - [Claude Cowork: Anthropic's Department-by-Department Play](/newsletter/claude-cowork-enterprise-review) — Hands-on review of Claude's coworker plugins.
+
+---
+
+## Continue Reading
+
+**Practical AI agent implementations:**
+- [Claude Scheduled Tasks for Recurring Work](/article/claude-cowork-scheduled-tasks-loop) — Automation use cases in production
+- [WebMCP: Browser Automation Standard](/article/webmcp-chrome-ai-agents-web-standard) — Next-gen agent capabilities
+- [OpenClaw Enterprise AI Agents](/article/openclaw-enterprise-ai-agents-guide) — Building autonomous workflows

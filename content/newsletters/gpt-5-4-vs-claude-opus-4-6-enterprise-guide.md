@@ -179,3 +179,12 @@ And stop arguing about benchmarks on Twitter. Nobody's mind has ever been change
 - [I Let Claude Run My Desktop For a Week](/newsletter/claude-cowork-enterprise-review) — Hands-on review of Claude's enterprise coworker plugins with ROI analysis.
 - [Broadcom's $100B AI Forecast](/newsletter/broadcom-100-billion-ai-forecast-infrastructure) — The infrastructure costs behind running these models at scale.
 - [The Government Just Cut Off Anthropic](/newsletter/us-ai-guidelines-anthropic-pentagon-clash) — Why multi-model architecture isn't optional anymore.
+
+---
+
+## Continue Reading
+
+**More AI vendor comparisons and reviews:**
+- [Claude Cowork Enterprise Review](/article/claude-cowork-enterprise-review) — Deep dive into Claude's enterprise capabilities
+- [Claude Scheduled Tasks Analysis](/article/claude-cowork-scheduled-tasks-loop) — Latest automation features
+- [Anthropic vs Pentagon: Vendor Risk](/article/anthropic-pentagon-vendor-risk) — Understanding AI vendor reliability

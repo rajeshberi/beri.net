@@ -246,4 +246,13 @@ The companies that get ahead of this will have working WebMCP integrations by th
 
 **Are you experimenting with WebMCP or building browser-based AI agents?** I'm collecting real-world use cases — share what you're working on via [LinkedIn](https://www.linkedin.com/in/rberi/) or [Twitter/X](https://x.com/rajeshberi).
 
+---
+
+## Continue Reading
+
+**Related enterprise AI automation:**
+- [Claude Scheduled Tasks for Automation](/article/claude-cowork-scheduled-tasks-loop) — Another automation breakthrough for recurring work
+- [AI Agents Enterprise Adoption Guide](/article/ai-agents-enterprise-adoption-2026) — Real-world use cases and implementation patterns
+- [OpenClaw for AI Agent Orchestration](/article/openclaw-enterprise-ai-agents-guide) — Building autonomous agent workflows
+
 *— Rajesh*
