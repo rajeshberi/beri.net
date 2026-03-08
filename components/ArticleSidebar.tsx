@@ -12,30 +12,32 @@ interface ArticleSidebarProps {
 
 export default function ArticleSidebar({ currentSlug, tags, relatedArticles, allTags }: ArticleSidebarProps) {
   return (
-    <aside className="space-y-8">
+    <aside className="space-y-6">
       
-      {/* Subscribe Card */}
-      <div className="card card-glow p-6 sticky top-24">
-        <div className="space-y-4">
-          <div className="text-sm font-semibold text-purple-400 uppercase tracking-wide">
-            Stay Updated
+      {/* Subscribe Card - Sticky */}
+      <div className="sticky top-24 z-10">
+        <div className="card card-glow p-6">
+          <div className="space-y-4">
+            <div className="text-sm font-semibold text-purple-400 uppercase tracking-wide">
+              Stay Updated
+            </div>
+            <h3 className="text-lg font-bold leading-tight">
+              Get AI insights every Tue & Thu
+            </h3>
+            <p className="text-sm text-white/50 leading-relaxed">
+              Data-driven analysis for engineering leaders. No hype, just signal.
+            </p>
+            <a 
+              href="#newsletter" 
+              className="btn-primary block text-center !text-sm"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('newsletter')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Subscribe Free
+            </a>
           </div>
-          <h3 className="text-lg font-bold leading-tight">
-            Get AI insights every Tue & Thu
-          </h3>
-          <p className="text-sm text-white/50 leading-relaxed">
-            Data-driven analysis for engineering leaders. No hype, just signal.
-          </p>
-          <a 
-            href="#newsletter" 
-            className="btn-primary block text-center !text-sm"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('newsletter')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            Subscribe Free
-          </a>
         </div>
       </div>
 
