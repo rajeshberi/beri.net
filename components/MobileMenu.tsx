@@ -64,8 +64,8 @@ export default function MobileMenu() {
           />
 
           {/* Menu Panel */}
-          <div className="fixed top-0 left-0 right-0 bottom-0 bg-[#0a0812] z-50 sm:hidden overflow-y-auto pt-20">
-            <nav className="px-6 py-8 space-y-4" role="navigation">
+          <div className="fixed top-0 left-0 right-0 bottom-0 bg-[#0a0812] z-50 sm:hidden overflow-y-auto">
+            <nav className="px-6 pt-24 pb-8 space-y-4 min-h-full" role="navigation">
               <Link
                 href="/about"
                 className="block text-lg font-bold uppercase tracking-wider text-white hover:text-purple-400 transition-colors py-4 border-b border-white/5"

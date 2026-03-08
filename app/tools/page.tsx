@@ -2,6 +2,7 @@ import { getAllTools, getCategories, getDomains } from '@/lib/tools';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
+import ToolCard from '@/components/ToolCard';
 import Link from 'next/link';
 
 // Make this a dynamic route - tools are fetched from MongoDB at runtime
