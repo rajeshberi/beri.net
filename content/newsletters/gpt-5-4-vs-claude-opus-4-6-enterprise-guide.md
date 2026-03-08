@@ -82,6 +82,14 @@ Anthropic built Claude with depth over breadth. This is the model you deploy whe
 
 Stop asking "which model is best." Start asking "which model is best for THIS task."
 
+> **📌 The 30-Second Decision (screenshot this):**
+> - Replacing RPA / desktop automation → **GPT-5.4**
+> - Production code generation → **Claude Opus 4.6**
+> - High-volume, cost-sensitive tasks → **GPT-5.4** (50% cheaper)
+> - Complex multi-step research → **Claude Agent Teams**
+> - Best reasoning per dollar → **Gemini 3.1 Pro**
+> - The right answer for your org → **All three, behind a router**
+
 ### Use GPT-5.4 When:
 - 📄 **Document-heavy workflows** — reports, contracts, financial modeling
 - 🖥️ **Desktop/browser automation** — form filling, RPA replacement
