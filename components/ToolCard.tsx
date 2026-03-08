@@ -18,11 +18,7 @@ export default function ToolCard({ tool, delay = 0 }: { tool: Tool; delay?: numb
   const [imageError, setImageError] = useState(false);
 
   return (
-    <div 
-      className="opacity-0 animate-fade-in-up"
-      style={{ animationDelay: `${delay}ms`, animationFillMode: 'forwards' }}
-    >
-      <Link href={`/tools/${tool.slug}`} className="group block h-full">
+    <Link href={`/tools/${tool.slug}`} className="group block h-full">
         <article className="card card-glow h-full flex flex-col p-6 hover:border-purple-500/30 transition-all">
           {/* Logo/Name */}
           <div className="flex items-start gap-4 mb-4">
@@ -67,6 +63,5 @@ export default function ToolCard({ tool, delay = 0 }: { tool: Tool; delay?: numb
           </div>
         </article>
       </Link>
-    </div>
   );
 }
