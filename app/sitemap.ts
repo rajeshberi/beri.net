@@ -1,11 +1,11 @@
 import { MetadataRoute } from 'next';
 import { getAllNewsletters } from '@/lib/newsletters';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.beri.net';
   
   // Get all newsletters
-  const newsletters = getAllNewsletters();
+  const newsletters = await getAllNewsletters();
   
   // Get all unique tags
   const allTags = Array.from(

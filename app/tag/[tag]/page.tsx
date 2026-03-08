@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ tag: stri
 export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
   const { tag } = await params;
   const decodedTag = decodeURIComponent(tag);
-  const newsletters = await getAllNewsletters().filter(n => n.tags.includes(decodedTag));
+  const newsletters = (await getAllNewsletters()).filter(n => n.tags.includes(decodedTag));
 
   if (newsletters.length === 0) notFound();
 
