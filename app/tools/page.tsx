@@ -4,6 +4,10 @@ import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import Link from 'next/link';
 
+// Make this a dynamic route - tools are fetched from MongoDB at runtime
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour
+
 export const metadata = {
   title: 'AI Tools Directory | THE D[AI]LY BRIEF',
   description: 'Comprehensive directory of AI tools, platforms, and services. Find the best AI solutions for your business across all categories and domains.',

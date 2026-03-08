@@ -1,15 +1,12 @@
-import { getToolBySlug, getAllTools } from '@/lib/tools';
+import { getToolBySlug } from '@/lib/tools';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-export async function generateStaticParams() {
-  const tools = await getAllTools();
-  return tools.map(tool => ({
-    slug: tool.slug,
-  }));
-}
+// Make this a dynamic route - tools are fetched from MongoDB at runtime
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
