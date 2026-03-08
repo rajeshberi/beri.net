@@ -85,6 +85,23 @@ export default function AboutPage() {
                   I also talk to peers across functions — CIOs, CFOs, sales leaders, operations directors, engineering heads. Their experiences inform what I write, though I keep specifics confidential. The goal: help you make better decisions about AI in your business.
                 </p>
 
+                <h2>On Using AI to Write About AI</h2>
+                <p>
+                  Full transparency: I use AI tools to help research and write these articles.
+                </p>
+                <p>
+                  AI technology is evolving faster than any one person can track manually. There are dozens of product launches, research papers, and enterprise deployments every week. To keep up and deliver timely, comprehensive analysis, I use AI to help with research, drafting, and synthesis.
+                </p>
+                <p>
+                  But here's what that means in practice: <strong>the ideas, perspectives, analysis, and conclusions are mine.</strong> I decide what matters, what the business implications are, and what you should pay attention to. AI helps me write faster and cover more ground — it doesn't decide what I think or what I publish.
+                </p>
+                <p>
+                  Think of it like having a research assistant who can scan thousands of sources and draft initial outlines. I review everything, add my analysis, and rewrite until it reflects what I'd say if we were talking over coffee.
+                </p>
+                <p>
+                  This approach lets me publish twice a week with depth and accuracy. Without AI assistance, I could probably manage one article every two weeks. The choice is between frequent, AI-assisted deep dives or infrequent manual posts. I chose the former because you benefit from timely insights.
+                </p>
+
                 <h2>Who This Is For</h2>
                 <p>
                   You're a business leader — engineering, sales, finance, operations, legal, marketing — or anyone who needs to understand AI without the hype. You value data over opinions. You need insights you can act on immediately.
