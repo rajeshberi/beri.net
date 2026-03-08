@@ -16,6 +16,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate name
+    if (!name || name.trim().length === 0) {
+      return NextResponse.json(
+        { error: 'Please enter your first name' },
+        { status: 400 }
+      );
+    }
+
     // Connect to MongoDB
     const client = new MongoClient(MONGODB_URI);
     await client.connect();
@@ -35,6 +43,7 @@ export async function POST(request: NextRequest) {
           { email: email.toLowerCase() },
           {
             $set: {
+              name: name.trim(),
               status: 'active',
               updated_at: new Date()
             }
@@ -44,7 +53,7 @@ export async function POST(request: NextRequest) {
         
         return NextResponse.json({
           success: true,
-          message: 'Welcome back! Your subscription has been reactivated.'
+          message: `Welcome back, ${name}! Your subscription has been reactivated.`
         });
       }
       
@@ -57,7 +66,7 @@ export async function POST(request: NextRequest) {
     // Insert new subscriber
     const subscriber = {
       email: email.toLowerCase(),
-      name: name || '',
+      name: name.trim(),
       status: 'active',
       subscribed_date: new Date(),
       source: 'website',
@@ -82,7 +91,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: 'Success! Check your inbox for a welcome email.'
+      message: `Thanks for subscribing, ${name}! Check your inbox for a welcome email.`
     });
 
   } catch (error) {

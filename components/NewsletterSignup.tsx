@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ScrollReveal from './ScrollReveal';
 
 export default function NewsletterSignup() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
@@ -19,7 +20,7 @@ export default function NewsletterSignup() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, name }),
       });
 
       const data = await response.json();
@@ -27,7 +28,7 @@ export default function NewsletterSignup() {
       if (data.success) {
         setStatus('success');
         setMessage(data.message || 'Success! Check your inbox.');
-        setEmail('');
+        // Keep name for thank you message, clear email
       } else {
         setStatus('error');
         setMessage(data.error || 'Something went wrong. Please try again.');
@@ -71,7 +72,7 @@ export default function NewsletterSignup() {
               <div className="space-y-4">
                 <div className="text-5xl">🎉</div>
                 <h3 className="heading-lg text-gradient-subtle">
-                  You're in!
+                  {name ? `Welcome, ${name}!` : "You're in!"}
                 </h3>
                 <p className="body-lg text-white/70 max-w-md mx-auto">
                   Thank you for subscribing to THE D*AI*LY BRIEF. You'll get your first deep dive next Tuesday.
@@ -119,7 +120,11 @@ export default function NewsletterSignup() {
               </div>
 
               <button
-                onClick={() => setStatus('idle')}
+                onClick={() => {
+                  setStatus('idle');
+                  setName('');
+                  setEmail('');
+                }}
                 className="text-sm text-white/40 hover:text-white/60 transition-colors"
               >
                 ← Subscribe another email
@@ -135,20 +140,32 @@ export default function NewsletterSignup() {
                 Twice-weekly deep dives into what matters in AI. No spam, just signal.
               </p>
 
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="you@company.com"
-                  aria-label="Email address"
-                  className="input flex-1"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  disabled={status === 'loading'}
-                  required
-                />
+              <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-3">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="text"
+                    placeholder="First name"
+                    aria-label="First name"
+                    className="input flex-1"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    disabled={status === 'loading'}
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="you@company.com"
+                    aria-label="Email address"
+                    className="input flex-1"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={status === 'loading'}
+                    required
+                  />
+                </div>
                 <button 
                   type="submit"
-                  className="btn-primary whitespace-nowrap !rounded-xl"
+                  className="btn-primary w-full !rounded-xl"
                   disabled={status === 'loading'}
                 >
                   {status === 'loading' ? 'Subscribing...' : 'Subscribe →'}
