@@ -63,10 +63,10 @@ export default function AboutPage() {
                 
                 <h2>Why I Write</h2>
                 <p>
-                  I've spent 15+ years building and deploying AI systems at enterprise scale — working with Fortune 500 companies to solve real problems with real constraints.
+                  I've spent 30+ years building enterprise applications at scale. For the past couple of years, I've been focused on applying AI to make business functions more productive — helping sales, finance, operations, legal, and engineering teams get real value from AI, not just hype.
                 </p>
                 <p>
-                  Most AI content is either overhyped vendor marketing or academic theory that doesn't survive contact with production. I write <strong>THE D*AI*LY BRIEF</strong> to cut through the noise.
+                  Most AI content is either overhyped vendor marketing or academic theory that doesn't survive contact with production. I write <strong>THE D*AI*LY BRIEF</strong> to cut through the noise and share what actually works in enterprise environments.
                 </p>
 
                 <h2>What You'll Find Here</h2>
@@ -79,15 +79,15 @@ export default function AboutPage() {
 
                 <h2>My Approach</h2>
                 <p>
-                  I test everything I write about. If I'm comparing models, I run the benchmarks. If I'm discussing a new tool, I've deployed it. If I don't have first-hand data, I say so.
+                  I test everything I write about. If I'm comparing models, I run the benchmarks. If I'm discussing a tool, I've deployed it in production. If I don't have first-hand data, I say so.
                 </p>
                 <p>
-                  I also talk to a lot of peers — CIOs, CTOs, engineering leaders across industries. Their experiences inform what I write, though I keep specifics confidential.
+                  I also talk to peers across functions — CIOs, CFOs, sales leaders, operations directors, engineering heads. Their experiences inform what I write, though I keep specifics confidential. The goal: help you make better decisions about AI in your business.
                 </p>
 
                 <h2>Who This Is For</h2>
                 <p>
-                  You're an engineering leader, tech decision-maker, or just someone who wants to understand AI without the hype. You value data over opinions. You need insights you can act on immediately.
+                  You're a business leader — engineering, sales, finance, operations, legal, marketing — or anyone who needs to understand AI without the hype. You value data over opinions. You need insights you can act on immediately.
                 </p>
                 <p>
                   If that's you, <a href="#newsletter" className="text-purple-400 hover:text-purple-300">subscribe</a>. I send deep dives every Tuesday and Thursday — no fluff, just signal.
