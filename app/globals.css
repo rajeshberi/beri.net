@@ -913,6 +913,16 @@ html {
   background: rgba(168, 85, 247, 0.4);
 }
 
+/* Hide scrollbar for horizontal scroll on mobile */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* ============================================
    FOCUS VISIBLE (accessibility)
    ============================================ */
@@ -971,4 +981,75 @@ html {
 
 .animate-in {
   animation: animate-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ============================================
+   MOBILE OPTIMIZATIONS
+   ============================================ */
+
+/* Ensure proper touch target sizes on mobile (44x44px minimum) */
+@media (max-width: 640px) {
+  .btn-primary,
+  .btn-secondary,
+  .btn-ghost {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Reduce motion on mobile for better performance */
+  .glow-orb,
+  .glow-orb-delayed {
+    animation-duration: 12s;
+  }
+  
+  /* Optimize spacing for mobile */
+  .max-w-\[1200px\] {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Ensure readable text on mobile */
+  body {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  /* Better touch feedback */
+  button, a {
+    -webkit-tap-highlight-color: rgba(168, 85, 247, 0.2);
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .heading-xl {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+  }
+  
+  .heading-lg {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+  }
+}
+
+/* High-DPI displays optimization */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body {
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+/* Performance: Reduce animations on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  .glow-orb,
+  .glow-orb-delayed,
+  .text-shimmer {
+    animation: none !important;
+  }
+}
+
+/* Optimize for landscape mobile */
+@media (max-width: 896px) and (orientation: landscape) {
+  .py-16, .py-24 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
 }

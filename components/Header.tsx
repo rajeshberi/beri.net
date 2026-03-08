@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import MobileMenu from './MobileMenu';
 
 interface HeaderProps {
   tags?: string[];
@@ -20,14 +21,15 @@ export default function Header({ tags = [], showCategoryNav = false }: HeaderPro
             <Link href="/archive" className="nav-link hidden sm:block">Archive</Link>
             <Link href="/search" className="nav-link hidden sm:block">Search</Link>
             <Link href="/tags" className="nav-link hidden sm:block">Topics</Link>
-            <a href="#newsletter" className="btn-primary !py-2.5 !px-5 !text-sm !rounded-lg">
+            <a href="#newsletter" className="btn-primary !py-2.5 !px-5 !text-sm !rounded-lg hidden sm:inline-block">
               Subscribe
             </a>
+            <MobileMenu />
           </nav>
         </div>
 
         {showCategoryNav && tags.length > 0 && (
-          <nav className="px-6 py-2.5 flex items-center gap-2 overflow-x-auto divider" 
+          <nav className="px-6 py-2.5 flex items-center gap-2 overflow-x-auto divider scrollbar-hide" 
                role="navigation" 
                aria-label="Categories"
                style={{ borderTop: '1px solid var(--border-subtle)' }}>

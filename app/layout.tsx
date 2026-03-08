@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   keywords: ["AI newsletter", "enterprise AI", "machine learning", "artificial intelligence", "engineering leadership", "AI insights"],
   authors: [{ name: "Rajesh Beri" }],
   creator: "Rajesh Beri",
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
   openGraph: {
     type: "website",
     title: "THE D*AI*LY BRIEF | Enterprise AI Insights",
