@@ -81,6 +81,14 @@ export default function MobileMenu() {
                 Articles
               </Link>
               <Link
+                href="/tools"
+                className="block text-base font-bold uppercase tracking-widest text-white/80 hover:text-white transition-colors py-3"
+                style={{ letterSpacing: '0.12em' }}
+                onClick={() => setIsOpen(false)}
+              >
+                Tools
+              </Link>
+              <Link
                 href="/search"
                 className="block text-base font-bold uppercase tracking-widest text-white/80 hover:text-white transition-colors py-3"
                 style={{ letterSpacing: '0.12em' }}
