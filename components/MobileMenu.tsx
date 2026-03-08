@@ -49,13 +49,14 @@ export default function MobileMenu() {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-[60] sm:hidden"
+            className="fixed inset-0 bg-black/90 backdrop-blur-sm sm:hidden"
+            style={{ zIndex: 9998 }}
             onClick={() => setIsOpen(false)}
             aria-hidden="true"
           />
 
           {/* Menu Panel */}
-          <div className="fixed inset-0 z-[70] sm:hidden overflow-y-auto">
+          <div className="fixed inset-0 sm:hidden overflow-y-auto" style={{ zIndex: 9999 }}>
             {/* Close button at top */}
             <div className="flex justify-end p-6">
               <button
