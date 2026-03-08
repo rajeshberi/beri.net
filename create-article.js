@@ -48,10 +48,23 @@ async function createArticle(slug, data) {
     console.log(`   Tags: ${article.tags.join(', ')}`);
     console.log(`   URL: https://beri.net/article/${slug}`);
     console.log(`\n💡 Article is LIVE immediately (no rebuild needed)`);
+    console.log(`\n🔄 Running post-publish workflow...\n`);
+    
+    await client.close();
+    
+    // Run post-publish workflow
+    const { exec } = require('child_process');
+    exec(`node ${__dirname}/post-publish.js ${slug}`, (error, stdout, stderr) => {
+      if (error) {
+        console.error('⚠️  Post-publish workflow failed:', error.message);
+        return;
+      }
+      console.log(stdout);
+      if (stderr) console.error(stderr);
+    });
     
   } catch (error) {
     console.error('❌ Error:', error);
-  } finally {
     await client.close();
   }
 }
