@@ -38,6 +38,24 @@ export default function NewsletterSignup() {
     }
   };
 
+  const shareUrl = 'https://www.beri.net';
+  const shareText = 'I just subscribed to THE D*AI*LY BRIEF — enterprise AI insights from someone who actually deploys AI at scale. Check it out!';
+
+  const handleShare = (platform: 'twitter' | 'linkedin' | 'email') => {
+    const urls = {
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
+      email: `mailto:?subject=${encodeURIComponent('Check out THE D*AI*LY BRIEF')}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}`
+    };
+    
+    window.open(urls[platform], '_blank', 'width=600,height=400');
+  };
+
+  const copyLink = () => {
+    navigator.clipboard.writeText(shareUrl);
+    alert('Link copied to clipboard!');
+  };
+
   return (
     <ScrollReveal>
       <section id="newsletter" className="mt-20 signup-section">
@@ -46,42 +64,108 @@ export default function NewsletterSignup() {
         <div className="absolute bottom-0 right-1/4 w-[300px] h-[200px] bg-fuchsia-600/8 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="relative px-8 py-20 max-w-2xl mx-auto text-center space-y-6">
-          <h3 className="heading-lg text-gradient-subtle">
-            Get AI insights in your inbox
-          </h3>
-          <p className="body-lg text-white/60 max-w-md mx-auto">
-            Twice-weekly deep dives into what matters in AI. No spam, just signal.
-          </p>
+          
+          {status === 'success' ? (
+            // Success state - Thank you + Referral
+            <div className="space-y-8 animate-fade-in">
+              <div className="space-y-4">
+                <div className="text-5xl">🎉</div>
+                <h3 className="heading-lg text-gradient-subtle">
+                  You're in!
+                </h3>
+                <p className="body-lg text-white/70 max-w-md mx-auto">
+                  Thank you for subscribing to THE D*AI*LY BRIEF. You'll get your first deep dive next Tuesday.
+                </p>
+              </div>
 
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="you@company.com"
-              aria-label="Email address"
-              className="input flex-1"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={status === 'loading' || status === 'success'}
-              required
-            />
-            <button 
-              type="submit"
-              className="btn-primary whitespace-nowrap !rounded-xl"
-              disabled={status === 'loading' || status === 'success'}
-            >
-              {status === 'loading' ? 'Subscribing...' : status === 'success' ? '✓ Subscribed' : 'Subscribe →'}
-            </button>
-          </form>
+              <div className="card p-6 max-w-md mx-auto text-left space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="text-2xl">💬</div>
+                  <div>
+                    <h4 className="font-semibold text-white/90">Know someone who'd love this?</h4>
+                    <p className="text-sm text-white/50">Share with friends and colleagues</p>
+                  </div>
+                </div>
 
-          {message && (
-            <p className={`text-sm ${status === 'success' ? 'text-green-400' : 'text-red-400'}`}>
-              {message}
-            </p>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => handleShare('twitter')}
+                    className="flex-1 min-w-[100px] px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm font-medium transition-all"
+                  >
+                    𝕏 Twitter
+                  </button>
+                  <button
+                    onClick={() => handleShare('linkedin')}
+                    className="flex-1 min-w-[100px] px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm font-medium transition-all"
+                  >
+                    💼 LinkedIn
+                  </button>
+                  <button
+                    onClick={() => handleShare('email')}
+                    className="flex-1 min-w-[100px] px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm font-medium transition-all"
+                  >
+                    ✉️ Email
+                  </button>
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    onClick={copyLink}
+                    className="w-full px-4 py-2.5 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 rounded-lg text-sm font-medium text-purple-300 transition-all"
+                  >
+                    📋 Copy Link
+                  </button>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setStatus('idle')}
+                className="text-sm text-white/40 hover:text-white/60 transition-colors"
+              >
+                ← Subscribe another email
+              </button>
+            </div>
+          ) : (
+            // Default state - Signup form
+            <>
+              <h3 className="heading-lg text-gradient-subtle">
+                Get AI insights in your inbox
+              </h3>
+              <p className="body-lg text-white/60 max-w-md mx-auto">
+                Twice-weekly deep dives into what matters in AI. No spam, just signal.
+              </p>
+
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input
+                  type="email"
+                  placeholder="you@company.com"
+                  aria-label="Email address"
+                  className="input flex-1"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={status === 'loading'}
+                  required
+                />
+                <button 
+                  type="submit"
+                  className="btn-primary whitespace-nowrap !rounded-xl"
+                  disabled={status === 'loading'}
+                >
+                  {status === 'loading' ? 'Subscribing...' : 'Subscribe →'}
+                </button>
+              </form>
+
+              {message && status === 'error' && (
+                <p className="text-sm text-red-400">
+                  {message}
+                </p>
+              )}
+
+              <p className="text-xs text-white/20 mono">
+                Every Tuesday & Thursday · Free forever · Unsubscribe anytime
+              </p>
+            </>
           )}
-
-          <p className="text-xs text-white/20 mono">
-            Every Tuesday & Thursday · Free forever · Unsubscribe anytime
-          </p>
         </div>
       </section>
     </ScrollReveal>
