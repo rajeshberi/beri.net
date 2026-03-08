@@ -10,8 +10,8 @@ export const metadata = {
   description: 'All articles from THE D[AI]LY BRIEF — Enterprise AI insights and deep dives',
 };
 
-export default function ArticlesPage() {
-  const newsletters = getAllNewsletters();
+export default async function ArticlesPage() {
+  const newsletters = await getAllNewsletters();
 
   return (
     <div className="min-h-screen bg-[#0a0812] text-white noise">

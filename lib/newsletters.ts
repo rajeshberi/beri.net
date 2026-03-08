@@ -1,108 +1,183 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-
-const newslettersDirectory = path.join(process.cwd(), 'content/newsletters');
+import { connectToDatabase } from './mongodb';
 
 export interface Newsletter {
   slug: string;
   title: string;
-  date: string;
-  published: boolean;
   excerpt: string;
-  tags: string[];
   content: string;
+  date: string;
+  author: string;
+  tags: string[];
   image?: string;
   imageCredit?: string;
+  type?: 'curated' | 'evergreen';
+  originalUrl?: string;
+  originalAuthor?: string;
+  originalSource?: string;
+  relatedArticles?: string[];
 }
 
-export function getAllNewsletters(): Newsletter[] {
+export async function getAllNewsletters(): Promise<Newsletter[]> {
   try {
-    const fileNames = fs.readdirSync(newslettersDirectory);
-    const allNewsletters = fileNames
-      .filter(fileName => fileName.endsWith('.md'))
-      .map(fileName => {
-        const slug = fileName.replace(/\.md$/, '');
-        const fullPath = path.join(newslettersDirectory, fileName);
-        const fileContents = fs.readFileSync(fullPath, 'utf8');
-        const { data, content } = matter(fileContents);
-
-        return {
-          slug,
-          title: data.title || '',
-          date: data.date || '',
-          published: data.published !== false,
-          excerpt: data.excerpt || '',
-          tags: data.tags || [],
-          content,
-          image: data.image || undefined,
-          imageCredit: data.imageCredit || undefined,
-        } as Newsletter;
-      })
-      .filter(newsletter => newsletter.published)
-      .sort((a, b) => (a.date > b.date ? -1 : 1));
-
-    return allNewsletters;
+    const client = await connectToDatabase();
+    const db = client.db('beri-newsletter');
+    
+    const newsletters = await db
+      .collection('newsletters')
+      .find({})
+      .sort({ date: -1 })
+      .toArray();
+    
+    return newsletters.map(n => ({
+      ...n,
+      _id: undefined,
+    })) as any;
   } catch (error) {
-    console.error('Error reading newsletters:', error);
+    console.error('Error fetching newsletters:', error);
     return [];
   }
 }
 
-export function getNewsletterBySlug(slug: string): Newsletter | null {
+export async function getNewsletterBySlug(slug: string): Promise<Newsletter | null> {
   try {
-    const fullPath = path.join(newslettersDirectory, `${slug}.md`);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const { data, content } = matter(fileContents);
-
+    const client = await connectToDatabase();
+    const db = client.db('beri-newsletter');
+    
+    const newsletter = await db.collection('newsletters').findOne({ slug });
+    
+    if (!newsletter) return null;
+    
     return {
-      slug,
-      title: data.title || '',
-      date: data.date || '',
-      published: data.published !== false,
-      excerpt: data.excerpt || '',
-      tags: data.tags || [],
-      content,
-      image: data.image || undefined,
-      imageCredit: data.imageCredit || undefined,
-    };
+      ...newsletter,
+      _id: undefined,
+    } as any;
   } catch (error) {
+    console.error('Error fetching newsletter:', error);
     return null;
   }
 }
 
-export function getRelatedNewsletters(slug: string, tags: string[], limit = 3): Newsletter[] {
-  const all = getAllNewsletters().filter(n => n.slug !== slug);
-  // Score by shared tags
-  const scored = all.map(n => ({
-    ...n,
-    score: n.tags.filter(t => tags.includes(t)).length,
-  }));
-  scored.sort((a, b) => b.score - a.score);
-  return scored.slice(0, limit);
-}
-
-export function getReadingTime(content: string): number {
-  const words = content.trim().split(/\s+/).length;
-  return Math.max(1, Math.round(words / 230));
-}
-
-export function getAllSlugs(): string[] {
+export async function getNewslettersByTag(tag: string): Promise<Newsletter[]> {
   try {
-    const fileNames = fs.readdirSync(newslettersDirectory);
-    return fileNames
-      .filter(fileName => fileName.endsWith('.md'))
-      .map(fileName => fileName.replace(/\.md$/, ''));
+    const client = await connectToDatabase();
+    const db = client.db('beri-newsletter');
+    
+    const newsletters = await db
+      .collection('newsletters')
+      .find({ tags: tag })
+      .sort({ date: -1 })
+      .toArray();
+    
+    return newsletters.map(n => ({
+      ...n,
+      _id: undefined,
+    })) as any;
   } catch (error) {
+    console.error('Error fetching newsletters by tag:', error);
     return [];
   }
 }
 
-export function getAllTags(): string[] {
-  const all = getAllNewsletters();
-  const tagSet = new Set<string>();
-  all.forEach(newsletter => {
-    newsletter.tags.forEach(tag => tagSet.add(tag));
-  });
-  return Array.from(tagSet).sort();
+export async function getAllTags(): Promise<string[]> {
+  try {
+    const client = await connectToDatabase();
+    const db = client.db('beri-newsletter');
+    
+    const newsletters = await db
+      .collection('newsletters')
+      .find({})
+      .toArray();
+    
+    const tagsSet = new Set<string>();
+    newsletters.forEach(n => {
+      if (n.tags) {
+        n.tags.forEach((tag: string) => tagsSet.add(tag));
+      }
+    });
+    
+    return Array.from(tagsSet).sort();
+  } catch (error) {
+    console.error('Error fetching tags:', error);
+    return [];
+  }
+}
+
+export async function searchNewsletters(query: string): Promise<Newsletter[]> {
+  try {
+    const client = await connectToDatabase();
+    const db = client.db('beri-newsletter');
+    
+    const newsletters = await db
+      .collection('newsletters')
+      .find({
+        $text: { $search: query }
+      })
+      .sort({ score: { $meta: 'textScore' } })
+      .toArray();
+    
+    return newsletters.map(n => ({
+      ...n,
+      _id: undefined,
+    })) as any;
+  } catch (error) {
+    console.error('Error searching newsletters:', error);
+    return [];
+  }
+}
+
+export function getReadingTime(content: string): number {
+  const wordsPerMinute = 200;
+  const words = content.trim().split(/\s+/).length;
+  return Math.ceil(words / wordsPerMinute);
+}
+
+export async function getRelatedNewsletters(slug: string, limit: number = 3): Promise<Newsletter[]> {
+  try {
+    const current = await getNewsletterBySlug(slug);
+    if (!current) return [];
+    
+    const client = await connectToDatabase();
+    const db = client.db('beri-newsletter');
+    
+    // Find articles with overlapping tags
+    const related = await db
+      .collection('newsletters')
+      .find({
+        slug: { $ne: slug },
+        tags: { $in: current.tags }
+      })
+      .limit(limit * 2) // Get more than needed for filtering
+      .toArray();
+    
+    // Sort by number of matching tags
+    const scored = related.map(n => ({
+      ...n,
+      _id: undefined,
+      matchCount: n.tags.filter((t: string) => current.tags.includes(t)).length
+    }));
+    
+    scored.sort((a, b) => b.matchCount - a.matchCount);
+    
+    return scored.slice(0, limit) as any;
+  } catch (error) {
+    console.error('Error fetching related newsletters:', error);
+    return [];
+  }
+}
+
+export async function getAllSlugs(): Promise<string[]> {
+  try {
+    const client = await connectToDatabase();
+    const db = client.db('beri-newsletter');
+    
+    const newsletters = await db
+      .collection('newsletters')
+      .find({}, { projection: { slug: 1 } })
+      .toArray();
+    
+    return newsletters.map(n => n.slug);
+  } catch (error) {
+    console.error('Error fetching slugs:', error);
+    return [];
+  }
 }

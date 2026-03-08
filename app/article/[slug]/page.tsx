@@ -15,12 +15,13 @@ import ArticleSidebar from '@/components/ArticleSidebar';
 // ExitIntent and ScrollSubscribePrompt removed - too many subscribe prompts
 
 export async function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
+  const slugs = await getAllSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const newsletter = getNewsletterBySlug(slug);
+  const newsletter = await getNewsletterBySlug(slug);
   if (!newsletter) return { title: 'Not Found' };
 
   // Handle both relative paths (/images/...) and full URLs (https://...)
@@ -62,13 +63,13 @@ async function markdownToHtml(markdown: string) {
 
 export default async function NewsletterPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const newsletter = getNewsletterBySlug(slug);
+  const newsletter = await getNewsletterBySlug(slug);
   if (!newsletter) notFound();
 
   const contentHtml = await markdownToHtml(newsletter.content);
   const readingTime = getReadingTime(newsletter.content);
-  const related = getRelatedNewsletters(slug, newsletter.tags, 5);
-  const allTags = getAllTags();
+  const related = await getRelatedNewsletters(slug, 5);
+  const allTags = await getAllTags();
 
   return (
     <div className="min-h-screen bg-[#0a0812] text-white noise">

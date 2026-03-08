@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 
 export async function generateStaticParams() {
-  const newsletters = getAllNewsletters();
+  const newsletters = await getAllNewsletters();
   const tags = new Set<string>();
   newsletters.forEach(n => n.tags.forEach(t => tags.add(t)));
   return Array.from(tags).map((tag) => ({ tag: encodeURIComponent(tag) }));
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ tag: stri
 export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
   const { tag } = await params;
   const decodedTag = decodeURIComponent(tag);
-  const newsletters = getAllNewsletters().filter(n => n.tags.includes(decodedTag));
+  const newsletters = await getAllNewsletters().filter(n => n.tags.includes(decodedTag));
 
   if (newsletters.length === 0) notFound();
 

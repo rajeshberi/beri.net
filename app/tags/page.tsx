@@ -9,8 +9,8 @@ export const metadata = {
   description: 'Browse AI newsletter topics — Models, Benchmarks, Enterprise, Infrastructure',
 };
 
-export default function TagsPage() {
-  const newsletters = getAllNewsletters();
+export default async function TagsPage() {
+  const newsletters = await getAllNewsletters();
 
   const tagCounts = new Map<string, number>();
   newsletters.forEach(n => n.tags.forEach(tag => tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1)));
