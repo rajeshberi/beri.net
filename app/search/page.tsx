@@ -21,6 +21,7 @@ export default function SearchPage() {
   const [allTags, setAllTags] = useState<string[]>([]);
 
   useEffect(() => {
+    // Load all newsletters and tags on mount
     fetch('/api/newsletters')
       .then(res => res.json())
       .then(data => {
@@ -33,19 +34,47 @@ export default function SearchPage() {
   }, []);
 
   useEffect(() => {
-    let filtered = newsletters;
-    if (query) {
-      const q = query.toLowerCase();
-      filtered = filtered.filter(n =>
-        n.title.toLowerCase().includes(q) ||
-        n.excerpt.toLowerCase().includes(q) ||
-        n.tags.some(t => t.toLowerCase().includes(q))
-      );
+    // Use MongoDB full-text search if query exists
+    if (query && query.trim().length > 0) {
+      fetch(`/api/search?q=${encodeURIComponent(query)}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            let filtered = data.results.map((r: any) => ({
+              slug: r.slug,
+              title: r.title,
+              date: r.published_date,
+              excerpt: r.excerpt,
+              tags: r.tags
+            }));
+            
+            // Apply tag filters if any
+            if (selectedTags.length > 0) {
+              filtered = filtered.filter((n: Newsletter) => 
+                selectedTags.every(tag => n.tags.includes(tag))
+              );
+            }
+            
+            setResults(filtered);
+          }
+        })
+        .catch(err => {
+          console.error('Search error:', err);
+          // Fall back to client-side filter
+          const filtered = newsletters.filter(n =>
+            n.title.toLowerCase().includes(query.toLowerCase()) ||
+            n.excerpt.toLowerCase().includes(query.toLowerCase())
+          );
+          setResults(filtered);
+        });
+    } else {
+      // No query - show all or filter by tags
+      let filtered = newsletters;
+      if (selectedTags.length > 0) {
+        filtered = filtered.filter(n => selectedTags.every(tag => n.tags.includes(tag)));
+      }
+      setResults(filtered);
     }
-    if (selectedTags.length > 0) {
-      filtered = filtered.filter(n => selectedTags.every(tag => n.tags.includes(tag)));
-    }
-    setResults(filtered);
   }, [query, selectedTags, newsletters]);
 
   const toggleTag = (tag: string) => {
