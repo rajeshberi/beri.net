@@ -63,10 +63,7 @@ export default async function ToolsPage() {
           {/* Tools Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tools.map((tool, i) => (
-              <ScrollReveal key={tool.slug} delay={i * 50}>
-                <Link href={`/tools/${tool.slug}`} className="group block h-full">
-                  <article className="card card-glow h-full flex flex-col p-6 hover:border-purple-500/30 transition-all">
-              <ToolCard tool={tool} delay={i * 50} />
+              <ToolCard key={tool.slug} tool={tool} delay={i * 50} />
             ))}
           </div>
 
