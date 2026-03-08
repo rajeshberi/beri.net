@@ -12,9 +12,6 @@ featured: true
 
 If you've ever tried to build an AI agent that interacts with websites, you know the pain: scraping HTML, burning tokens on screenshots, and praying the DOM structure doesn't change between deploys.
 
-![Browser automation and AI agents](https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=1200&auto=format&fit=crop&q=80)
-*Photo by [Markus Spiske](https://unsplash.com/@markusspiske) on Unsplash*
-
 That era might be ending.
 
 Google just shipped **WebMCP** (Web Model Context Protocol) in Chrome 146 Canary, and it's not another experimental browser API that developers will ignore. It's a **W3C-backed standard** co-authored by Google and Microsoft that lets any website expose structured tools directly to AI agents ([VentureBeat](https://venturebeat.com/infrastructure/google-chrome-ships-webmcp-in-early-preview-turning-every-website-into-a), [DEV Community](https://dev.to/onsen/webmcp-is-available-for-early-preview-what-you-need-to-know-3b32)).

@@ -12,9 +12,6 @@ featured: true
 
 This week delivered the biggest vendor risk story in enterprise AI history. Let's cut through the noise and talk about what actually matters for your business.
 
-![AI vendor risk visualization](https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&auto=format&fit=crop&q=80)
-*Photo by [Markus Spiske](https://unsplash.com/@markusspiske) on Unsplash*
-
 ## The Anthropic-Pentagon Showdown
 
 Here's what happened: Anthropic walked away from a **$200M Department of Defense contract** because the Pentagon wanted to use Claude for mass surveillance and autonomous weapons guidance ([NYT](https://www.nytimes.com/2026/03/01/technology/anthropic-defense-dept-openai-talks.html), [CNBC](https://www.cnbc.com/2026/03/03/anthropic-pentagon-department-of-defense-ai-fcc-chair.html)).

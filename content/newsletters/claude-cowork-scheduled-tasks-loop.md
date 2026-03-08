@@ -12,9 +12,6 @@ featured: true
 
 If you've been following Claude Cowork since it launched, you know the pitch: AI that does multi-step work autonomously while you're doing something else. The catch was always that **you had to remember to start it**.
 
-![Automation and scheduled workflows](https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1200&auto=format&fit=crop&q=80)
-*Photo by [Kevin Ku](https://unsplash.com/@ikukevk) on Unsplash*
-
 That catch is gone. Anthropic just shipped **scheduled tasks** for Cowork, and it's the single most useful feature they've released since Cowork itself ([Claude Help Center](https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-cowork), [TechRadar](https://www.techradar.com/pro/claude-cowork-can-now-handle-all-your-recurring-work-tasks)).
 
 Let's talk about why this matters — and what you can actually do with it.
