@@ -1,6 +1,43 @@
+'use client';
+
+import { useState } from 'react';
 import ScrollReveal from './ScrollReveal';
 
 export default function NewsletterSignup() {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus('success');
+        setMessage(data.message || 'Success! Check your inbox.');
+        setEmail('');
+      } else {
+        setStatus('error');
+        setMessage(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      setStatus('error');
+      setMessage('Network error. Please try again.');
+    }
+  };
+
   return (
     <ScrollReveal>
       <section id="newsletter" className="mt-20 signup-section">
@@ -16,18 +53,31 @@ export default function NewsletterSignup() {
             Twice-weekly deep dives into what matters in AI. No spam, just signal.
           </p>
 
-          <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
               placeholder="you@company.com"
               aria-label="Email address"
               className="input flex-1"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={status === 'loading' || status === 'success'}
               required
             />
-            <button className="btn-primary whitespace-nowrap !rounded-xl">
-              Subscribe →
+            <button 
+              type="submit"
+              className="btn-primary whitespace-nowrap !rounded-xl"
+              disabled={status === 'loading' || status === 'success'}
+            >
+              {status === 'loading' ? 'Subscribing...' : status === 'success' ? '✓ Subscribed' : 'Subscribe →'}
             </button>
           </form>
+
+          {message && (
+            <p className={`text-sm ${status === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+              {message}
+            </p>
+          )}
 
           <p className="text-xs text-white/20 mono">
             Every Tuesday & Thursday · Free forever · Unsubscribe anytime
