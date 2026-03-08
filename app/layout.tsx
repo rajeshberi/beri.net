@@ -4,7 +4,7 @@ import "./globals.css";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "THE D*AI*LY BRIEF | Enterprise AI Insights by Rajesh Beri",
+  title: "THE D[AI]LY BRIEF | Enterprise AI Insights by Rajesh Beri",
   description: "The AI newsletter 2,000+ engineering leaders read. Real benchmarks, vendor comparisons, and ROI frameworks — from someone who deploys AI at enterprise scale.",
   keywords: ["AI newsletter", "enterprise AI", "machine learning", "artificial intelligence", "engineering leadership", "AI insights"],
   authors: [{ name: "Rajesh Beri" }],
@@ -17,13 +17,13 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "THE D*AI*LY BRIEF | Enterprise AI Insights",
+    title: "THE D[AI]LY BRIEF | Enterprise AI Insights",
     description: "Real AI benchmarks and vendor analysis for engineering leaders. No hype, just signal.",
-    siteName: "THE D*AI*LY BRIEF",
+    siteName: "THE D[AI]LY BRIEF",
   },
   twitter: {
     card: "summary_large_image",
-    title: "THE D*AI*LY BRIEF",
+    title: "THE D[AI]LY BRIEF",
     description: "Enterprise AI insights for engineering leaders",
     creator: "@rajeshberi",
   },

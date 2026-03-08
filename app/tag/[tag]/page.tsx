@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }) {
   const { tag } = await params;
   return {
-    title: `${decodeURIComponent(tag)} | THE D*AI*LY BRIEF`,
+    title: `${decodeURIComponent(tag)} | THE D[AI]LY BRIEF`,
     description: `Articles tagged with ${decodeURIComponent(tag)}`,
   };
 }

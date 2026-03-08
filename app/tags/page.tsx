@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 
 export const metadata = {
-  title: 'Topics | THE D*AI*LY BRIEF',
+  title: 'Topics | THE D[AI]LY BRIEF',
   description: 'Browse AI newsletter topics — Models, Benchmarks, Enterprise, Infrastructure',
 };
 

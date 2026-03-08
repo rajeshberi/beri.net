@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!newsletter) return { title: 'Not Found' };
 
   return {
-    title: `${newsletter.title} | THE D*AI*LY BRIEF`,
+    title: `${newsletter.title} | THE D[AI]LY BRIEF`,
     description: newsletter.excerpt,
     openGraph: {
       title: newsletter.title,

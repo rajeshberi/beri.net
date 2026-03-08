@@ -40,13 +40,13 @@ export default function NewsletterSignup() {
   };
 
   const shareUrl = 'https://www.beri.net';
-  const shareText = 'I just subscribed to THE D*AI*LY BRIEF — enterprise AI insights from someone who actually deploys AI at scale. Check it out!';
+  const shareText = 'I just subscribed to THE D[AI]LY BRIEF — enterprise AI insights from someone who actually deploys AI at scale. Check it out!';
 
   const handleShare = (platform: 'twitter' | 'linkedin' | 'email') => {
     const urls = {
       twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`,
       linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
-      email: `mailto:?subject=${encodeURIComponent('Check out THE D*AI*LY BRIEF')}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}`
+      email: `mailto:?subject=${encodeURIComponent('Check out THE D[AI]LY BRIEF')}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}`
     };
     
     window.open(urls[platform], '_blank', 'width=600,height=400');
@@ -75,7 +75,7 @@ export default function NewsletterSignup() {
                   {name ? `Welcome, ${name}!` : "You're in!"}
                 </h3>
                 <p className="body-lg text-white/70 max-w-md mx-auto">
-                  Thank you for subscribing to THE D*AI*LY BRIEF. You'll get your first deep dive next Tuesday.
+                  Thank you for subscribing to THE D[AI]LY BRIEF. You'll get your first deep dive next Tuesday.
                 </p>
               </div>
 

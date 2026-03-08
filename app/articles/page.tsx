@@ -6,8 +6,8 @@ import ScrollReveal from '@/components/ScrollReveal';
 import NewsletterSignup from '@/components/NewsletterSignup';
 
 export const metadata = {
-  title: 'Articles | THE D*AI*LY BRIEF',
-  description: 'All articles from THE D*AI*LY BRIEF — Enterprise AI insights and deep dives',
+  title: 'Articles | THE D[AI]LY BRIEF',
+  description: 'All articles from THE D[AI]LY BRIEF — Enterprise AI insights and deep dives',
 };
 
 export default function ArticlesPage() {

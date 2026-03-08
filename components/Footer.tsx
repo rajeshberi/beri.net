@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-2">
             <div className="font-display font-bold text-xl mb-4">
-              THE D<span className="text-shimmer">*AI*</span>LY BRIEF
+              THE D<span className="text-shimmer">[AI]</span>LY BRIEF
             </div>
             <p className="body-sm text-white/50 max-w-sm leading-relaxed">
               Enterprise AI news and analysis for engineering leaders. Twice-weekly deep dives — no hype, just signal.
@@ -37,7 +37,7 @@ export default function Footer() {
         <div className="divider mb-8" />
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/25">
-          <div className="mono">© {new Date().getFullYear()} THE D*AI*LY BRIEF by Rajesh Beri</div>
+          <div className="mono">© {new Date().getFullYear()} THE D[AI]LY BRIEF by Rajesh Beri</div>
           <div className="flex gap-6">
             <a href="#" className="hover:text-white/50 transition-colors duration-200">Privacy</a>
             <a href="#" className="hover:text-white/50 transition-colors duration-200">Terms</a>

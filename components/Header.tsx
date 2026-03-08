@@ -15,7 +15,7 @@ export default function Header({ showCategoryNav = false }: HeaderProps) {
           <div className="px-6 py-5 flex items-center justify-between">
             <Link href="/" aria-label="THE DAILY BRIEF - Home">
               <h1 className="text-xl md:text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity font-display">
-                THE D<span className="text-shimmer">*AI*</span>LY BRIEF
+                THE D<span className="text-shimmer">[AI]</span>LY BRIEF
               </h1>
             </Link>
 

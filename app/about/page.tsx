@@ -5,7 +5,7 @@ import NewsletterSignup from '@/components/NewsletterSignup';
 import ScrollReveal from '@/components/ScrollReveal';
 
 export const metadata = {
-  title: "About | THE D*AI*LY BRIEF",
+  title: "About | THE D[AI]LY BRIEF",
   description: "Meet Rajesh Beri — an enterprise AI practitioner sharing real-world insights on deploying AI at scale.",
 };
 
@@ -68,7 +68,7 @@ export default function AboutPage() {
                   I've spent 30+ years building enterprise applications at scale. For the past couple of years, I've been focused on applying AI to make business functions more productive — helping sales, finance, operations, legal, and engineering teams get real value from AI, not just hype.
                 </p>
                 <p>
-                  Most AI content is either overhyped vendor marketing or academic theory that doesn't survive contact with production. I write <strong>THE D*AI*LY BRIEF</strong> to cut through the noise and share what actually works in enterprise environments.
+                  Most AI content is either overhyped vendor marketing or academic theory that doesn't survive contact with production. I write <strong>THE D[AI]LY BRIEF</strong> to cut through the noise and share what actually works in enterprise environments.
                 </p>
 
                 <h2>What You'll Find Here</h2>
