@@ -1,29 +1,17 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Prevent body scroll when menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
-
   return (
-    <>
+    <div className="sm:hidden">
       {/* Hamburger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="sm:hidden p-3 text-white hover:text-purple-400 transition-colors"
+        className="p-3 text-white hover:text-purple-400 transition-colors"
         aria-label="Toggle menu"
         type="button"
       >
@@ -51,62 +39,61 @@ export default function MobileMenu() {
         </svg>
       </button>
 
-      {/* Full-Screen Menu Overlay */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 bg-[#0a0812] sm:hidden"
-          style={{ zIndex: 99999, paddingTop: '80px' }}
-        >
-          {/* Menu Items */}
-          <nav className="px-8 py-6 flex flex-col gap-1">
-            <Link
-              href="/about"
-              className="text-xl font-bold uppercase tracking-wider text-white py-5 border-b border-white/10 hover:text-purple-400 transition-colors"
+      {/* Menu Overlay - renders always but hidden when closed */}
+      <div 
+        className={`fixed inset-0 bg-[#0a0812] transition-transform duration-300 ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+        style={{ zIndex: 99999, paddingTop: '80px' }}
+      >
+        <nav className="px-8 py-6 flex flex-col gap-1">
+          <Link
+            href="/about"
+            className="text-xl font-bold uppercase tracking-wider text-white py-5 border-b border-white/10 active:text-purple-400"
+            onClick={() => setIsOpen(false)}
+          >
+            About
+          </Link>
+          <Link
+            href="/articles"
+            className="text-xl font-bold uppercase tracking-wider text-white py-5 border-b border-white/10 active:text-purple-400"
+            onClick={() => setIsOpen(false)}
+          >
+            Articles
+          </Link>
+          <Link
+            href="/tools"
+            className="text-xl font-bold uppercase tracking-wider text-white py-5 border-b border-white/10 active:text-purple-400"
+            onClick={() => setIsOpen(false)}
+          >
+            Tools
+          </Link>
+          <Link
+            href="/search"
+            className="text-xl font-bold uppercase tracking-wider text-white py-5 border-b border-white/10 active:text-purple-400"
+            onClick={() => setIsOpen(false)}
+          >
+            Search
+          </Link>
+          <Link
+            href="/tags"
+            className="text-xl font-bold uppercase tracking-wider text-white py-5 border-b border-white/10 active:text-purple-400"
+            onClick={() => setIsOpen(false)}
+          >
+            Topics
+          </Link>
+          
+          <div className="pt-8">
+            <a
+              href="#newsletter"
+              className="btn-primary block text-center text-lg py-4"
               onClick={() => setIsOpen(false)}
             >
-              About
-            </Link>
-            <Link
-              href="/articles"
-              className="text-xl font-bold uppercase tracking-wider text-white py-5 border-b border-white/10 hover:text-purple-400 transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              Articles
-            </Link>
-            <Link
-              href="/tools"
-              className="text-xl font-bold uppercase tracking-wider text-white py-5 border-b border-white/10 hover:text-purple-400 transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              Tools
-            </Link>
-            <Link
-              href="/search"
-              className="text-xl font-bold uppercase tracking-wider text-white py-5 border-b border-white/10 hover:text-purple-400 transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              Search
-            </Link>
-            <Link
-              href="/tags"
-              className="text-xl font-bold uppercase tracking-wider text-white py-5 border-b border-white/10 hover:text-purple-400 transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              Topics
-            </Link>
-            
-            <div className="pt-8">
-              <a
-                href="#newsletter"
-                className="btn-primary block text-center text-lg py-4"
-                onClick={() => setIsOpen(false)}
-              >
-                Subscribe
-              </a>
-            </div>
-          </nav>
-        </div>
-      )}
-    </>
+              Subscribe
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
   );
 }
