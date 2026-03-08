@@ -23,6 +23,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const newsletter = getNewsletterBySlug(slug);
   if (!newsletter) return { title: 'Not Found' };
 
+  // Handle both relative paths (/images/...) and full URLs (https://...)
+  const imageUrl = newsletter.image 
+    ? (newsletter.image.startsWith('http') ? newsletter.image : `https://beri.net${newsletter.image}`)
+    : null;
+
   return {
     title: `${newsletter.title} | THE D[AI]LY BRIEF`,
     description: newsletter.excerpt,
@@ -32,9 +37,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: 'article',
       publishedTime: newsletter.date,
       tags: newsletter.tags,
-      images: newsletter.image ? [
+      images: imageUrl ? [
         {
-          url: `https://beri.net${newsletter.image}`,
+          url: imageUrl,
           width: 1792,
           height: 1024,
           alt: newsletter.title,
@@ -45,7 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       card: 'summary_large_image',
       title: newsletter.title,
       description: newsletter.excerpt,
-      images: newsletter.image ? [`https://beri.net${newsletter.image}`] : [],
+      images: imageUrl ? [imageUrl] : [],
     },
   };
 }
