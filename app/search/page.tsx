@@ -145,7 +145,7 @@ export default function SearchPage() {
               {results.map((newsletter) => (
                 <Link
                   key={newsletter.slug}
-                  href={`/newsletter/${newsletter.slug}`}
+                  href={`/article/${newsletter.slug}`}
                   className="group flex items-start gap-6 py-5 border-b border-white/5 hover:border-purple-500/20 transition-all"
                 >
                   <time className="text-xs font-mono text-white/20 w-20 flex-shrink-0 pt-1">

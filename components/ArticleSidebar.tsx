@@ -71,7 +71,7 @@ export default function ArticleSidebar({ currentSlug, tags, relatedArticles, all
             {relatedArticles.map((article) => (
               <Link
                 key={article.slug}
-                href={`/newsletter/${article.slug}`}
+                href={`/article/${article.slug}`}
                 className="block group"
               >
                 <article>

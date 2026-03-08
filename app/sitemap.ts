@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   
   // Newsletter pages
   const newsletterPages: MetadataRoute.Sitemap = newsletters.map(newsletter => ({
-    url: `${baseUrl}/newsletter/${newsletter.slug}`,
+    url: `${baseUrl}/article/${newsletter.slug}`,
     lastModified: new Date(newsletter.date),
     changeFrequency: 'monthly' as const,
     priority: 0.8,

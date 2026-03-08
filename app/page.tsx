@@ -33,7 +33,7 @@ export default function Home() {
               {/* ===== HERO / FEATURED ===== */}
               <section className="py-16 md:py-24">
                 <ScrollReveal>
-                  <Link href={`/newsletter/${featured.slug}`} className="group block">
+                  <Link href={`/article/${featured.slug}`} className="group block">
                     <div className="grid lg:grid-cols-2 gap-10 items-center">
                       {/* Visual */}
                       <div className="relative h-[320px] md:h-[400px] rounded-2xl overflow-hidden featured-visual card-hover">
@@ -120,7 +120,7 @@ export default function Home() {
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {latest.map((article, i) => (
                       <ScrollReveal key={article.slug} delay={i * 80}>
-                        <Link href={`/newsletter/${article.slug}`} className="group block h-full">
+                        <Link href={`/article/${article.slug}`} className="group block h-full">
                           <article className="card card-glow h-full flex flex-col overflow-hidden">
                             {article.image && (
                               <div className="relative h-[200px] overflow-hidden">

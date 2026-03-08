@@ -59,7 +59,7 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
             {newsletters.map((newsletter, idx) => (
               <ScrollReveal key={newsletter.slug} delay={idx * 60}>
                 <Link
-                  href={`/newsletter/${newsletter.slug}`}
+                  href={`/article/${newsletter.slug}`}
                   className="group block py-6 border-b border-white/5 hover:border-purple-500/20 transition-all"
                 >
                   <time className="text-xs font-mono text-white/25">

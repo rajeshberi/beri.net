@@ -7,6 +7,11 @@ const nextConfig = {
         destination: '/articles',
         permanent: true, // 301 redirect
       },
+      {
+        source: '/newsletter/:slug',
+        destination: '/article/:slug',
+        permanent: true, // 301 redirect
+      },
     ];
   },
   images: {

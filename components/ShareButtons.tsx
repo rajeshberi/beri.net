@@ -6,7 +6,7 @@ interface ShareButtonsProps {
 }
 
 export default function ShareButtons({ title, slug }: ShareButtonsProps) {
-  const url = `https://www.beri.net/newsletter/${slug}`;
+  const url = `https://www.beri.net/article/${slug}`;
   const text = encodeURIComponent(title);
   const encodedUrl = encodeURIComponent(url);
 

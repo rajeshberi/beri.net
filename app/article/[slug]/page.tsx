@@ -212,7 +212,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
               <h3 className="heading-md mb-8">You might also like</h3>
               <div className="grid sm:grid-cols-2 gap-5">
                 {related.slice(0, 3).map(article => (
-                  <Link key={article.slug} href={`/newsletter/${article.slug}`} className="group block">
+                  <Link key={article.slug} href={`/article/${article.slug}`} className="group block">
                     <article className="card card-glow h-full p-5">
                       {article.tags[0] && (
                         <span className="label text-purple-400/80">

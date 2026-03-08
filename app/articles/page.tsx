@@ -45,7 +45,7 @@ export default function ArticlesPage() {
               {newsletters.map((newsletter, idx) => (
                 <ScrollReveal key={newsletter.slug} delay={idx * 60}>
                   <Link
-                    href={`/newsletter/${newsletter.slug}`}
+                    href={`/article/${newsletter.slug}`}
                     className="group flex items-start gap-6 py-6 border-b border-white/5 hover:border-purple-500/20 transition-all"
                   >
                     <time className="text-sm font-mono text-white/25 w-24 flex-shrink-0 pt-1">
