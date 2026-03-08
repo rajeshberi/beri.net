@@ -31,10 +31,10 @@ export default function Home() {
           {featured ? (
             <>
               {/* ===== HERO / FEATURED ===== */}
-              <section className="py-16 md:py-24">
+              <section className="py-20 md:py-32">
                 <ScrollReveal>
-                  <Link href={`/article/${featured.slug}`} className="group block">
-                    <div className="grid lg:grid-cols-2 gap-10 items-center">
+                  <Link href={`/article/${featured.slug}`} className="group block" aria-label={`Read featured article: ${featured.title}`}>
+                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                       {/* Visual */}
                       <div className="relative h-[320px] md:h-[400px] rounded-2xl overflow-hidden featured-visual card-hover">
                         {featured.image ? (
@@ -120,19 +120,20 @@ export default function Home() {
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {latest.map((article, i) => (
                       <ScrollReveal key={article.slug} delay={i * 80}>
-                        <Link href={`/article/${article.slug}`} className="group block h-full">
+                        <Link href={`/article/${article.slug}`} className="group block h-full" aria-label={`Read article: ${article.title}`}>
                           <article className="card card-glow h-full flex flex-col overflow-hidden">
                             {article.image && (
-                              <div className="relative h-[200px] overflow-hidden">
+                              <div className="relative h-[220px] overflow-hidden">
                                 <img 
                                   src={article.image} 
                                   alt={article.title}
-                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                                  loading="lazy"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0812] via-transparent to-transparent" />
                               </div>
                             )}
-                            <div className="flex-1 flex flex-col relative p-6">
+                            <div className="flex-1 flex flex-col relative p-7">
                               {article.tags[0] && (
                                 <span className="label text-purple-400/80 mb-3">
                                   {article.tags[0]}

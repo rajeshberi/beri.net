@@ -78,10 +78,10 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
       <div className="relative">
         <Header />
 
-        <main className="max-w-[1200px] mx-auto px-6 py-12 md:py-20">
+        <main className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
 
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-xs text-white/30 mb-8" aria-label="Breadcrumb">
+          <nav className="flex items-center gap-2 text-xs text-white/30 mb-12" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-purple-400 transition-colors">Home</Link>
             <span>/</span>
             <Link href="/articles" className="hover:text-purple-400 transition-colors">Articles</Link>
@@ -95,7 +95,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
             {/* Main Article Column */}
             <article className="min-w-0">
             {/* Header */}
-            <div className="space-y-5 mb-12">
+            <div className="space-y-6 mb-16">
               <div className="flex items-center gap-3 text-sm">
                 <time className="font-mono text-purple-400/70">
                   {new Date(newsletter.date).toLocaleDateString('en-US', {

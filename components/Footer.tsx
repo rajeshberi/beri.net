@@ -2,10 +2,10 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="mt-24 bg-[#07060e] relative" role="contentinfo">
+    <footer className="mt-32 bg-[#07060e] relative" role="contentinfo">
       <div className="divider-accent" />
-      <div className="max-w-[1200px] mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-4 gap-10 mb-12">
+      <div className="max-w-[1200px] mx-auto px-6 py-20">
+        <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-2">
             <div className="font-display font-bold text-xl mb-4">
               THE D<span className="text-shimmer">*AI*</span>LY BRIEF
