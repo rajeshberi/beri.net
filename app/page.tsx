@@ -221,9 +221,9 @@ export default function Home() {
             <section className="pb-16">
               <div className="rounded-xl border border-white/5 bg-white/[0.02] p-8 text-center max-w-2xl mx-auto">
                 <p className="text-lg text-white/60 leading-relaxed mb-4">
-                  Written by <strong className="text-white/80">Rajesh Beri</strong> — an enterprise AI practitioner with experience deploying AI at scale across Fortune 500 companies.
+                  Written by <strong className="text-white/80">Rajesh Beri</strong> — bringing 30+ years of enterprise software experience to AI deployment insights. AI-assisted research and writing, human-driven analysis and perspective.
                 </p>
-                <p className="text-sm text-white/40">Real benchmarks. Real architectures. No hype.</p>
+                <p className="text-sm text-white/40">Real benchmarks. Real architectures. No hype. <Link href="/about" className="text-purple-400 hover:text-purple-300 transition-colors">Learn more →</Link></p>
               </div>
             </section>
           </ScrollReveal>
