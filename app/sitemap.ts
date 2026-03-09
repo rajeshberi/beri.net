@@ -1,11 +1,15 @@
 import { MetadataRoute } from 'next';
 import { getAllNewsletters } from '@/lib/newsletters';
+import { getAllTools } from '@/lib/tools';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.beri.net';
   
   // Get all newsletters
   const newsletters = await getAllNewsletters();
+  
+  // Get all tools
+  const tools = await getAllTools();
   
   // Get all unique tags
   const allTags = Array.from(
@@ -21,7 +25,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/articles`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/tools`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.9,
@@ -56,5 +72,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
   
-  return [...staticPages, ...newsletterPages, ...tagPages];
+  // Tool pages
+  const toolPages: MetadataRoute.Sitemap = tools.map(tool => ({
+    url: `${baseUrl}/tools/${tool.slug}`,
+    lastModified: tool.updatedAt ? new Date(tool.updatedAt) : new Date(tool.addedDate),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+  
+  return [...staticPages, ...newsletterPages, ...toolPages, ...tagPages];
 }
