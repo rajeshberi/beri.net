@@ -57,12 +57,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
   
   // Newsletter pages
-  const newsletterPages: MetadataRoute.Sitemap = newsletters.map(newsletter => ({
-    url: `${baseUrl}/article/${newsletter.slug}`,
-    lastModified: new Date(newsletter.date),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }));
+  const newsletterPages: MetadataRoute.Sitemap = newsletters.map(newsletter => {
+    // Safely parse date - fallback to current date if invalid
+    let lastModified: Date;
+    try {
+      const parsedDate = new Date(newsletter.date);
+      lastModified = isNaN(parsedDate.getTime()) ? new Date() : parsedDate;
+    } catch {
+      lastModified = new Date();
+    }
+    
+    return {
+      url: `${baseUrl}/article/${newsletter.slug}`,
+      lastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    };
+  });
   
   // Tag pages
   const tagPages: MetadataRoute.Sitemap = allTags.map(tag => ({
