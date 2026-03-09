@@ -75,7 +75,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Tool pages
   const toolPages: MetadataRoute.Sitemap = tools.map(tool => ({
     url: `${baseUrl}/tools/${tool.slug}`,
-    lastModified: tool.updatedAt ? new Date(tool.updatedAt) : new Date(tool.addedDate),
+    lastModified: new Date(), // Use current date for tools (dates come as ISO strings from DB)
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
