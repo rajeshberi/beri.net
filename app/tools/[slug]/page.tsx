@@ -51,7 +51,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
       <div className="relative">
         <Header />
 
-        <main className="max-w-7xl mx-auto px-6 pt-6 pb-16 md:pt-8 md:pb-24">
+        <main className="max-w-[1200px] mx-auto px-6 pt-6 pb-16 md:pt-8 md:pb-24">
           <div className="grid lg:grid-cols-[1fr_320px] gap-12">
           {/* Main Content */}
           <div>
