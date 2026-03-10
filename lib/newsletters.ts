@@ -24,13 +24,15 @@ export async function getAllNewsletters(): Promise<Newsletter[]> {
     
     const newsletters = await db
       .collection('newsletters')
-      .find({})
-      .sort({ date: -1, addedDate: -1, _id: -1 })
+      .find({ published: { $ne: false } })  // Only published articles
+      .sort({ published_date: -1, created_at: -1, _id: -1 })  // Sort by datetime, not string
       .toArray();
     
     return newsletters.map(n => ({
       ...n,
       _id: undefined,
+      // Ensure date is always a string for Next.js
+      date: n.date || (n.published_date ? n.published_date.toISOString().split('T')[0] : new Date().toISOString().split('T')[0]),
     })) as any;
   } catch (error) {
     console.error('Error fetching newsletters:', error);
@@ -64,13 +66,14 @@ export async function getNewslettersByTag(tag: string): Promise<Newsletter[]> {
     
     const newsletters = await db
       .collection('newsletters')
-      .find({ tags: tag })
-      .sort({ date: -1 })
+      .find({ tags: tag, published: { $ne: false } })
+      .sort({ published_date: -1, created_at: -1 })
       .toArray();
     
     return newsletters.map(n => ({
       ...n,
       _id: undefined,
+      date: n.date || (n.published_date ? n.published_date.toISOString().split('T')[0] : new Date().toISOString().split('T')[0]),
     })) as any;
   } catch (error) {
     console.error('Error fetching newsletters by tag:', error);
@@ -110,7 +113,8 @@ export async function searchNewsletters(query: string): Promise<Newsletter[]> {
     const newsletters = await db
       .collection('newsletters')
       .find({
-        $text: { $search: query }
+        $text: { $search: query },
+        published: { $ne: false }
       })
       .sort({ score: { $meta: 'textScore' } })
       .toArray();
@@ -118,6 +122,7 @@ export async function searchNewsletters(query: string): Promise<Newsletter[]> {
     return newsletters.map(n => ({
       ...n,
       _id: undefined,
+      date: n.date || (n.published_date ? n.published_date.toISOString().split('T')[0] : new Date().toISOString().split('T')[0]),
     })) as any;
   } catch (error) {
     console.error('Error searching newsletters:', error);
@@ -144,7 +149,8 @@ export async function getRelatedNewsletters(slug: string, limit: number = 3): Pr
       .collection('newsletters')
       .find({
         slug: { $ne: slug },
-        tags: { $in: current.tags }
+        tags: { $in: current.tags },
+        published: { $ne: false }
       })
       .limit(limit * 2) // Get more than needed for filtering
       .toArray();
@@ -153,6 +159,7 @@ export async function getRelatedNewsletters(slug: string, limit: number = 3): Pr
     const scored = related.map(n => ({
       ...n,
       _id: undefined,
+      date: n.date || (n.published_date ? n.published_date.toISOString().split('T')[0] : new Date().toISOString().split('T')[0]),
       matchCount: n.tags.filter((t: string) => current.tags.includes(t)).length
     }));
     
