@@ -51,12 +51,12 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
       <div className="relative">
         <Header />
 
-        <main className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+        <main className="max-w-7xl mx-auto px-6 pt-6 pb-16 md:pt-8 md:pb-24">
           <div className="grid lg:grid-cols-[1fr_320px] gap-12">
           {/* Main Content */}
           <div>
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-xs text-white/30 mb-12">
+          <nav className="flex items-center gap-2 text-xs text-white/30 mb-6">
             <Link href="/" className="hover:text-purple-400 transition-colors">Home</Link>
             <span>/</span>
             <Link href="/tools" className="hover:text-purple-400 transition-colors">Tools</Link>
@@ -64,103 +64,104 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             <span className="text-white/50">{tool.productName}</span>
           </nav>
 
-          {/* Header */}
-          <div className="card card-glow p-8 mb-8">
-            <div className="flex items-start gap-6 mb-6">
+          {/* Hero */}
+          <div className="mb-10">
+            <div className="flex items-start gap-5 mb-5">
               {tool.logoUrl ? (
                 <img 
                   src={tool.logoUrl} 
                   alt={tool.productName}
-                  className="w-20 h-20 rounded-xl object-cover shrink-0"
+                  className="w-16 h-16 rounded-xl object-cover shrink-0"
                 />
               ) : (
-                <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-white text-3xl font-bold shrink-0">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-white text-2xl font-bold shrink-0">
                   {tool.productName.charAt(0)}
                 </div>
               )}
 
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <h1 className="heading-lg">{tool.productName}</h1>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-3 mb-1">
+                  <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{tool.productName}</h1>
                   {tool.verified && (
-                    <span className="text-purple-400 text-2xl" title="Verified">✓</span>
+                    <span className="text-purple-400 text-xl" title="Verified">✓</span>
                   )}
                 </div>
-                <p className="text-white/50 mb-4">by {tool.vendorName}</p>
-                <p className="text-lg text-white/70 leading-relaxed">{tool.description}</p>
+                <p className="text-white/40 text-sm">by {tool.vendorName}</p>
               </div>
             </div>
 
-            {/* Quick Info */}
-            <div className="flex flex-wrap gap-3 mb-6">
-              <span className="px-3 py-1.5 rounded-lg bg-white/5 text-sm">
-                <span className="text-white/40">Category:</span>{' '}
-                <span className="text-white/80">{tool.category}</span>
+            <p className="text-lg text-white/60 leading-relaxed max-w-2xl">{tool.description}</p>
+
+            {/* Quick Meta */}
+            <div className="flex flex-wrap items-center gap-2.5 mt-5">
+              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] text-xs text-white/50">
+                {tool.category}
               </span>
               {tool.subcategory && (
-                <span className="px-3 py-1.5 rounded-lg bg-white/5 text-sm">
-                  <span className="text-white/40">Type:</span>{' '}
-                  <span className="text-white/80">{tool.subcategory}</span>
+                <span className="px-2.5 py-1 rounded-md bg-white/[0.04] text-xs text-white/50">
+                  {tool.subcategory}
                 </span>
               )}
-              <span className="px-3 py-1.5 rounded-lg bg-purple-500/10 text-purple-300 text-sm font-medium">
+              <span className="px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-300/80 text-xs font-medium">
                 {tool.pricingModel}
               </span>
               {tool.apiAvailable && (
-                <span className="px-3 py-1.5 rounded-lg bg-green-500/10 text-green-300 text-sm">
+                <span className="px-2.5 py-1 rounded-md bg-green-500/8 text-green-400/70 text-xs">
                   API Available
                 </span>
               )}
             </div>
 
             {/* CTA */}
-            <a
-              href={tool.websiteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center gap-2"
-            >
-              Visit Website →
-            </a>
+            <div className="mt-6">
+              <a
+                href={tool.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary inline-flex items-center gap-2"
+              >
+                Visit Website →
+              </a>
+            </div>
           </div>
 
           {/* Business Domains */}
           {tool.domains && tool.domains.length > 0 && (
-            <div className="card card-glow p-8 mb-8">
-              <h2 className="heading-sm mb-4">Business Domains</h2>
+            <section className="py-6 border-t border-white/[0.06]">
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-3">Business Domains</h2>
               <div className="flex flex-wrap gap-2">
                 {tool.domains.map(domain => (
-                  <span key={domain} className="px-3 py-1.5 rounded-lg bg-white/5 text-sm text-white/70">
+                  <span key={domain} className="px-3 py-1.5 rounded-md bg-white/[0.04] text-sm text-white/60">
                     {domain.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
                   </span>
                 ))}
               </div>
-            </div>
+            </section>
           )}
 
-          {/* Detailed Analysis */}
+          {/* Overview */}
           {tool.detailedAnalysis && (
-            <div className="card card-glow p-8 mb-8">
-              <h2 className="heading-sm mb-4">Overview</h2>
-              <div className="text-white/70 leading-relaxed space-y-4">
+            <section className="py-6 border-t border-white/[0.06]">
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">Overview</h2>
+              <div className="text-[15px] text-white/60 leading-[1.8] space-y-4 max-w-2xl">
                 {tool.detailedAnalysis.split('\n').map((para, i) => (
                   para.trim() && <p key={i}>{para}</p>
                 ))}
               </div>
-            </div>
+            </section>
           )}
 
-          {/* Market Analysis - Placeholder for future API integration */}
-          <div className="card card-glow p-8 mb-8">
-            <h2 className="heading-sm mb-4">Market Analysis</h2>
+          {/* Market Analysis */}
+          <section className="py-6 border-t border-white/[0.06]">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-5">Market Analysis</h2>
             <div className="space-y-6">
               {/* Adoption & Usage */}
               <div>
-                <h3 className="font-bold text-white/90 mb-3 flex items-center gap-2">
-                  <span className="text-purple-400">📊</span>
+                <h3 className="text-sm font-semibold text-white/80 mb-2 flex items-center gap-2">
+                  <span className="text-purple-400/70">📊</span>
                   Adoption & Usage
                 </h3>
-                <p className="text-white/60 text-sm leading-relaxed">
+                <p className="text-sm text-white/50 leading-relaxed max-w-2xl">
                   {tool.productName} is used across {tool.targetAudience?.join(', ') || 'various industries'} for {tool.useCases?.[0]?.toLowerCase() || 'diverse use cases'}. 
                   {tool.metrics?.customers && ` Serves ${tool.metrics.customers}+ customers.`}
                   {tool.productName === 'ChatGPT' && ' Widely adopted with 900M weekly active users globally.'}
@@ -171,169 +172,166 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
 
               {/* Strengths */}
               <div>
-                <h3 className="font-bold text-white/90 mb-3 flex items-center gap-2">
-                  <span className="text-green-400">✓</span>
+                <h3 className="text-sm font-semibold text-white/80 mb-2 flex items-center gap-2">
+                  <span className="text-green-400/70">✓</span>
                   Key Strengths
                 </h3>
-                <ul className="space-y-2 text-sm">
+                <ul className="space-y-1.5 text-sm">
                   {tool.pricingModel === 'Open Source' && (
                     <li className="flex items-start gap-2">
-                      <span className="text-green-400 mt-1">•</span>
-                      <span className="text-white/70">Open-source with full control over deployment and data</span>
+                      <span className="text-green-400/50 mt-0.5">•</span>
+                      <span className="text-white/55">Open-source with full control over deployment and data</span>
                     </li>
                   )}
                   {tool.apiAvailable && (
                     <li className="flex items-start gap-2">
-                      <span className="text-green-400 mt-1">•</span>
-                      <span className="text-white/70">Well-documented API for easy integration</span>
+                      <span className="text-green-400/50 mt-0.5">•</span>
+                      <span className="text-white/55">Well-documented API for easy integration</span>
                     </li>
                   )}
                   {tool.pricingModel === 'Freemium' && (
                     <li className="flex items-start gap-2">
-                      <span className="text-green-400 mt-1">•</span>
-                      <span className="text-white/70">Free tier available for testing and small-scale use</span>
+                      <span className="text-green-400/50 mt-0.5">•</span>
+                      <span className="text-white/55">Free tier available for testing and small-scale use</span>
                     </li>
                   )}
                   {tool.metrics?.funding && (
                     <li className="flex items-start gap-2">
-                      <span className="text-green-400 mt-1">•</span>
-                      <span className="text-white/70">Well-funded with strong backing ({tool.metrics.funding})</span>
+                      <span className="text-green-400/50 mt-0.5">•</span>
+                      <span className="text-white/55">Well-funded with strong backing ({tool.metrics.funding})</span>
                     </li>
                   )}
                   <li className="flex items-start gap-2">
-                    <span className="text-green-400 mt-1">•</span>
-                    <span className="text-white/70">{tool.description}</span>
+                    <span className="text-green-400/50 mt-0.5">•</span>
+                    <span className="text-white/55">{tool.description}</span>
                   </li>
                 </ul>
               </div>
 
               {/* Considerations */}
               <div>
-                <h3 className="font-bold text-white/90 mb-3 flex items-center gap-2">
-                  <span className="text-yellow-400">⚠</span>
+                <h3 className="text-sm font-semibold text-white/80 mb-2 flex items-center gap-2">
+                  <span className="text-yellow-400/70">⚠</span>
                   Considerations
                 </h3>
-                <ul className="space-y-2 text-sm">
+                <ul className="space-y-1.5 text-sm">
                   {tool.pricingModel === 'Enterprise' && (
                     <li className="flex items-start gap-2">
-                      <span className="text-yellow-400 mt-1">•</span>
-                      <span className="text-white/70">Enterprise-only pricing may be cost-prohibitive for smaller teams</span>
+                      <span className="text-yellow-400/50 mt-0.5">•</span>
+                      <span className="text-white/55">Enterprise-only pricing may be cost-prohibitive for smaller teams</span>
                     </li>
                   )}
                   {tool.pricingModel === 'Open Source' && (
                     <li className="flex items-start gap-2">
-                      <span className="text-yellow-400 mt-1">•</span>
-                      <span className="text-white/70">Requires technical expertise for deployment and maintenance</span>
+                      <span className="text-yellow-400/50 mt-0.5">•</span>
+                      <span className="text-white/55">Requires technical expertise for deployment and maintenance</span>
                     </li>
                   )}
                   {!tool.apiAvailable && (
                     <li className="flex items-start gap-2">
-                      <span className="text-yellow-400 mt-1">•</span>
-                      <span className="text-white/70">Limited API access may restrict integration options</span>
+                      <span className="text-yellow-400/50 mt-0.5">•</span>
+                      <span className="text-white/55">Limited API access may restrict integration options</span>
                     </li>
                   )}
                   <li className="flex items-start gap-2">
-                    <span className="text-yellow-400 mt-1">•</span>
-                    <span className="text-white/70">Evaluate against specific use case requirements before commitment</span>
+                    <span className="text-yellow-400/50 mt-0.5">•</span>
+                    <span className="text-white/55">Evaluate against specific use case requirements before commitment</span>
                   </li>
                 </ul>
               </div>
 
-              <p className="text-xs text-white/30 italic border-t border-white/5 pt-4">
-                Market analysis based on public information, vendor documentation, and industry trends. 
-                Always conduct your own evaluation for your specific use case.
+              <p className="text-xs text-white/20 italic pt-2">
+                Based on public information, vendor documentation, and industry trends.
               </p>
             </div>
-          </div>
+          </section>
 
           {/* Use Cases */}
           {tool.useCases && tool.useCases.length > 0 && (
-            <div className="card card-glow p-8 mb-8">
-              <h2 className="heading-sm mb-4">Use Cases</h2>
-              <div className="grid md:grid-cols-2 gap-3">
+            <section className="py-6 border-t border-white/[0.06]">
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">Use Cases</h2>
+              <div className="grid md:grid-cols-2 gap-x-8 gap-y-2">
                 {tool.useCases.map((useCase, i) => (
-                  <div key={i} className="flex items-start gap-2">
-                    <span className="text-purple-400 mt-1">•</span>
-                    <span className="text-white/70">{useCase}</span>
+                  <div key={i} className="flex items-start gap-2 py-1">
+                    <span className="text-purple-400/50 mt-0.5 text-sm">•</span>
+                    <span className="text-sm text-white/55">{useCase}</span>
                   </div>
                 ))}
               </div>
-            </div>
+            </section>
           )}
 
           {/* Pricing Details */}
           {tool.pricingDetails && (
-            <div className="card card-glow p-8 mb-8">
-              <h2 className="heading-sm mb-4">Pricing</h2>
-              <p className="text-white/70">{tool.pricingDetails}</p>
-            </div>
+            <section className="py-6 border-t border-white/[0.06]">
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-3">Pricing</h2>
+              <p className="text-sm text-white/55 leading-relaxed max-w-2xl">{tool.pricingDetails}</p>
+            </section>
           )}
 
-          {/* Company Info - Only show if data exists */}
+          {/* Company Info */}
           {hasCompanyInfo && (
-            <div className="card card-glow p-8 mb-8">
-              <h2 className="heading-sm mb-4">Company Info</h2>
-              <div className="space-y-3">
-                    {tool.founded && (
-                      <div className="flex justify-between">
-                        <span className="text-white/40">Founded</span>
-                        <span className="text-white/70">{tool.founded}</span>
-                      </div>
-                    )}
-                    {tool.headquarters && (
-                      <div className="flex justify-between">
-                        <span className="text-white/40">Headquarters</span>
-                        <span className="text-white/70">{tool.headquarters}</span>
-                      </div>
-                    )}
-                    {tool.teamSize && (
-                      <div className="flex justify-between">
-                        <span className="text-white/40">Team Size</span>
-                        <span className="text-white/70">{tool.teamSize}</span>
-                      </div>
-                    )}
-                    {tool.metrics?.funding && (
-                      <div className="flex justify-between">
-                        <span className="text-white/40">Funding</span>
-                        <span className="text-white/70">{tool.metrics.funding}</span>
-                      </div>
-                    )}
-              </div>
-            </div>
-          )}
-
-          {/* Social Links - Only show if any link exists */}
-          {hasSocialLinks && (
-            <div className="card card-glow p-8 mb-8">
-              <h2 className="heading-sm mb-4">Links</h2>
-              <div className="flex flex-wrap gap-4">
-                    {tool.socialLinks?.twitter && (
-                      <a href={tool.socialLinks.twitter} target="_blank" rel="noopener" className="block text-sm text-purple-400 hover:text-purple-300 transition-colors">
-                        Twitter/X →
-                      </a>
-                    )}
-                    {tool.socialLinks?.linkedin && (
-                      <a href={tool.socialLinks.linkedin} target="_blank" rel="noopener" className="block text-sm text-purple-400 hover:text-purple-300 transition-colors">
-                        LinkedIn →
-                      </a>
-                    )}
-                    {tool.socialLinks?.github && (
-                      <a href={tool.socialLinks.github} target="_blank" rel="noopener" className="block text-sm text-purple-400 hover:text-purple-300 transition-colors">
-                        GitHub →
-                      </a>
-                    )}
-                    <a href={tool.websiteUrl} target="_blank" rel="noopener" className="block text-sm text-purple-400 hover:text-purple-300 transition-colors">
-                      Official Website →
-                    </a>
+            <section className="py-6 border-t border-white/[0.06]">
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">Company</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {tool.founded && (
+                  <div>
+                    <div className="text-xs text-white/30 mb-1">Founded</div>
+                    <div className="text-sm text-white/70">{tool.founded}</div>
                   </div>
-            </div>
+                )}
+                {tool.headquarters && (
+                  <div>
+                    <div className="text-xs text-white/30 mb-1">Headquarters</div>
+                    <div className="text-sm text-white/70">{tool.headquarters}</div>
+                  </div>
+                )}
+                {tool.teamSize && (
+                  <div>
+                    <div className="text-xs text-white/30 mb-1">Team Size</div>
+                    <div className="text-sm text-white/70">{tool.teamSize}</div>
+                  </div>
+                )}
+                {tool.metrics?.funding && (
+                  <div>
+                    <div className="text-xs text-white/30 mb-1">Funding</div>
+                    <div className="text-sm text-white/70">{tool.metrics.funding}</div>
+                  </div>
+                )}
+              </div>
+            </section>
           )}
 
-          {/* Related Articles moved to sidebar */}
+          {/* Social Links */}
+          {hasSocialLinks && (
+            <section className="py-6 border-t border-white/[0.06]">
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-3">Links</h2>
+              <div className="flex flex-wrap gap-4">
+                {tool.socialLinks?.twitter && (
+                  <a href={tool.socialLinks.twitter} target="_blank" rel="noopener" className="text-sm text-white/40 hover:text-purple-300 transition-colors">
+                    Twitter/X →
+                  </a>
+                )}
+                {tool.socialLinks?.linkedin && (
+                  <a href={tool.socialLinks.linkedin} target="_blank" rel="noopener" className="text-sm text-white/40 hover:text-purple-300 transition-colors">
+                    LinkedIn →
+                  </a>
+                )}
+                {tool.socialLinks?.github && (
+                  <a href={tool.socialLinks.github} target="_blank" rel="noopener" className="text-sm text-white/40 hover:text-purple-300 transition-colors">
+                    GitHub →
+                  </a>
+                )}
+                <a href={tool.websiteUrl} target="_blank" rel="noopener" className="text-sm text-white/40 hover:text-purple-300 transition-colors">
+                  Website →
+                </a>
+              </div>
+            </section>
+          )}
 
           {/* Back Link */}
-          <div className="text-center">
-            <Link href="/tools" className="text-purple-400 hover:text-purple-300 transition-colors inline-flex items-center gap-2">
+          <div className="pt-8 border-t border-white/[0.06]">
+            <Link href="/tools" className="text-sm text-white/30 hover:text-purple-300 transition-colors inline-flex items-center gap-2">
               ← Back to All Tools
             </Link>
           </div>
