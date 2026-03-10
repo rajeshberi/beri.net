@@ -29,9 +29,9 @@ export default async function Home() {
       </div>
 
       <div className="relative">
-        <Header showCategoryNav />
+        <Header />
 
-        <main className="max-w-[1200px] mx-auto px-6">
+        <main className="max-w-[1200px] mx-auto px-6 pt-6 pb-16 md:pt-8 md:pb-24">
 
           {featured ? (
             <>

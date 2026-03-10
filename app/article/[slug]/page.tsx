@@ -86,7 +86,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
       <div className="relative">
         <Header />
 
-        <main className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
+        <main className="max-w-[1200px] mx-auto px-6 pt-6 pb-16 md:pt-8 md:pb-24">
 
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-xs text-white/30 mb-12" aria-label="Breadcrumb">
