@@ -364,7 +364,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
 
             {/* Tags */}
             {tool.tags && tool.tags.length > 0 && (
-              <div className="card p-6">
+              <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
                 <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
                   Tags
                 </div>
@@ -383,7 +383,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
 
             {/* Related Articles */}
             {tool.relatedArticles && tool.relatedArticles.length > 0 && (
-              <div className="card p-6">
+              <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
                 <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
                   Featured In
                 </div>
@@ -413,7 +413,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             )}
 
             {/* Latest Articles */}
-            <div className="card p-6">
+            <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
               <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
                 Latest Articles
               </div>
@@ -447,7 +447,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             </div>
 
             {/* Category */}
-            <div className="card p-6">
+            <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
               <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
                 Category
               </div>

@@ -45,7 +45,7 @@ export default function ArticleSidebar({ currentSlug, tags, relatedArticles, all
 
       {/* Article Tags */}
       {tags.length > 0 && (
-        <div className="card p-6">
+        <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
           <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
             Topics
           </div>
@@ -65,7 +65,7 @@ export default function ArticleSidebar({ currentSlug, tags, relatedArticles, all
 
       {/* Related Tools */}
       {relatedTools && relatedTools.length > 0 && (
-        <div className="card p-6">
+        <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
           <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
             Related Tools
           </div>
@@ -100,7 +100,7 @@ export default function ArticleSidebar({ currentSlug, tags, relatedArticles, all
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
-        <div className="card p-6">
+        <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
           <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
             Related Reading
           </div>
@@ -136,7 +136,7 @@ export default function ArticleSidebar({ currentSlug, tags, relatedArticles, all
 
       {/* Popular Tags */}
       {allTags.length > 0 && (
-        <div className="card p-6">
+        <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
           <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
             Browse by Topic
           </div>
