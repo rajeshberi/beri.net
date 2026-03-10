@@ -341,7 +341,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
           <aside className="space-y-6">
             {/* Subscribe Card - Sticky */}
             <div className="sticky top-24 z-10">
-              <div className="card card-glow p-6 bg-[#0a0812]">
+              <div className="card card-glow p-6" style={{ backgroundColor: '#0a0812' }}>
                 <div className="space-y-4">
                   <div className="text-sm font-semibold text-purple-400 uppercase tracking-wide">
                     Stay Updated
