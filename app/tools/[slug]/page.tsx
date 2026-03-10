@@ -264,14 +264,11 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             </div>
           )}
 
-          {/* Additional Info - Only show if data exists */}
-          {(hasCompanyInfo || hasSocialLinks) && (
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
-              {/* Company Info - Only show if any field exists */}
-              {hasCompanyInfo && (
-                <div className="card card-glow p-6">
-                  <h3 className="font-bold mb-4">Company Info</h3>
-                  <div className="space-y-2 text-sm">
+          {/* Company Info - Only show if data exists */}
+          {hasCompanyInfo && (
+            <div className="card card-glow p-8 mb-8">
+              <h2 className="heading-sm mb-4">Company Info</h2>
+              <div className="grid md:grid-cols-2 gap-x-8 gap-y-3">
                     {tool.founded && (
                       <div className="flex justify-between">
                         <span className="text-white/40">Founded</span>
@@ -296,15 +293,15 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
                         <span className="text-white/70">{tool.metrics.funding}</span>
                       </div>
                     )}
-                  </div>
-                </div>
-              )}
+              </div>
+            </div>
+          )}
 
-              {/* Social Links - Only show if any link exists */}
-              {hasSocialLinks && (
-                <div className="card card-glow p-6">
-                  <h3 className="font-bold mb-4">Links</h3>
-                  <div className="space-y-2">
+          {/* Social Links - Only show if any link exists */}
+          {hasSocialLinks && (
+            <div className="card card-glow p-8 mb-8">
+              <h2 className="heading-sm mb-4">Links</h2>
+              <div className="grid md:grid-cols-4 gap-4">
                     {tool.socialLinks?.twitter && (
                       <a href={tool.socialLinks.twitter} target="_blank" rel="noopener" className="block text-sm text-purple-400 hover:text-purple-300 transition-colors">
                         Twitter/X →
@@ -324,8 +321,6 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
                       Official Website →
                     </a>
                   </div>
-                </div>
-              )}
             </div>
           )}
 
