@@ -71,11 +71,27 @@ export async function getToolBySlug(slug: string): Promise<Tool | null> {
     
     if (!tool) return null;
     
+    // Fetch related articles if they exist
+    let relatedArticlesData: any[] = [];
+    if (tool.relatedArticles && tool.relatedArticles.length > 0) {
+      relatedArticlesData = await db.collection('newsletters')
+        .find({ slug: { $in: tool.relatedArticles } })
+        .project({ title: 1, slug: 1, excerpt: 1, date: 1, published_date: 1 })
+        .sort({ published_date: -1 })
+        .limit(5)
+        .toArray();
+    }
+    
     return {
       ...tool,
       _id: undefined,
       addedDate: tool.addedDate?.toISOString(),
       lastUpdated: tool.lastUpdated?.toISOString(),
+      relatedArticles: relatedArticlesData.map((article: any) => ({
+        ...article,
+        _id: undefined,
+        date: article.date || (article.published_date ? article.published_date.toISOString().split('T')[0] : new Date().toISOString().split('T')[0]),
+      })),
     } as any;
   } catch (error) {
     console.error('Error fetching tool:', error);

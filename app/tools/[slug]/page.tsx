@@ -46,7 +46,10 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
       <div className="relative">
         <Header />
 
-        <main className="max-w-[900px] mx-auto px-6 py-16 md:py-24">
+        <main className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+          <div className="grid lg:grid-cols-[1fr_320px] gap-12">
+          {/* Main Content */}
+          <div>
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-xs text-white/30 mb-12">
             <Link href="/" className="hover:text-purple-400 transition-colors">Home</Link>
@@ -326,47 +329,122 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             </div>
           )}
 
-          {/* Related Articles */}
-          {tool.relatedArticles && tool.relatedArticles.length > 0 && (
-            <div className="card card-glow p-8 mb-8">
-              <h2 className="heading-sm mb-4">Featured In Our Analysis</h2>
-              <p className="text-white/50 text-sm mb-6">
-                {tool.productName} is mentioned in {tool.relatedArticles.length} article{tool.relatedArticles.length > 1 ? 's' : ''} on our site:
-              </p>
-              <div className="space-y-4">
-                {tool.relatedArticles.slice(0, 5).map((article: any) => (
-                  <Link 
-                    key={article.slug}
-                    href={`/article/${article.slug}`}
-                    className="block p-4 rounded-lg bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all group"
-                  >
-                    <h3 className="font-bold text-white/90 mb-2 group-hover:text-purple-300 transition-colors">
-                      {article.title}
-                    </h3>
-                    <p className="text-sm text-white/50 line-clamp-2">
-                      {article.excerpt}
-                    </p>
-                    <div className="text-xs text-white/30 mt-2">
-                      {new Date(article.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                    </div>
-                  </Link>
-                ))}
-              </div>
-              {tool.relatedArticles.length > 5 && (
-                <div className="text-center mt-4">
-                  <Link href="/search" className="text-sm text-purple-400 hover:text-purple-300 transition-colors">
-                    See all {tool.relatedArticles.length} articles →
-                  </Link>
-                </div>
-              )}
-            </div>
-          )}
+          {/* Related Articles moved to sidebar */}
 
           {/* Back Link */}
           <div className="text-center">
             <Link href="/tools" className="text-purple-400 hover:text-purple-300 transition-colors inline-flex items-center gap-2">
               ← Back to All Tools
             </Link>
+          </div>
+          </div>
+
+          {/* Sidebar */}
+          <aside className="space-y-6">
+            {/* Subscribe Card - Sticky */}
+            <div className="sticky top-24 z-10">
+              <div className="card card-glow p-6 bg-[#0a0812]">
+                <div className="space-y-4">
+                  <div className="text-sm font-semibold text-purple-400 uppercase tracking-wide">
+                    Stay Updated
+                  </div>
+                  <h3 className="text-lg font-bold leading-tight">
+                    Get AI insights every Tue & Thu
+                  </h3>
+                  <p className="text-sm text-white/50 leading-relaxed">
+                    Data-driven analysis for engineering leaders. No hype, just signal.
+                  </p>
+                  <a 
+                    href="/#newsletter" 
+                    className="btn-primary block text-center !text-sm"
+                  >
+                    Subscribe Free
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Tags */}
+            {tool.tags && tool.tags.length > 0 && (
+              <div className="card p-6">
+                <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
+                  Tags
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {tool.tags.slice(0, 10).map((tag) => (
+                    <span
+                      key={tag}
+                      className="tag"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Related Articles */}
+            {tool.relatedArticles && tool.relatedArticles.length > 0 && (
+              <div className="card p-6">
+                <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
+                  Featured In
+                </div>
+                <div className="space-y-4">
+                  {tool.relatedArticles.slice(0, 3).map((article: any) => (
+                    <Link
+                      key={article.slug}
+                      href={`/article/${article.slug}`}
+                      className="block group"
+                    >
+                      <article>
+                        <h4 className="text-sm font-semibold leading-snug group-hover:text-purple-200 transition-colors line-clamp-2 mb-1.5">
+                          {article.title}
+                        </h4>
+                        <time className="text-xs text-white/30">
+                          {new Date(article.date).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric'
+                          })}
+                        </time>
+                      </article>
+                    </Link>
+                  ))}
+                </div>
+                {tool.relatedArticles.length > 3 && (
+                  <div className="mt-4 pt-4 border-t border-white/5">
+                    <Link href="/articles" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">
+                      See all articles →
+                    </Link>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Category */}
+            <div className="card p-6">
+              <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
+                Category
+              </div>
+              <div className="space-y-2">
+                <div className="text-sm">
+                  <span className="text-white/50">Primary:</span>{' '}
+                  <span className="text-white/90">{tool.category}</span>
+                </div>
+                {tool.subcategory && (
+                  <div className="text-sm">
+                    <span className="text-white/50">Type:</span>{' '}
+                    <span className="text-white/90">{tool.subcategory}</span>
+                  </div>
+                )}
+              </div>
+              <div className="mt-4 pt-4 border-t border-white/5">
+                <Link href="/tools" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">
+                  Browse all tools →
+                </Link>
+              </div>
+            </div>
+          </aside>
           </div>
         </main>
 
