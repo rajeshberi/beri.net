@@ -1,4 +1,5 @@
 import { getToolBySlug } from '@/lib/tools';
+import { getAllNewsletters } from '@/lib/newsletters';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
@@ -32,6 +33,10 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
   if (!tool) {
     notFound();
   }
+
+  // Fetch latest articles for sidebar
+  const allArticles = await getAllNewsletters();
+  const latestArticles = allArticles.slice(0, 5);
 
   // Check if company info exists
   const hasCompanyInfo = tool.founded || tool.headquarters || tool.teamSize || tool.metrics?.funding;
@@ -406,15 +411,42 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
                     </Link>
                   ))}
                 </div>
-                {tool.relatedArticles.length > 3 && (
-                  <div className="mt-4 pt-4 border-t border-white/5">
-                    <Link href="/articles" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">
-                      See all articles →
-                    </Link>
-                  </div>
-                )}
               </div>
             )}
+
+            {/* Latest Articles */}
+            <div className="card p-6">
+              <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
+                Latest Articles
+              </div>
+              <div className="space-y-4">
+                {latestArticles.map((article: any) => (
+                  <Link
+                    key={article.slug}
+                    href={`/article/${article.slug}`}
+                    className="block group"
+                  >
+                    <article>
+                      <h4 className="text-sm font-semibold leading-snug group-hover:text-purple-200 transition-colors line-clamp-2 mb-1.5">
+                        {article.title}
+                      </h4>
+                      <time className="text-xs text-white/30">
+                        {new Date(article.date).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric'
+                        })}
+                      </time>
+                    </article>
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-4 pt-4 border-t border-white/5">
+                <Link href="/articles" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">
+                  See all articles →
+                </Link>
+              </div>
+            </div>
 
             {/* Category */}
             <div className="card p-6">

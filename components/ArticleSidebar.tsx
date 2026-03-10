@@ -2,15 +2,17 @@
 
 import Link from 'next/link';
 import { Newsletter } from '@/lib/newsletters';
+import { Tool } from '@/lib/tools';
 
 interface ArticleSidebarProps {
   currentSlug: string;
   tags: string[];
   relatedArticles: Newsletter[];
   allTags: string[];
+  relatedTools?: Tool[];
 }
 
-export default function ArticleSidebar({ currentSlug, tags, relatedArticles, allTags }: ArticleSidebarProps) {
+export default function ArticleSidebar({ currentSlug, tags, relatedArticles, allTags, relatedTools = [] }: ArticleSidebarProps) {
   return (
     <aside className="space-y-6">
       
@@ -57,6 +59,41 @@ export default function ArticleSidebar({ currentSlug, tags, relatedArticles, all
                 {tag}
               </Link>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* Related Tools */}
+      {relatedTools && relatedTools.length > 0 && (
+        <div className="card p-6">
+          <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
+            Related Tools
+          </div>
+          <div className="space-y-4">
+            {relatedTools.map((tool) => (
+              <Link
+                key={tool.slug}
+                href={`/tools/${tool.slug}`}
+                className="block group"
+              >
+                <article>
+                  <div className="label text-purple-400/70 mb-1.5">
+                    {tool.category}
+                  </div>
+                  <h4 className="text-sm font-semibold leading-snug group-hover:text-purple-200 transition-colors line-clamp-2 mb-1.5">
+                    {tool.productName}
+                  </h4>
+                  <p className="text-xs text-white/50 line-clamp-2">
+                    {tool.description}
+                  </p>
+                </article>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-4 pt-4 border-t border-white/5">
+            <Link href="/tools" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">
+              Browse all tools →
+            </Link>
           </div>
         </div>
       )}

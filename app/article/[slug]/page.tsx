@@ -1,4 +1,5 @@
 import { getNewsletterBySlug, getAllSlugs, getRelatedNewsletters, getReadingTime, getAllTags } from '@/lib/newsletters';
+import { getToolsForArticle } from '@/lib/tools';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { remark } from 'remark';
@@ -70,6 +71,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
   const readingTime = getReadingTime(newsletter.content);
   const related = await getRelatedNewsletters(slug, 5);
   const allTags = await getAllTags();
+  const relatedTools = await getToolsForArticle(slug);
 
   return (
     <div className="min-h-screen bg-[#0a0812] text-white noise">
@@ -207,6 +209,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
                 tags={newsletter.tags}
                 relatedArticles={related.slice(0, 3)}
                 allTags={allTags}
+                relatedTools={relatedTools}
               />
             </div>
 

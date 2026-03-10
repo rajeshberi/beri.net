@@ -145,6 +145,32 @@ export async function getToolsByDomain(domain: string): Promise<Tool[]> {
   }
 }
 
+export async function getToolsForArticle(articleSlug: string): Promise<Tool[]> {
+  try {
+    const client = await connectToDatabase();
+    const db = client.db('beri-newsletter');
+    
+    // Find tools that have this article in their relatedArticles array
+    const tools = await db
+      .collection('ai_tools')
+      .find({ relatedArticles: articleSlug })
+      .sort({ featured: -1, addedDate: -1 })
+      .limit(5)
+      .toArray();
+    
+    return tools.map(tool => ({
+      ...tool,
+      _id: undefined,
+      addedDate: tool.addedDate?.toISOString(),
+      lastUpdated: tool.lastUpdated?.toISOString(),
+      relatedArticles: [], // Don't need nested articles for sidebar
+    })) as any;
+  } catch (error) {
+    console.error('Error fetching tools for article:', error);
+    return [];
+  }
+}
+
 export async function getCategories() {
   try {
     const client = await connectToDatabase();
