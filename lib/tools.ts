@@ -151,9 +151,15 @@ export async function getToolsForArticle(articleSlug: string): Promise<Tool[]> {
     const db = client.db('beri-newsletter');
     
     // Find tools that have this article in their relatedArticles array
+    // relatedArticles can be either array of strings or array of objects with slug field
     const tools = await db
       .collection('ai_tools')
-      .find({ relatedArticles: articleSlug })
+      .find({
+        $or: [
+          { relatedArticles: articleSlug }, // Simple string array
+          { 'relatedArticles.slug': articleSlug } // Array of objects with slug field
+        ]
+      })
       .sort({ featured: -1, addedDate: -1 })
       .limit(5)
       .toArray();
