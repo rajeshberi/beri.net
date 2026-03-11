@@ -3,8 +3,8 @@ title: "NVIDIA's NemoClaw: The Enterprise Answer to AI Agent Security Chaos"
 slug: "nvidia-nemoclaw-enterprise-ai-agents"
 date: "2026-03-11"
 description: "While OpenAI acquired OpenClaw, NVIDIA is building an open-source enterprise AI agent platform with built-in security. Here's why it matters for your organization."
-image: "https://images.unsplash.com/photo-1707434256125-837b266b5e0b?w=1200&auto=format&fit=crop"
-imageCredit: "Photo by Shubham Dhage on Unsplash"
+image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&auto=format&fit=crop"
+imageCredit: "Photo by Possessed Photography on Unsplash"
 tags: ["AI Agents", "Enterprise AI", "NVIDIA", "Security", "Automation"]
 category: "AI Infrastructure"
 featured: true
