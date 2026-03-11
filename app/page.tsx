@@ -297,9 +297,9 @@ export default async function Home() {
                   />
                   <div className="flex-1">
                     <p className="text-lg text-white/60 leading-relaxed mb-3">
-                      Curated and managed by <strong className="text-white/80">Rajesh Beri</strong> — bringing 30+ years of enterprise software experience to AI deployment insights. AI-assisted research and writing, human-driven analysis and perspective.
+                      Started as a personal AI news tracker. A few friends asked for my summaries. Word spread — 22 people, all referrals. So I turned it into <strong className="text-white/80">THE D[AI]LY BRIEF</strong> — now open to everyone who wants enterprise AI insights without the hype.
                     </p>
-                    <p className="text-sm text-white/40">Real benchmarks. Real architectures. No hype. <Link href="/about" className="text-purple-400 hover:text-purple-300 transition-colors">Learn more →</Link></p>
+                    <p className="text-sm text-white/40">Real benchmarks. Real analysis. No vendor spin. <Link href="/about" className="text-purple-400 hover:text-purple-300 transition-colors">Read the full story →</Link></p>
                   </div>
                 </div>
               </div>
