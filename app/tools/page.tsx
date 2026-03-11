@@ -28,7 +28,7 @@ export default async function ToolsPage() {
       <div className="relative">
         <Header />
 
-        <main className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
+        <main className="max-w-[1200px] mx-auto px-4 py-12 md:px-6 md:py-24">
           {/* Hero */}
           <ScrollReveal>
             <div className="mb-16 text-center">
