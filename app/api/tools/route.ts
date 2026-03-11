@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import clientPromise from '@/lib/mongodb';
+import { connectToDatabase } from '@/lib/mongodb';
 
 export async function GET(request: NextRequest) {
   try {
@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
     const sortBy = searchParams.get('sort') || 'name';
     const sortOrder = searchParams.get('order') === 'desc' ? -1 : 1;
     
-    const client = await clientPromise;
+    const client = await connectToDatabase();
     const db = client.db('beri-newsletter');
     const collection = db.collection('tools');
     

@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { clientConfig } from '@/lib/clientConfig';
 
 async function getTool(slug: string) {
-  const res = await fetch(`${clientConfig.apiUrl}/api/tools/${slug}`, {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://beri.net';
+  const res = await fetch(`${baseUrl}/api/tools/${slug}`, {
     cache: 'no-store'
   });
   
@@ -71,8 +71,9 @@ function SnapshotCard({ snapshot }: { snapshot: any }) {
   );
 }
 
-export default async function ToolPage({ params }: { params: { slug: string } }) {
-  const tool = await getTool(params.slug);
+export default async function ToolPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const tool = await getTool(slug);
 
   if (!tool) {
     notFound();
@@ -496,8 +497,9 @@ export default async function ToolPage({ params }: { params: { slug: string } })
   );
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const tool = await getTool(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const tool = await getTool(slug);
   
   if (!tool) {
     return {

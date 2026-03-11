@@ -1,16 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
-import clientPromise from '@/lib/mongodb';
+import { connectToDatabase } from '@/lib/mongodb';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  context: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const client = await clientPromise;
+    const { slug } = await context.params;
+    const client = await connectToDatabase();
     const db = client.db('beri-newsletter');
     
     const tool = await db.collection('tools').findOne(
-      { slug: params.slug },
+      { slug },
       { projection: { _id: 0 } }
     );
     
