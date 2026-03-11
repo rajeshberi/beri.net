@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { getAllNewsletters } from '@/lib/newsletters';
 
 async function getTool(slug: string) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://beri.net';
@@ -25,54 +26,6 @@ function CheckIcon({ checked }: { checked: boolean | null | undefined }) {
   );
 }
 
-function Section({ title, children, icon }: { title: string; children: React.ReactNode; icon?: string }) {
-  return (
-    <section className="mb-12">
-      <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
-        {icon && <span>{icon}</span>}
-        {title}
-      </h2>
-      <div className="card card-glow p-6">
-        {children}
-      </div>
-    </section>
-  );
-}
-
-function SnapshotCard({ snapshot }: { snapshot: any }) {
-  return (
-    <div className="bg-gradient-to-br from-purple-900/20 to-purple-800/10 rounded-lg border border-purple-500/30 p-6 mb-8">
-      <h3 className="text-lg font-bold mb-4 text-white">Quick Snapshot</h3>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <div>
-          <div className="text-sm text-white/50 mb-1">Ideal Buyer</div>
-          <div className="font-semibold text-white">{snapshot?.ideal_buyer || 'N/A'}</div>
-        </div>
-        <div>
-          <div className="text-sm text-white/50 mb-1">Pricing Level</div>
-          <div className="font-semibold text-white">{snapshot?.pricing_level || 'N/A'}</div>
-        </div>
-        <div>
-          <div className="text-sm text-white/50 mb-1">Adoption</div>
-          <div className="font-semibold text-white">{snapshot?.ease_of_adoption || 'N/A'}</div>
-        </div>
-        <div>
-          <div className="text-sm text-white/50 mb-1">Enterprise Ready</div>
-          <div className="font-semibold text-white">{snapshot?.enterprise_ready || 'N/A'}</div>
-        </div>
-        <div>
-          <div className="text-sm text-white/50 mb-1">API Available</div>
-          <div className="font-semibold text-white">{snapshot?.api_available || 'N/A'}</div>
-        </div>
-        <div>
-          <div className="text-sm text-white/50 mb-1">Free Trial</div>
-          <div className="font-semibold text-white">{snapshot?.free_trial || 'N/A'}</div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default async function ToolPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const tool = await getTool(slug);
@@ -81,430 +34,478 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
     notFound();
   }
 
+  // Get latest articles for sidebar
+  const allArticles = await getAllNewsletters();
+  const latestArticles = allArticles.slice(0, 5);
+
   const cap = tool.capabilities || {};
   const sec = tool.security || {};
-  const deploy = tool.deployment || {};
-  const perf = tool.performance || {};
-  const market = tool.market || {};
-  const comp = tool.competitive || {};
 
   return (
     <div className="min-h-screen bg-[#0a0812] text-white noise">
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-900/15 rounded-full blur-[120px]" />
       </div>
-      
+
       <div className="relative">
         <Header />
-        
-        <main className="max-w-5xl mx-auto px-6 py-12">
-        {/* Header */}
-        <header className="mb-8">
-          <Link href="/tools" className="text-white/60 hover:text-white mb-4 inline-block">
-            ← Back to Tools Directory
-          </Link>
-          <h1 className="text-5xl font-bold mb-4 text-white">{tool.name}</h1>
-          <p className="text-xl text-white/80 mb-4">{tool.tagline}</p>
-          
-          {tool.company && (
-            <div className="text-white/70 mb-2">
-              <strong>Company:</strong> {tool.company}
-              {tool.founded && ` • Founded: ${tool.founded}`}
-              {tool.headquarters && ` • HQ: ${tool.headquarters}`}
-            </div>
-          )}
-          
-          <div className="flex gap-4 mb-6">
-            {tool.website && (
-              <a
-                href={tool.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-6 py-3 bg-white/10 text-white rounded-lg hover:bg-purple-500/20 border border-white/10 hover:border-purple-500/30 transition-all"
-              >
-                Visit Website →
-              </a>
-            )}
-          </div>
 
-          {tool.primary_category && (
-            <div className="flex gap-2 flex-wrap">
-              <Link
-                href={`/tags/${tool.primary_category.toLowerCase().replace(/ /g, '-')}`}
-                className="px-3 py-1 bg-purple-500/20 text-purple-200 border border-purple-500/30 rounded-full text-sm hover:bg-purple-500/30"
-              >
-                {tool.primary_category}
-              </Link>
-              {tool.secondary_categories?.map((cat: string) => (
-                <Link
-                  key={cat}
-                  href={`/tags/${cat.toLowerCase().replace(/ /g, '-')}`}
-                  className="px-3 py-1 bg-white/5 text-white/80 border border-white/10 rounded-full text-sm hover:bg-white/10"
-                >
-                  {cat}
-                </Link>
-              ))}
-            </div>
-          )}
-        </header>
+        <main className="max-w-[1200px] mx-auto px-4 pt-4 pb-12 md:px-6 md:pt-8 md:pb-24">
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-2 text-xs text-white/30 mb-12">
+            <Link href="/" className="hover:text-purple-400 transition-colors">Home</Link>
+            <span>/</span>
+            <Link href="/tools" className="hover:text-purple-400 transition-colors">Tools</Link>
+            <span>/</span>
+            <span className="text-white/50">{tool.name}</span>
+          </nav>
 
-        {/* Quick Snapshot */}
-        {tool.snapshot && <SnapshotCard snapshot={tool.snapshot} />}
+          <div className="grid lg:grid-cols-[1fr_320px] gap-12">
+            {/* Main Content */}
+            <div>
+              {/* Header */}
+              <div className="card card-glow p-8 mb-8">
+                <div className="flex items-start gap-6 mb-6">
+                  {tool.logo_url ? (
+                    <img 
+                      src={tool.logo_url} 
+                      alt={tool.name}
+                      className="w-20 h-20 rounded-xl object-cover shrink-0"
+                    />
+                  ) : (
+                    <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-white text-3xl font-bold shrink-0">
+                      {tool.name.charAt(0)}
+                    </div>
+                  )}
 
-        {/* Overview */}
-        <Section title="Overview" icon="📋">
-          {tool.short_description && (
-            <p className="text-lg text-white/80 mb-4">{tool.short_description}</p>
-          )}
-          
-          <div className="grid md:grid-cols-3 gap-4 mt-6">
-            {tool.target_market && tool.target_market.length > 0 && (
-              <div>
-                <h4 className="font-semibold mb-2 text-white">Target Market</h4>
-                <ul className="text-sm space-y-1 text-white/70">
-                  {tool.target_market.map((m: string) => (
-                    <li key={m}>• {m}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            
-            {tool.deployment_model && tool.deployment_model.length > 0 && (
-              <div>
-                <h4 className="font-semibold mb-2 text-white">Deployment</h4>
-                <ul className="text-sm space-y-1 text-white/70">
-                  {tool.deployment_model.map((d: string) => (
-                    <li key={d}>• {d}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            
-            {tool.pricing_model && tool.pricing_model.length > 0 && (
-              <div>
-                <h4 className="font-semibold mb-2 text-white">Pricing Model</h4>
-                <ul className="text-sm space-y-1 text-white/70">
-                  {tool.pricing_model.map((p: string) => (
-                    <li key={p}>• {p}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        </Section>
-
-        {/* Best For / Not Ideal For */}
-        {(tool.best_for?.length > 0 || tool.not_ideal_for?.length > 0) && (
-          <Section title="Best For / Not Ideal For" icon="🎯">
-            <div className="grid md:grid-cols-2 gap-6">
-              {tool.best_for && tool.best_for.length > 0 && (
-                <div>
-                  <h4 className="font-semibold text-green-400 mb-3">✅ Best For</h4>
-                  <ul className="space-y-2 text-white/70">
-                    {tool.best_for.map((item: string, i: number) => (
-                      <li key={i} className="text-sm">• {item}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              
-              {tool.not_ideal_for && tool.not_ideal_for.length > 0 && (
-                <div>
-                  <h4 className="font-semibold text-yellow-400 mb-3">⚠️ Not Ideal For</h4>
-                  <ul className="space-y-2 text-white/70">
-                    {tool.not_ideal_for.map((item: string, i: number) => (
-                      <li key={i} className="text-sm">• {item}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </Section>
-        )}
-
-        {/* Core Capabilities */}
-        <Section title="Core Capabilities" icon="🧠">
-          <div className="grid md:grid-cols-2 gap-x-8 gap-y-3 text-white/80">
-            <div className="flex items-center justify-between">
-              <span>Text Generation</span>
-              <CheckIcon checked={cap.text_generation} />
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Image Generation</span>
-              <CheckIcon checked={cap.image_generation} />
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Video Generation</span>
-              <CheckIcon checked={cap.video_generation} />
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Audio Generation</span>
-              <CheckIcon checked={cap.audio_generation} />
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Code Generation</span>
-              <CheckIcon checked={cap.code_generation} />
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Workflow Automation</span>
-              <CheckIcon checked={cap.workflow_automation} />
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Agent Orchestration</span>
-              <CheckIcon checked={cap.agent_orchestration} />
-            </div>
-            <div className="flex items-center justify-between">
-              <span>API Access</span>
-              <CheckIcon checked={cap.api_access} />
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Fine-tuning</span>
-              <CheckIcon checked={cap.fine_tuning} />
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Multi-language</span>
-              <CheckIcon checked={cap.multi_language} />
-            </div>
-          </div>
-        </Section>
-
-        {/* Key Features */}
-        {tool.key_features && tool.key_features.length > 0 && (
-          <Section title="Key Features" icon="⚙️">
-            <ul className="space-y-3">
-              {tool.key_features.map((feature: any, i: number) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="text-green-400 mt-1">✓</span>
-                  <div>
-                    <div className="font-semibold text-white">{feature.name || feature}</div>
-                    {feature.benefit && (
-                      <div className="text-sm text-white/60">{feature.benefit}</div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h1 className="heading-lg">{tool.name}</h1>
+                      {tool.verified && (
+                        <span className="text-purple-400 text-2xl" title="Verified">✓</span>
+                      )}
+                    </div>
+                    {tool.company && (
+                      <p className="text-white/50 mb-4">
+                        by {tool.company}
+                        {tool.founded && ` • Founded ${tool.founded}`}
+                        {tool.headquarters && ` • ${tool.headquarters}`}
+                      </p>
                     )}
+                    <p className="text-lg text-white/70 leading-relaxed">{tool.tagline}</p>
                   </div>
-                </li>
-              ))}
-            </ul>
-          </Section>
-        )}
+                </div>
 
-        {/* Security & Compliance */}
-        <Section title="Security & Compliance" icon="🔐">
-          <div className="grid md:grid-cols-2 gap-x-8 gap-y-3 text-white/80">
-            <div className="flex items-center justify-between">
-              <span>SOC 2 Type II</span>
-              <CheckIcon checked={sec.soc2_type2} />
-            </div>
-            <div className="flex items-center justify-between">
-              <span>ISO 27001</span>
-              <CheckIcon checked={sec.iso27001} />
-            </div>
-            <div className="flex items-center justify-between">
-              <span>GDPR / CCPA</span>
-              <CheckIcon checked={sec.gdpr_ccpa} />
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Encryption (at rest/transit)</span>
-              <CheckIcon checked={sec.encryption_at_rest || sec.encryption_in_transit} />
-            </div>
-            <div className="flex items-center justify-between">
-              <span>SSO</span>
-              <CheckIcon checked={sec.sso} />
-            </div>
-            <div className="flex items-center justify-between">
-              <span>RBAC</span>
-              <CheckIcon checked={sec.rbac} />
-            </div>
-          </div>
-          
-          {sec.sso_methods && sec.sso_methods.length > 0 && (
-            <div className="mt-4 text-sm text-white/60">
-              <strong>SSO Methods:</strong> {sec.sso_methods.join(', ')}
-            </div>
-          )}
-          
-          {sec.data_retention_policy && (
-            <div className="mt-2 text-sm text-white/60">
-              <strong>Data Retention:</strong> {sec.data_retention_policy}
-            </div>
-          )}
-        </Section>
-
-        {/* Pricing */}
-        {tool.pricing?.plans && tool.pricing.plans.length > 0 && (
-          <Section title="Pricing" icon="💰">
-            <div className="overflow-x-auto">
-              <table className="w-full text-white/80">
-                <thead>
-                  <tr className="border-b border-white/10">
-                    <th className="text-left py-2 px-4 text-white">Plan</th>
-                    <th className="text-left py-2 px-4 text-white">Target User</th>
-                    <th className="text-left py-2 px-4 text-white">Pricing</th>
-                    <th className="text-left py-2 px-4 text-white">Notes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tool.pricing.plans.map((plan: any, i: number) => (
-                    <tr key={i} className="border-b border-white/10 last:border-0">
-                      <td className="py-3 px-4 font-semibold text-white">{plan.name}</td>
-                      <td className="py-3 px-4">{plan.target_user}</td>
-                      <td className="py-3 px-4">{plan.pricing_model}</td>
-                      <td className="py-3 px-4 text-sm text-white/60">{plan.notes}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            
-            <div className="mt-4 grid md:grid-cols-2 gap-4 text-sm text-white/70">
-              {tool.pricing.free_trial && (
-                <div>
-                  <strong className="text-white">Free Trial:</strong> {tool.pricing.trial_days ? `${tool.pricing.trial_days} days` : 'Yes'}
-                </div>
-              )}
-              {tool.pricing.minimum_contract && (
-                <div>
-                  <strong className="text-white">Minimum Contract:</strong> {tool.pricing.minimum_contract}
-                </div>
-              )}
-              {tool.pricing.volume_discounts && (
-                <div><strong className="text-white">Volume Discounts:</strong> Available</div>
-              )}
-            </div>
-          </Section>
-        )}
-
-        {/* Market & Adoption */}
-        {(market.notable_clients?.length > 0 || market.estimated_customers) && (
-          <Section title="Market & Adoption" icon="📊">
-            <div className="text-white/70 space-y-4">
-              {market.estimated_customers && (
-                <div>
-                  <strong className="text-white">Estimated Customers:</strong> {market.estimated_customers}
-                </div>
-              )}
-              
-              {market.notable_clients && market.notable_clients.length > 0 && (
-                <div>
-                  <strong className="text-white">Notable Clients:</strong> {market.notable_clients.join(', ')}
-                </div>
-              )}
-              
-              {market.industries && market.industries.length > 0 && (
-                <div>
-                  <strong className="text-white">Industries:</strong> {market.industries.join(', ')}
-                </div>
-              )}
-              
-              {market.funding?.total && (
-                <div>
-                  <strong className="text-white">Funding:</strong> {market.funding.total}
-                  {market.funding.stage && ` (${market.funding.stage})`}
-                </div>
-              )}
-            </div>
-          </Section>
-        )}
-
-        {/* Strengths & Considerations */}
-        {(tool.strengths?.length > 0 || tool.considerations?.length > 0) && (
-          <Section title="Strengths & Considerations" icon="⭐">
-            <div className="grid md:grid-cols-2 gap-6">
-              {tool.strengths && tool.strengths.length > 0 && (
-                <div>
-                  <h4 className="font-semibold text-green-400 mb-3">✅ Strengths</h4>
-                  <ul className="space-y-2 text-white/70">
-                    {tool.strengths.map((item: string, i: number) => (
-                      <li key={i} className="text-sm">• {item}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              
-              {tool.considerations && tool.considerations.length > 0 && (
-                <div>
-                  <h4 className="font-semibold text-yellow-400 mb-3">⚠️ Considerations</h4>
-                  <ul className="space-y-2 text-white/70">
-                    {tool.considerations.map((item: string, i: number) => (
-                      <li key={i} className="text-sm">• {item}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </Section>
-        )}
-
-        {/* Competitive Positioning */}
-        {(comp.primary_competitors?.length > 0 || comp.differentiators?.length > 0) && (
-          <Section title="Competitive Positioning" icon="🏆">
-            {comp.primary_competitors && comp.primary_competitors.length > 0 && (
-              <div className="mb-4">
-                <h4 className="font-semibold mb-2 text-white">Primary Competitors</h4>
-                <div className="flex gap-2 flex-wrap">
-                  {comp.primary_competitors.map((competitor: string, i: number) => (
-                    <span key={i} className="px-3 py-1 bg-white/10 border border-white/10 rounded-full text-sm text-white/80">
-                      {competitor}
+                {/* Quick Info */}
+                <div className="flex flex-wrap gap-3 mb-6">
+                  {tool.primary_category && (
+                    <span className="px-3 py-1.5 rounded-lg bg-white/5 text-sm">
+                      <span className="text-white/40">Category:</span>{' '}
+                      <span className="text-white/80">{tool.primary_category}</span>
                     </span>
-                  ))}
-                </div>
-              </div>
-            )}
-            
-            {comp.differentiators && comp.differentiators.length > 0 && (
-              <div>
-                <h4 className="font-semibold mb-2 text-white">Key Differentiators</h4>
-                <ul className="space-y-2 text-white/70">
-                  {comp.differentiators.map((diff: string, i: number) => (
-                    <li key={i} className="text-sm">• {diff}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </Section>
-        )}
-
-        {/* Use Cases */}
-        {tool.use_cases && tool.use_cases.length > 0 && (
-          <Section title="Use Cases" icon="🧪">
-            <div className="space-y-4">
-              {tool.use_cases.map((useCase: any, i: number) => (
-                <div key={i} className="border-l-4 border-purple-500/30 pl-4">
-                  <h4 className="font-semibold mb-1 text-white">{useCase.title || useCase}</h4>
-                  {useCase.description && (
-                    <p className="text-sm text-white/60">{useCase.description}</p>
+                  )}
+                  {tool.pricing_model && tool.pricing_model.length > 0 && (
+                    <span className="px-3 py-1.5 rounded-lg bg-purple-500/10 text-purple-300 text-sm font-medium">
+                      {tool.pricing_model.join(', ')}
+                    </span>
+                  )}
+                  {cap.api_access && (
+                    <span className="px-3 py-1.5 rounded-lg bg-green-500/10 text-green-300 text-sm">
+                      API Available
+                    </span>
                   )}
                 </div>
-              ))}
-            </div>
-          </Section>
-        )}
 
-        {/* Related Articles */}
-        {tool.mentioned_in_articles && tool.mentioned_in_articles.length > 0 && (
-          <Section title="Mentioned In" icon="📰">
-            <div className="space-y-3">
-              {tool.mentioned_in_articles.map((article: any) => (
-                <Link
-                  key={article.slug}
-                  href={`/article/${article.slug}`}
-                  className="block p-4 border border-white/10 rounded-lg hover:border-purple-500/30 hover:bg-white/5 transition"
-                >
-                  <h4 className="font-semibold mb-1 text-white">{article.title}</h4>
-                  <p className="text-sm text-white/50">{article.date}</p>
+                {/* CTA */}
+                {tool.website && (
+                  <a
+                    href={tool.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary inline-flex items-center gap-2"
+                  >
+                    Visit Website →
+                  </a>
+                )}
+              </div>
+
+              {/* Overview */}
+              {tool.short_description && (
+                <div className="card card-glow p-8 mb-8">
+                  <h2 className="heading-sm mb-4">📋 Overview</h2>
+                  <p className="text-white/70 leading-relaxed">{tool.short_description}</p>
+                  
+                  {tool.target_market && tool.target_market.length > 0 && (
+                    <div className="mt-6">
+                      <h3 className="font-semibold text-white/90 mb-3">Target Market</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {tool.target_market.map((market: string) => (
+                          <span key={market} className="px-3 py-1.5 rounded-lg bg-white/5 text-sm text-white/70">
+                            {market}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Best For / Not Ideal For */}
+              {(tool.best_for?.length > 0 || tool.not_ideal_for?.length > 0) && (
+                <div className="card card-glow p-8 mb-8">
+                  <h2 className="heading-sm mb-6">🎯 Best For / Not Ideal For</h2>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {tool.best_for && tool.best_for.length > 0 && (
+                      <div>
+                        <h3 className="font-semibold text-green-400 mb-3">✅ Best For</h3>
+                        <ul className="space-y-2 text-white/70">
+                          {tool.best_for.map((item: string, i: number) => (
+                            <li key={i} className="text-sm">• {item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    
+                    {tool.not_ideal_for && tool.not_ideal_for.length > 0 && (
+                      <div>
+                        <h3 className="font-semibold text-yellow-400 mb-3">⚠️ Not Ideal For</h3>
+                        <ul className="space-y-2 text-white/70">
+                          {tool.not_ideal_for.map((item: string, i: number) => (
+                            <li key={i} className="text-sm">• {item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Core Capabilities */}
+              <div className="card card-glow p-8 mb-8">
+                <h2 className="heading-sm mb-6">🧠 Core Capabilities</h2>
+                <div className="grid md:grid-cols-2 gap-x-8 gap-y-3 text-white/80">
+                  <div className="flex items-center justify-between">
+                    <span>Text Generation</span>
+                    <CheckIcon checked={cap.text_generation} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Image Generation</span>
+                    <CheckIcon checked={cap.image_generation} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Video Generation</span>
+                    <CheckIcon checked={cap.video_generation} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Audio Generation</span>
+                    <CheckIcon checked={cap.audio_generation} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Code Generation</span>
+                    <CheckIcon checked={cap.code_generation} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Workflow Automation</span>
+                    <CheckIcon checked={cap.workflow_automation} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Agent Orchestration</span>
+                    <CheckIcon checked={cap.agent_orchestration} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>API Access</span>
+                    <CheckIcon checked={cap.api_access} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Fine-tuning</span>
+                    <CheckIcon checked={cap.fine_tuning} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Multi-language</span>
+                    <CheckIcon checked={cap.multi_language} />
+                  </div>
+                </div>
+              </div>
+
+              {/* Key Features */}
+              {tool.key_features && tool.key_features.length > 0 && (
+                <div className="card card-glow p-8 mb-8">
+                  <h2 className="heading-sm mb-6">⚙️ Key Features</h2>
+                  <ul className="space-y-3">
+                    {tool.key_features.map((feature: any, i: number) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="text-green-400 mt-1">✓</span>
+                        <div>
+                          <div className="font-semibold text-white">{feature.name || feature}</div>
+                          {feature.benefit && (
+                            <div className="text-sm text-white/60">{feature.benefit}</div>
+                          )}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Security & Compliance */}
+              <div className="card card-glow p-8 mb-8">
+                <h2 className="heading-sm mb-6">🔐 Security & Compliance</h2>
+                <div className="grid md:grid-cols-2 gap-x-8 gap-y-3 text-white/80">
+                  <div className="flex items-center justify-between">
+                    <span>SOC 2 Type II</span>
+                    <CheckIcon checked={sec.soc2_type2} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>ISO 27001</span>
+                    <CheckIcon checked={sec.iso27001} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>GDPR / CCPA</span>
+                    <CheckIcon checked={sec.gdpr_ccpa} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Encryption</span>
+                    <CheckIcon checked={sec.encryption_at_rest || sec.encryption_in_transit} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>SSO</span>
+                    <CheckIcon checked={sec.sso} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>RBAC</span>
+                    <CheckIcon checked={sec.rbac} />
+                  </div>
+                </div>
+              </div>
+
+              {/* Use Cases */}
+              {tool.use_cases && tool.use_cases.length > 0 && (
+                <div className="card card-glow p-8 mb-8">
+                  <h2 className="heading-sm mb-6">🧪 Use Cases</h2>
+                  <div className="space-y-4">
+                    {tool.use_cases.map((useCase: any, i: number) => (
+                      <div key={i} className="border-l-4 border-purple-500/30 pl-4">
+                        <h3 className="font-semibold mb-1 text-white">{useCase.title || useCase}</h3>
+                        {useCase.description && (
+                          <p className="text-sm text-white/60">{useCase.description}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Pricing */}
+              {tool.pricing?.plans && tool.pricing.plans.length > 0 && (
+                <div className="card card-glow p-8 mb-8">
+                  <h2 className="heading-sm mb-6">💰 Pricing</h2>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-white/80">
+                      <thead>
+                        <tr className="border-b border-white/10">
+                          <th className="text-left py-2 px-4 text-white">Plan</th>
+                          <th className="text-left py-2 px-4 text-white">Target User</th>
+                          <th className="text-left py-2 px-4 text-white">Pricing</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {tool.pricing.plans.map((plan: any, i: number) => (
+                          <tr key={i} className="border-b border-white/10 last:border-0">
+                            <td className="py-3 px-4 font-semibold text-white">{plan.name}</td>
+                            <td className="py-3 px-4">{plan.target_user}</td>
+                            <td className="py-3 px-4">{plan.pricing_model}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
+              {/* Social Links */}
+              {(tool.social_links?.twitter || tool.social_links?.linkedin || tool.social_links?.github) && (
+                <div className="card card-glow p-8 mb-8">
+                  <h3 className="font-bold mb-4 text-white">Links</h3>
+                  <div className="space-y-2">
+                    {tool.social_links?.twitter && (
+                      <a href={tool.social_links.twitter} target="_blank" rel="noopener" className="block text-sm text-purple-400 hover:text-purple-300 transition-colors">
+                        Twitter/X →
+                      </a>
+                    )}
+                    {tool.social_links?.linkedin && (
+                      <a href={tool.social_links.linkedin} target="_blank" rel="noopener" className="block text-sm text-purple-400 hover:text-purple-300 transition-colors">
+                        LinkedIn →
+                      </a>
+                    )}
+                    {tool.social_links?.github && (
+                      <a href={tool.social_links.github} target="_blank" rel="noopener" className="block text-sm text-purple-400 hover:text-purple-300 transition-colors">
+                        GitHub →
+                      </a>
+                    )}
+                    {tool.website && (
+                      <a href={tool.website} target="_blank" rel="noopener" className="block text-sm text-purple-400 hover:text-purple-300 transition-colors">
+                        Official Website →
+                      </a>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Back Link */}
+              <div className="text-center">
+                <Link href="/tools" className="text-purple-400 hover:text-purple-300 transition-colors inline-flex items-center gap-2">
+                  ← Back to All Tools
                 </Link>
-              ))}
+              </div>
             </div>
-          </Section>
-        )}
 
-        {/* Footer Metadata */}
-        <div className="mt-12 pt-6 border-t border-white/10 text-sm text-white/50">
-          {tool.source && <div>Source: {tool.source}</div>}
-          {tool.discovered && <div>Discovered: {tool.discovered}</div>}
-          {tool.last_updated && <div>Last Updated: {tool.last_updated}</div>}
-        </div>
+            {/* Sidebar */}
+            <aside className="space-y-6">
+              {/* Subscribe Card - Sticky */}
+              <div className="sticky top-24 z-10">
+                <div className="card card-glow p-6" style={{ backgroundColor: '#0a0812' }}>
+                  <div className="space-y-4">
+                    <div className="text-sm font-semibold text-purple-400 uppercase tracking-wide">
+                      Stay Updated
+                    </div>
+                    <h3 className="text-lg font-bold leading-tight">
+                      Get AI insights every Tue & Thu
+                    </h3>
+                    <p className="text-sm text-white/50 leading-relaxed">
+                      Data-driven analysis for engineering leaders. No hype, just signal.
+                    </p>
+                    <a 
+                      href="/#newsletter" 
+                      className="btn-primary block text-center !text-sm"
+                    >
+                      Subscribe Free
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tags */}
+              {tool.tags && tool.tags.length > 0 && (
+                <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
+                  <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
+                    Tags
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {tool.tags.slice(0, 10).map((tag: string) => (
+                      <span
+                        key={tag}
+                        className="tag"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Featured In (Related Articles) */}
+              {tool.mentioned_in_articles && tool.mentioned_in_articles.length > 0 && (
+                <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
+                  <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
+                    Featured In
+                  </div>
+                  <div className="space-y-4">
+                    {tool.mentioned_in_articles.slice(0, 3).map((article: any) => (
+                      <Link
+                        key={article.slug}
+                        href={`/article/${article.slug}`}
+                        className="block group"
+                      >
+                        <article>
+                          <h4 className="text-sm font-semibold leading-snug group-hover:text-purple-200 transition-colors line-clamp-2 mb-1.5">
+                            {article.title}
+                          </h4>
+                          <time className="text-xs text-white/30">
+                            {new Date(article.date).toLocaleDateString('en-US', {
+                              month: 'short',
+                              day: 'numeric',
+                              year: 'numeric'
+                            })}
+                          </time>
+                        </article>
+                      </Link>
+                    ))}
+                  </div>
+                  {tool.mentioned_in_articles.length > 3 && (
+                    <div className="mt-4 pt-4 border-t border-white/5">
+                      <Link href="/articles" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">
+                        See all articles →
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Latest Articles */}
+              {latestArticles.length > 0 && (
+                <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
+                  <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
+                    Latest Articles
+                  </div>
+                  <div className="space-y-4">
+                    {latestArticles.slice(0, 3).map((article: any) => (
+                      <Link
+                        key={article.slug}
+                        href={`/article/${article.slug}`}
+                        className="block group"
+                      >
+                        <article>
+                          {article.tags[0] && (
+                            <div className="label text-purple-400/70 mb-1.5">
+                              {article.tags[0]}
+                            </div>
+                          )}
+                          <h4 className="text-sm font-semibold leading-snug group-hover:text-purple-200 transition-colors line-clamp-2 mb-1.5">
+                            {article.title}
+                          </h4>
+                          <time className="text-xs text-white/30">
+                            {new Date(article.date).toLocaleDateString('en-US', {
+                              month: 'short',
+                              day: 'numeric',
+                              year: 'numeric'
+                            })}
+                          </time>
+                        </article>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Category */}
+              <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
+                <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
+                  Category
+                </div>
+                <div className="space-y-2">
+                  {tool.primary_category && (
+                    <div className="text-sm">
+                      <span className="text-white/50">Primary:</span>{' '}
+                      <span className="text-white/90">{tool.primary_category}</span>
+                    </div>
+                  )}
+                  {tool.secondary_categories && tool.secondary_categories.length > 0 && (
+                    <div className="text-sm">
+                      <span className="text-white/50">Also:</span>{' '}
+                      <span className="text-white/90">{tool.secondary_categories.join(', ')}</span>
+                    </div>
+                  )}
+                </div>
+                <div className="mt-4 pt-4 border-t border-white/5">
+                  <Link href="/tools" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">
+                    Browse all tools →
+                  </Link>
+                </div>
+              </div>
+            </aside>
+          </div>
         </main>
-        
+
         <Footer />
       </div>
     </div>
@@ -522,7 +523,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   return {
-    title: `${tool.name} - AI Tools Directory | beri.net`,
+    title: `${tool.name} - AI Tools Directory | THE D[AI]LY BRIEF`,
     description: tool.tagline || tool.short_description || `Comprehensive profile for ${tool.name}`,
+    openGraph: {
+      title: tool.name,
+      description: tool.tagline,
+      type: 'website',
+      images: tool.logo_url ? [{ url: tool.logo_url }] : [],
+    },
   };
 }
