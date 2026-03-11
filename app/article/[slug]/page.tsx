@@ -15,6 +15,12 @@ import InlineSubscribe from '@/components/InlineSubscribe';
 import ArticleSidebar from '@/components/ArticleSidebar';
 // ExitIntent and ScrollSubscribePrompt removed - too many subscribe prompts
 
+// Enable dynamic params for articles added after build
+export const dynamicParams = true;
+
+// Revalidate every hour
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
   return slugs.map((slug) => ({ slug }));
