@@ -5,8 +5,8 @@ description: "After four high-severity incidents in a week, Amazon mandates huma
 author: "Rajesh Beri"
 categories: ["AI", "Enterprise", "DevOps"]
 tags: ["Amazon", "AWS", "AI-Coding", "Site-Reliability", "Kiro", "DevOps", "Production-Incidents", "Code-Review"]
-image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1792&h=1024&auto=format&fit=crop&q=80"
-imageCredit: "Photo by [Markus Spiske](https://unsplash.com/@markusspiske) on Unsplash"
+image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1792&h=1024&auto=format&fit=crop&q=80"
+imageCredit: "Photo by [Florian Olivo](https://unsplash.com/@florianolivo) on Unsplash"
 draft: false
 ---
 
