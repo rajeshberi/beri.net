@@ -1,42 +1,116 @@
 import { connectToDatabase } from './mongodb';
 
 export interface Tool {
+  // V1 schema (old)
   slug: string;
-  productName: string;
-  vendorName: string;
-  websiteUrl: string;
-  logoUrl: string;
-  description: string;
-  detailedAnalysis: string;
-  category: string;
-  subcategory: string;
-  domains: string[];
-  tags: string[];
-  pricingModel: string;
-  pricingDetails: string;
-  targetAudience: string[];
-  useCases: string[];
+  productName?: string;
+  vendorName?: string;
+  websiteUrl?: string;
+  logoUrl?: string;
+  description?: string;
+  detailedAnalysis?: string;
+  category?: string;
+  subcategory?: string;
+  domains?: string[];
+  tags?: string[];
+  pricingModel?: string;
+  pricingDetails?: string;
+  targetAudience?: string[];
+  useCases?: string[];
   founded?: number;
-  headquarters: string;
-  teamSize: string;
-  integrations: string[];
-  apiAvailable: boolean;
-  featured: boolean;
-  verified: boolean;
-  socialLinks: {
+  headquarters?: string;
+  teamSize?: string;
+  integrations?: string[];
+  apiAvailable?: boolean;
+  featured?: boolean;
+  verified?: boolean;
+  socialLinks?: {
     twitter?: string;
     linkedin?: string;
     github?: string;
   };
-  metrics: {
+  metrics?: {
     funding?: string;
     customers?: number;
     rating?: number;
   };
-  addedDate: Date;
-  lastUpdated: Date;
-  addedBy: string;
-  relatedArticles: string[];
+  addedDate?: Date | string;
+  lastUpdated?: Date | string;
+  addedBy?: string;
+  relatedArticles?: string[];
+  
+  // V2 schema (new)
+  name?: string;
+  company?: string;
+  website?: string;
+  logo_url?: string;
+  tagline?: string;
+  short_description?: string;
+  primary_category?: string;
+  secondary_categories?: string[];
+  pricing_model?: string[];
+  target_market?: string[];
+  deployment_model?: string[];
+  best_for?: string[];
+  not_ideal_for?: string[];
+  capabilities?: {
+    text_generation?: boolean;
+    image_generation?: boolean;
+    video_generation?: boolean;
+    audio_generation?: boolean;
+    code_generation?: boolean;
+    workflow_automation?: boolean;
+    agent_orchestration?: boolean;
+    api_access?: boolean;
+    fine_tuning?: boolean;
+    multi_language?: boolean;
+  };
+  key_features?: Array<{
+    name: string;
+    benefit?: string;
+  } | string>;
+  security?: {
+    soc2_type2?: boolean;
+    iso27001?: boolean;
+    gdpr_ccpa?: boolean;
+    encryption_at_rest?: boolean;
+    encryption_in_transit?: boolean;
+    sso?: boolean;
+    rbac?: boolean;
+    sso_methods?: string[];
+    data_retention_policy?: string;
+  };
+  pricing?: {
+    plans?: Array<{
+      name: string;
+      target_user?: string;
+      pricing_model?: string;
+      notes?: string;
+    }>;
+    free_trial?: boolean;
+    trial_days?: number;
+    minimum_contract?: string;
+    volume_discounts?: boolean;
+  };
+  use_cases?: Array<{
+    title: string;
+    description?: string;
+  } | string>;
+  strengths?: string[];
+  considerations?: string[];
+  social_links?: {
+    twitter?: string;
+    linkedin?: string;
+    github?: string;
+  };
+  discovered?: Date | string;
+  last_updated?: Date | string;
+  source?: string;
+  mentioned_in_articles?: Array<{
+    slug: string;
+    title: string;
+    date: string;
+  }>;
 }
 
 export async function getAllTools(): Promise<Tool[]> {
