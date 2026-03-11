@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 async function getTool(slug: string) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://beri.net';
@@ -14,23 +16,23 @@ async function getTool(slug: string) {
 
 function CheckIcon({ checked }: { checked: boolean | null | undefined }) {
   if (checked === null || checked === undefined) {
-    return <span className="text-neutral-400">—</span>;
+    return <span className="text-white/40">—</span>;
   }
   return checked ? (
-    <span className="text-green-600">✅</span>
+    <span className="text-green-400">✅</span>
   ) : (
-    <span className="text-neutral-400">❌</span>
+    <span className="text-white/40">❌</span>
   );
 }
 
 function Section({ title, children, icon }: { title: string; children: React.ReactNode; icon?: string }) {
   return (
     <section className="mb-12">
-      <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+      <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
         {icon && <span>{icon}</span>}
         {title}
       </h2>
-      <div className="bg-white rounded-lg border border-neutral-200 p-6">
+      <div className="card card-glow p-6">
         {children}
       </div>
     </section>
@@ -39,32 +41,32 @@ function Section({ title, children, icon }: { title: string; children: React.Rea
 
 function SnapshotCard({ snapshot }: { snapshot: any }) {
   return (
-    <div className="bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-lg border border-neutral-300 p-6 mb-8">
-      <h3 className="text-lg font-bold mb-4">Quick Snapshot</h3>
+    <div className="bg-gradient-to-br from-purple-900/20 to-purple-800/10 rounded-lg border border-purple-500/30 p-6 mb-8">
+      <h3 className="text-lg font-bold mb-4 text-white">Quick Snapshot</h3>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         <div>
-          <div className="text-sm text-neutral-600 mb-1">Ideal Buyer</div>
-          <div className="font-semibold">{snapshot?.ideal_buyer || 'N/A'}</div>
+          <div className="text-sm text-white/50 mb-1">Ideal Buyer</div>
+          <div className="font-semibold text-white">{snapshot?.ideal_buyer || 'N/A'}</div>
         </div>
         <div>
-          <div className="text-sm text-neutral-600 mb-1">Pricing Level</div>
-          <div className="font-semibold">{snapshot?.pricing_level || 'N/A'}</div>
+          <div className="text-sm text-white/50 mb-1">Pricing Level</div>
+          <div className="font-semibold text-white">{snapshot?.pricing_level || 'N/A'}</div>
         </div>
         <div>
-          <div className="text-sm text-neutral-600 mb-1">Adoption</div>
-          <div className="font-semibold">{snapshot?.ease_of_adoption || 'N/A'}</div>
+          <div className="text-sm text-white/50 mb-1">Adoption</div>
+          <div className="font-semibold text-white">{snapshot?.ease_of_adoption || 'N/A'}</div>
         </div>
         <div>
-          <div className="text-sm text-neutral-600 mb-1">Enterprise Ready</div>
-          <div className="font-semibold">{snapshot?.enterprise_ready || 'N/A'}</div>
+          <div className="text-sm text-white/50 mb-1">Enterprise Ready</div>
+          <div className="font-semibold text-white">{snapshot?.enterprise_ready || 'N/A'}</div>
         </div>
         <div>
-          <div className="text-sm text-neutral-600 mb-1">API Available</div>
-          <div className="font-semibold">{snapshot?.api_available || 'N/A'}</div>
+          <div className="text-sm text-white/50 mb-1">API Available</div>
+          <div className="font-semibold text-white">{snapshot?.api_available || 'N/A'}</div>
         </div>
         <div>
-          <div className="text-sm text-neutral-600 mb-1">Free Trial</div>
-          <div className="font-semibold">{snapshot?.free_trial || 'N/A'}</div>
+          <div className="text-sm text-white/50 mb-1">Free Trial</div>
+          <div className="font-semibold text-white">{snapshot?.free_trial || 'N/A'}</div>
         </div>
       </div>
     </div>
@@ -87,18 +89,25 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
   const comp = tool.competitive || {};
 
   return (
-    <main className="min-h-screen bg-neutral-50">
-      <article className="max-w-5xl mx-auto px-6 py-12">
+    <div className="min-h-screen bg-[#0a0812] text-white noise">
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-900/15 rounded-full blur-[120px]" />
+      </div>
+      
+      <div className="relative">
+        <Header />
+        
+        <main className="max-w-5xl mx-auto px-6 py-12">
         {/* Header */}
         <header className="mb-8">
-          <Link href="/tools" className="text-neutral-600 hover:text-neutral-900 mb-4 inline-block">
+          <Link href="/tools" className="text-white/60 hover:text-white mb-4 inline-block">
             ← Back to Tools Directory
           </Link>
-          <h1 className="text-5xl font-bold mb-4">{tool.name}</h1>
-          <p className="text-xl text-neutral-700 mb-4">{tool.tagline}</p>
+          <h1 className="text-5xl font-bold mb-4 text-white">{tool.name}</h1>
+          <p className="text-xl text-white/80 mb-4">{tool.tagline}</p>
           
           {tool.company && (
-            <div className="text-neutral-600 mb-2">
+            <div className="text-white/70 mb-2">
               <strong>Company:</strong> {tool.company}
               {tool.founded && ` • Founded: ${tool.founded}`}
               {tool.headquarters && ` • HQ: ${tool.headquarters}`}
@@ -111,7 +120,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
                 href={tool.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-6 py-3 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800"
+                className="inline-block px-6 py-3 bg-white/10 text-white rounded-lg hover:bg-purple-500/20 border border-white/10 hover:border-purple-500/30 transition-all"
               >
                 Visit Website →
               </a>
@@ -122,7 +131,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             <div className="flex gap-2 flex-wrap">
               <Link
                 href={`/tags/${tool.primary_category.toLowerCase().replace(/ /g, '-')}`}
-                className="px-3 py-1 bg-neutral-900 text-white rounded-full text-sm"
+                className="px-3 py-1 bg-purple-500/20 text-purple-200 border border-purple-500/30 rounded-full text-sm hover:bg-purple-500/30"
               >
                 {tool.primary_category}
               </Link>
@@ -130,7 +139,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
                 <Link
                   key={cat}
                   href={`/tags/${cat.toLowerCase().replace(/ /g, '-')}`}
-                  className="px-3 py-1 bg-neutral-200 text-neutral-800 rounded-full text-sm hover:bg-neutral-300"
+                  className="px-3 py-1 bg-white/5 text-white/80 border border-white/10 rounded-full text-sm hover:bg-white/10"
                 >
                   {cat}
                 </Link>
@@ -145,14 +154,14 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
         {/* Overview */}
         <Section title="Overview" icon="📋">
           {tool.short_description && (
-            <p className="text-lg text-neutral-700 mb-4">{tool.short_description}</p>
+            <p className="text-lg text-white/80 mb-4">{tool.short_description}</p>
           )}
           
           <div className="grid md:grid-cols-3 gap-4 mt-6">
             {tool.target_market && tool.target_market.length > 0 && (
               <div>
-                <h4 className="font-semibold mb-2">Target Market</h4>
-                <ul className="text-sm space-y-1">
+                <h4 className="font-semibold mb-2 text-white">Target Market</h4>
+                <ul className="text-sm space-y-1 text-white/70">
                   {tool.target_market.map((m: string) => (
                     <li key={m}>• {m}</li>
                   ))}
@@ -162,8 +171,8 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             
             {tool.deployment_model && tool.deployment_model.length > 0 && (
               <div>
-                <h4 className="font-semibold mb-2">Deployment</h4>
-                <ul className="text-sm space-y-1">
+                <h4 className="font-semibold mb-2 text-white">Deployment</h4>
+                <ul className="text-sm space-y-1 text-white/70">
                   {tool.deployment_model.map((d: string) => (
                     <li key={d}>• {d}</li>
                   ))}
@@ -173,8 +182,8 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             
             {tool.pricing_model && tool.pricing_model.length > 0 && (
               <div>
-                <h4 className="font-semibold mb-2">Pricing Model</h4>
-                <ul className="text-sm space-y-1">
+                <h4 className="font-semibold mb-2 text-white">Pricing Model</h4>
+                <ul className="text-sm space-y-1 text-white/70">
                   {tool.pricing_model.map((p: string) => (
                     <li key={p}>• {p}</li>
                   ))}
@@ -190,8 +199,8 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             <div className="grid md:grid-cols-2 gap-6">
               {tool.best_for && tool.best_for.length > 0 && (
                 <div>
-                  <h4 className="font-semibold text-green-700 mb-3">✅ Best For</h4>
-                  <ul className="space-y-2">
+                  <h4 className="font-semibold text-green-400 mb-3">✅ Best For</h4>
+                  <ul className="space-y-2 text-white/70">
                     {tool.best_for.map((item: string, i: number) => (
                       <li key={i} className="text-sm">• {item}</li>
                     ))}
@@ -201,8 +210,8 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
               
               {tool.not_ideal_for && tool.not_ideal_for.length > 0 && (
                 <div>
-                  <h4 className="font-semibold text-yellow-700 mb-3">⚠️ Not Ideal For</h4>
-                  <ul className="space-y-2">
+                  <h4 className="font-semibold text-yellow-400 mb-3">⚠️ Not Ideal For</h4>
+                  <ul className="space-y-2 text-white/70">
                     {tool.not_ideal_for.map((item: string, i: number) => (
                       <li key={i} className="text-sm">• {item}</li>
                     ))}
@@ -215,7 +224,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
 
         {/* Core Capabilities */}
         <Section title="Core Capabilities" icon="🧠">
-          <div className="grid md:grid-cols-2 gap-x-8 gap-y-3">
+          <div className="grid md:grid-cols-2 gap-x-8 gap-y-3 text-white/80">
             <div className="flex items-center justify-between">
               <span>Text Generation</span>
               <CheckIcon checked={cap.text_generation} />
@@ -265,11 +274,11 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             <ul className="space-y-3">
               {tool.key_features.map((feature: any, i: number) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="text-green-600 mt-1">✓</span>
+                  <span className="text-green-400 mt-1">✓</span>
                   <div>
-                    <div className="font-semibold">{feature.name || feature}</div>
+                    <div className="font-semibold text-white">{feature.name || feature}</div>
                     {feature.benefit && (
-                      <div className="text-sm text-neutral-600">{feature.benefit}</div>
+                      <div className="text-sm text-white/60">{feature.benefit}</div>
                     )}
                   </div>
                 </li>
@@ -280,7 +289,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
 
         {/* Security & Compliance */}
         <Section title="Security & Compliance" icon="🔐">
-          <div className="grid md:grid-cols-2 gap-x-8 gap-y-3">
+          <div className="grid md:grid-cols-2 gap-x-8 gap-y-3 text-white/80">
             <div className="flex items-center justify-between">
               <span>SOC 2 Type II</span>
               <CheckIcon checked={sec.soc2_type2} />
@@ -308,13 +317,13 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
           </div>
           
           {sec.sso_methods && sec.sso_methods.length > 0 && (
-            <div className="mt-4 text-sm text-neutral-600">
+            <div className="mt-4 text-sm text-white/60">
               <strong>SSO Methods:</strong> {sec.sso_methods.join(', ')}
             </div>
           )}
           
           {sec.data_retention_policy && (
-            <div className="mt-2 text-sm text-neutral-600">
+            <div className="mt-2 text-sm text-white/60">
               <strong>Data Retention:</strong> {sec.data_retention_policy}
             </div>
           )}
@@ -324,41 +333,41 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
         {tool.pricing?.plans && tool.pricing.plans.length > 0 && (
           <Section title="Pricing" icon="💰">
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full text-white/80">
                 <thead>
-                  <tr className="border-b">
-                    <th className="text-left py-2 px-4">Plan</th>
-                    <th className="text-left py-2 px-4">Target User</th>
-                    <th className="text-left py-2 px-4">Pricing</th>
-                    <th className="text-left py-2 px-4">Notes</th>
+                  <tr className="border-b border-white/10">
+                    <th className="text-left py-2 px-4 text-white">Plan</th>
+                    <th className="text-left py-2 px-4 text-white">Target User</th>
+                    <th className="text-left py-2 px-4 text-white">Pricing</th>
+                    <th className="text-left py-2 px-4 text-white">Notes</th>
                   </tr>
                 </thead>
                 <tbody>
                   {tool.pricing.plans.map((plan: any, i: number) => (
-                    <tr key={i} className="border-b last:border-0">
-                      <td className="py-3 px-4 font-semibold">{plan.name}</td>
+                    <tr key={i} className="border-b border-white/10 last:border-0">
+                      <td className="py-3 px-4 font-semibold text-white">{plan.name}</td>
                       <td className="py-3 px-4">{plan.target_user}</td>
                       <td className="py-3 px-4">{plan.pricing_model}</td>
-                      <td className="py-3 px-4 text-sm text-neutral-600">{plan.notes}</td>
+                      <td className="py-3 px-4 text-sm text-white/60">{plan.notes}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
             
-            <div className="mt-4 grid md:grid-cols-2 gap-4 text-sm">
+            <div className="mt-4 grid md:grid-cols-2 gap-4 text-sm text-white/70">
               {tool.pricing.free_trial && (
                 <div>
-                  <strong>Free Trial:</strong> {tool.pricing.trial_days ? `${tool.pricing.trial_days} days` : 'Yes'}
+                  <strong className="text-white">Free Trial:</strong> {tool.pricing.trial_days ? `${tool.pricing.trial_days} days` : 'Yes'}
                 </div>
               )}
               {tool.pricing.minimum_contract && (
                 <div>
-                  <strong>Minimum Contract:</strong> {tool.pricing.minimum_contract}
+                  <strong className="text-white">Minimum Contract:</strong> {tool.pricing.minimum_contract}
                 </div>
               )}
               {tool.pricing.volume_discounts && (
-                <div><strong>Volume Discounts:</strong> Available</div>
+                <div><strong className="text-white">Volume Discounts:</strong> Available</div>
               )}
             </div>
           </Section>
@@ -367,30 +376,32 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
         {/* Market & Adoption */}
         {(market.notable_clients?.length > 0 || market.estimated_customers) && (
           <Section title="Market & Adoption" icon="📊">
-            {market.estimated_customers && (
-              <div className="mb-4">
-                <strong>Estimated Customers:</strong> {market.estimated_customers}
-              </div>
-            )}
-            
-            {market.notable_clients && market.notable_clients.length > 0 && (
-              <div className="mb-4">
-                <strong>Notable Clients:</strong> {market.notable_clients.join(', ')}
-              </div>
-            )}
-            
-            {market.industries && market.industries.length > 0 && (
-              <div className="mb-4">
-                <strong>Industries:</strong> {market.industries.join(', ')}
-              </div>
-            )}
-            
-            {market.funding?.total && (
-              <div>
-                <strong>Funding:</strong> {market.funding.total}
-                {market.funding.stage && ` (${market.funding.stage})`}
-              </div>
-            )}
+            <div className="text-white/70 space-y-4">
+              {market.estimated_customers && (
+                <div>
+                  <strong className="text-white">Estimated Customers:</strong> {market.estimated_customers}
+                </div>
+              )}
+              
+              {market.notable_clients && market.notable_clients.length > 0 && (
+                <div>
+                  <strong className="text-white">Notable Clients:</strong> {market.notable_clients.join(', ')}
+                </div>
+              )}
+              
+              {market.industries && market.industries.length > 0 && (
+                <div>
+                  <strong className="text-white">Industries:</strong> {market.industries.join(', ')}
+                </div>
+              )}
+              
+              {market.funding?.total && (
+                <div>
+                  <strong className="text-white">Funding:</strong> {market.funding.total}
+                  {market.funding.stage && ` (${market.funding.stage})`}
+                </div>
+              )}
+            </div>
           </Section>
         )}
 
@@ -400,8 +411,8 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             <div className="grid md:grid-cols-2 gap-6">
               {tool.strengths && tool.strengths.length > 0 && (
                 <div>
-                  <h4 className="font-semibold text-green-700 mb-3">✅ Strengths</h4>
-                  <ul className="space-y-2">
+                  <h4 className="font-semibold text-green-400 mb-3">✅ Strengths</h4>
+                  <ul className="space-y-2 text-white/70">
                     {tool.strengths.map((item: string, i: number) => (
                       <li key={i} className="text-sm">• {item}</li>
                     ))}
@@ -411,8 +422,8 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
               
               {tool.considerations && tool.considerations.length > 0 && (
                 <div>
-                  <h4 className="font-semibold text-yellow-700 mb-3">⚠️ Considerations</h4>
-                  <ul className="space-y-2">
+                  <h4 className="font-semibold text-yellow-400 mb-3">⚠️ Considerations</h4>
+                  <ul className="space-y-2 text-white/70">
                     {tool.considerations.map((item: string, i: number) => (
                       <li key={i} className="text-sm">• {item}</li>
                     ))}
@@ -428,10 +439,10 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
           <Section title="Competitive Positioning" icon="🏆">
             {comp.primary_competitors && comp.primary_competitors.length > 0 && (
               <div className="mb-4">
-                <h4 className="font-semibold mb-2">Primary Competitors</h4>
+                <h4 className="font-semibold mb-2 text-white">Primary Competitors</h4>
                 <div className="flex gap-2 flex-wrap">
                   {comp.primary_competitors.map((competitor: string, i: number) => (
-                    <span key={i} className="px-3 py-1 bg-neutral-100 rounded-full text-sm">
+                    <span key={i} className="px-3 py-1 bg-white/10 border border-white/10 rounded-full text-sm text-white/80">
                       {competitor}
                     </span>
                   ))}
@@ -441,8 +452,8 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             
             {comp.differentiators && comp.differentiators.length > 0 && (
               <div>
-                <h4 className="font-semibold mb-2">Key Differentiators</h4>
-                <ul className="space-y-2">
+                <h4 className="font-semibold mb-2 text-white">Key Differentiators</h4>
+                <ul className="space-y-2 text-white/70">
                   {comp.differentiators.map((diff: string, i: number) => (
                     <li key={i} className="text-sm">• {diff}</li>
                   ))}
@@ -457,10 +468,10 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
           <Section title="Use Cases" icon="🧪">
             <div className="space-y-4">
               {tool.use_cases.map((useCase: any, i: number) => (
-                <div key={i} className="border-l-4 border-neutral-300 pl-4">
-                  <h4 className="font-semibold mb-1">{useCase.title || useCase}</h4>
+                <div key={i} className="border-l-4 border-purple-500/30 pl-4">
+                  <h4 className="font-semibold mb-1 text-white">{useCase.title || useCase}</h4>
                   {useCase.description && (
-                    <p className="text-sm text-neutral-600">{useCase.description}</p>
+                    <p className="text-sm text-white/60">{useCase.description}</p>
                   )}
                 </div>
               ))}
@@ -476,10 +487,10 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
                 <Link
                   key={article.slug}
                   href={`/article/${article.slug}`}
-                  className="block p-4 border border-neutral-200 rounded-lg hover:border-neutral-400 hover:shadow-sm transition"
+                  className="block p-4 border border-white/10 rounded-lg hover:border-purple-500/30 hover:bg-white/5 transition"
                 >
-                  <h4 className="font-semibold mb-1">{article.title}</h4>
-                  <p className="text-sm text-neutral-600">{article.date}</p>
+                  <h4 className="font-semibold mb-1 text-white">{article.title}</h4>
+                  <p className="text-sm text-white/50">{article.date}</p>
                 </Link>
               ))}
             </div>
@@ -487,13 +498,16 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
         )}
 
         {/* Footer Metadata */}
-        <div className="mt-12 pt-6 border-t text-sm text-neutral-600">
+        <div className="mt-12 pt-6 border-t border-white/10 text-sm text-white/50">
           {tool.source && <div>Source: {tool.source}</div>}
           {tool.discovered && <div>Discovered: {tool.discovered}</div>}
           {tool.last_updated && <div>Last Updated: {tool.last_updated}</div>}
         </div>
-      </article>
-    </main>
+        </main>
+        
+        <Footer />
+      </div>
+    </div>
   );
 }
 
