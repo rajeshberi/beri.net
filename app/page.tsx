@@ -15,7 +15,12 @@ export default async function Home() {
   const featured = newsletters[0];
   const latest = newsletters.slice(1, 7);
   const newTools = tools
-    .sort((a, b) => new Date(b.addedDate || 0).getTime() - new Date(a.addedDate || 0).getTime())
+    .filter(t => t && (t.name || t.productName))
+    .sort((a, b) => {
+      const dateA = a.addedDate || a.discovered || a.last_updated || 0;
+      const dateB = b.addedDate || b.discovered || b.last_updated || 0;
+      return new Date(dateB).getTime() - new Date(dateA).getTime();
+    })
     .slice(0, 6);
 
   const allTags = Array.from(
