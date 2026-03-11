@@ -31,12 +31,12 @@ export default async function Home() {
       <div className="relative">
         <Header />
 
-        <main className="max-w-[1200px] mx-auto px-6 pt-6 pb-16 md:pt-8 md:pb-24">
+        <main className="max-w-[1200px] mx-auto px-4 pt-4 pb-12 md:px-6 md:pt-8 md:pb-24">
 
           {featured ? (
             <>
               {/* ===== HERO / FEATURED ===== */}
-              <section className="pt-8 pb-16 md:pt-12 md:pb-20">
+              <section className="pt-6 pb-12 md:pt-12 md:pb-20">
                 <ScrollReveal>
                   <Link href={`/article/${featured.slug}`} className="group block" aria-label={`Read featured article: ${featured.title}`}>
                     <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">

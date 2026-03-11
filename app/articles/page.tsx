@@ -22,7 +22,7 @@ export default async function ArticlesPage() {
       <div className="relative">
         <Header />
 
-        <main className="max-w-[1000px] mx-auto px-6 pt-6 pb-16 md:pt-8 md:pb-24">
+        <main className="max-w-[1000px] mx-auto px-4 pt-4 pb-12 md:px-6 md:pt-8 md:pb-24">
           <ScrollReveal>
             <div className="mb-14 space-y-3">
               <div className="label text-purple-400/60 mb-2">All Articles</div>
