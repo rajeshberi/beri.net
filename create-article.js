@@ -24,12 +24,13 @@ async function createArticle(slug, data) {
     }
     
     // Create new article document
+    const now = new Date();
     const article = {
       slug,
       title: data.title || 'Untitled',
       excerpt: data.excerpt || '',
       content: data.content || '',
-      date: data.date || new Date().toISOString().split('T')[0],
+      date: data.date || now.toISOString().split('T')[0],
       author: data.author || 'Rajesh Beri',
       tags: data.tags || [],
       image: data.image || null,
@@ -38,7 +39,10 @@ async function createArticle(slug, data) {
       originalUrl: data.originalUrl || null,
       originalAuthor: data.originalAuthor || null,
       originalSource: data.originalSource || null,
-      addedDate: new Date()
+      published: true,
+      published_date: now,
+      created_at: now,
+      addedDate: now
     };
     
     await db.collection('newsletters').insertOne(article);
