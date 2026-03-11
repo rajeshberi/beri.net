@@ -8,7 +8,7 @@ const { MongoClient } = require('mongodb');
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
-require('dotenv').config({ path: '.env.mongodb' });
+require('dotenv').config({ path: '.env.local' });
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = 'beri-newsletter';
