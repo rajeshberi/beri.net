@@ -16,6 +16,19 @@ So which one actually delivers?
 
 I've talked to engineering leaders at three Fortune 500 companies running both platforms. Here's what the numbers say.
 
+## Quick Comparison: ChatGPT vs Claude Enterprise
+
+| Feature | ChatGPT Enterprise | Claude Enterprise |
+|---------|-------------------|-------------------|
+| **License Cost** | $60/user/month | $60-$80/user/month |
+| **Year 1 Total Cost** (500 users) | ~$630K | ~$550K |
+| **Context Window** | 128K tokens | 200K tokens |
+| **Best For** | Microsoft stack integration | Long document analysis |
+| **Adoption Rate** (Month 12) | 60% weekly active | 68% weekly active |
+| **Hallucination Rate** | 12% (contract review) | 3% (contract review) |
+| **ROI** (measured) | 10.9x | 13.2x |
+| **Key Strength** | Multimodal, fine-tuning | Lower risk, team collaboration |
+
 ## The Pricing Reality (What They Don't Put on the Website)
 
 ### ChatGPT Enterprise
@@ -143,6 +156,17 @@ EU-based manufacturing company chose Claude because:
 - Cross-functional project collaboration (25%)
 
 ## The Decision Framework
+
+| Scenario | Recommended Choice | Why |
+|----------|-------------------|-----|
+| Microsoft-heavy stack | ChatGPT Enterprise | Teams/Office integration is seamless |
+| Engineering productivity focus | ChatGPT Enterprise | Code generation + debugging excels |
+| Long document processing | Claude Enterprise | 200K context window wins |
+| EU/GDPR compliance critical | Claude Enterprise | Better data handling guarantees |
+| Cross-functional collaboration | Claude Enterprise | Projects feature drives team usage |
+| Need multimodal (vision/audio) | ChatGPT Enterprise | Mature multimodal capabilities |
+| Risk-averse legal team | Claude Enterprise | 3% vs 12% hallucination rate |
+| Fine-tuning planned | ChatGPT Enterprise | Proven fine-tuning infrastructure |
 
 ### Pick ChatGPT Enterprise If:
 ✅ Your stack is Microsoft-heavy (Teams, Office 365)  

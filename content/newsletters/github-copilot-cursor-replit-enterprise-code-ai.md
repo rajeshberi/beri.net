@@ -16,6 +16,20 @@ For a 500-person engineering org, that's $120K-$240K annually. Add setup, traini
 
 I've analyzed real usage data from three companies that deployed each platform at scale. Here's what the numbers say.
 
+## Quick Comparison: Code AI Platforms
+
+| Feature | GitHub Copilot | Cursor | Replit |
+|---------|---------------|--------|--------|
+| **License Cost** | $39/user/month | $20/user/month | $25-$40/user/month |
+| **Year 1 Total** (500 engineers) | ~$314K | ~$260K | ~$510K-$600K |
+| **Setup Complexity** | Low (if on GitHub) | Medium (IDE migration) | High (cloud rebuild) |
+| **Adoption Rate** (Month 12) | 85% | 92% | 78% |
+| **Time Saved** | 5-7 hrs/week | 8-10 hrs/week | 6-8 hrs/week |
+| **Code Acceptance** | 35% | 45% | 40% |
+| **ROI** | 7.4x | 5.4x | 1.8x |
+| **Best For** | Large enterprise | Mid-size teams | Cloud-native startups |
+| **Key Strength** | Microsoft integration | AI quality | Collaboration |
+
 ## The Real Costs (What Finance Actually Approves)
 
 ### GitHub Copilot Enterprise
@@ -125,6 +139,17 @@ I've analyzed real usage data from three companies that deployed each platform a
 - Lines of code accepted: 40%
 - Time saved per developer: 6-8 hours/week (environment setup saves most)
 - Best use cases: Prototyping, cloud-native apps, collaboration
+
+## Decision Matrix by Organization Type
+
+| Organization Size/Type | Recommendation | Key Reason |
+|------------------------|---------------|-----------|
+| 500+ engineers, Microsoft shop | GitHub Copilot | Lowest friction, proven at scale |
+| 100-500 engineers, developer-led | Cursor | Best productivity gains, high satisfaction |
+| < 100 engineers, startup | Cursor | DX wins, easier to migrate |
+| Cloud-native AI startup | Replit | Future-proof, collaboration-first |
+| Risk-averse enterprise | GitHub Copilot | Microsoft SLA + security |
+| Remote-first team | Replit | Real-time collaboration |
 
 ## The Decision Framework
 

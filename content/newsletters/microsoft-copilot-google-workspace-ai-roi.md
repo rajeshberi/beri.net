@@ -14,6 +14,20 @@ Microsoft 365 Copilot and Google Workspace AI promise to revolutionize productiv
 
 I've reviewed deployment data from two companies: one went all-in on Microsoft Copilot, the other on Google Workspace AI. Here's what $360K actually bought them.
 
+## Quick Comparison: Productivity AI Platforms
+
+| Feature | Microsoft 365 Copilot | Google Workspace AI |
+|---------|----------------------|-------------------|
+| **AI Add-On Cost** | $30/user/month | $30/user/month |
+| **Base License Required** | E3 ($36) or E5 ($57) | Business Plus ($18) |
+| **Total Monthly Cost** | $66-$87/user | $48-$60/user |
+| **Annual Cost** (1,000 users) | $792K-$1.04M | $576K-$720K |
+| **Weekly Active Users** | 68% | 54% |
+| **Time Saved** (measured) | 2.1 hrs/week | 1.9 hrs/week |
+| **Best Feature** | Outlook summaries (85%) | Docs writing (72%) |
+| **ROI** | 14.9x | 11.1x |
+| **Best For** | Email/meeting heavy | Writing/collaboration |
+
 ## The Pricing Reality
 
 ### Microsoft 365 Copilot
@@ -115,6 +129,17 @@ I've reviewed deployment data from two companies: one went all-in on Microsoft C
 - **Net ROI:** 11.1x
 
 **Both are profitable.** Microsoft edges ahead on raw productivity, Google wins on cost efficiency.
+
+## Feature Effectiveness: What Actually Works
+
+| Feature | Microsoft 365 Copilot | Google Workspace AI | Winner |
+|---------|----------------------|---------------------|--------|
+| **Email Management** | ⭐⭐⭐⭐⭐ Meeting summaries excel | ⭐⭐⭐⭐ Solid Smart Compose | Microsoft |
+| **Document Writing** | ⭐⭐⭐ Generic, hit-or-miss | ⭐⭐⭐⭐ Better for technical writing | Google |
+| **Spreadsheets** | ⭐⭐ Overhyped, 12% adoption | ⭐⭐ Same issues, 15% adoption | Tie (both weak) |
+| **Meeting Tools** | ⭐⭐⭐⭐⭐ Teams integration seamless | ⭐⭐⭐⭐ Meet transcription good | Microsoft |
+| **Presentations** | ⭐⭐⭐ Sales loves it, engineers don't | ⭐⭐⭐ Similar mixed results | Tie |
+| **Collaboration** | ⭐⭐⭐⭐ Co-authoring + AI works | ⭐⭐⭐⭐⭐ Best-in-class real-time | Google |
 
 ## Decision Framework
 
