@@ -21,7 +21,7 @@ export default function AboutPage() {
       <div className="relative">
         <Header />
 
-        <main className="max-w-3xl mx-auto px-6 py-12 md:py-20">
+        <main className="max-w-3xl mx-auto px-4 py-8 md:px-6 md:py-20">
           
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-xs text-white/30 mb-8" aria-label="Breadcrumb">

@@ -154,7 +154,7 @@ export default function UnsubscribePage() {
       <div className="relative">
         <Header />
 
-        <main className="max-w-2xl mx-auto px-6 py-12 md:py-20">
+        <main className="max-w-2xl mx-auto px-4 py-8 md:px-6 md:py-20">
           <Suspense fallback={
             <div className="text-center py-12">
               <div className="inline-block w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>

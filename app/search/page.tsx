@@ -90,7 +90,7 @@ export default function SearchPage() {
       <div className="relative">
         <Header />
 
-        <main className="max-w-[1000px] mx-auto px-6 py-16 md:py-24">
+        <main className="max-w-[1000px] mx-auto px-4 py-12 md:px-6 md:py-24">
           <div className="mb-10 space-y-3">
             <div className="text-xs font-mono text-purple-400/60 tracking-widest uppercase">Search & Discover</div>
             <h2 className="text-4xl md:text-5xl font-bold">Find Insights</h2>
