@@ -34,12 +34,14 @@ async function migrateTools() {
           slug: oldTool.slug,
           name: oldTool.productName || oldTool.name,
           company: oldTool.vendorName || null,
-          website: oldTool.url || oldTool.website || null,
+          founded: oldTool.founded ? oldTool.founded.toString() : null,
+          headquarters: oldTool.headquarters || null,
+          website: oldTool.websiteUrl || oldTool.url || oldTool.website || null,
           last_updated: new Date().toISOString().split('T')[0],
           
-          // Description fields
-          tagline: oldTool.tagline || oldTool.shortDescription || null,
-          short_description: oldTool.description || oldTool.detailedDescription || null,
+          // Description fields  
+          tagline: oldTool.description || oldTool.tagline || oldTool.shortDescription || null,
+          short_description: oldTool.detailedAnalysis || oldTool.description || null,
           
           // Classification
           primary_category: oldTool.category || 'Uncategorized',
@@ -55,35 +57,64 @@ async function migrateTools() {
           // Features
           key_features: oldTool.features ? oldTool.features.map(f => ({ name: f })) : [],
           
-          // Capabilities - infer from old data
+          // Capabilities - infer from category and data
           capabilities: {
-            text_generation: oldTool.category?.includes('Content') || oldTool.category?.includes('Writing'),
-            code_generation: oldTool.category?.includes('Code') || oldTool.category?.includes('Developer'),
+            text_generation: oldTool.category?.includes('Generative') || oldTool.category?.includes('Text') || oldTool.subcategory?.includes('Text'),
+            image_generation: oldTool.subcategory?.includes('Image'),
+            video_generation: oldTool.subcategory?.includes('Video'),
+            code_generation: oldTool.category?.includes('Code') || oldTool.category?.includes('Developer') || oldTool.useCases?.some(u => u.toLowerCase().includes('code')),
             workflow_automation: oldTool.category?.includes('Automation') || oldTool.category?.includes('Workflow'),
-            api_access: oldTool.hasAPI || false,
+            api_access: oldTool.apiAvailable || false,
           },
           
           // Integrations
           integrations: {
-            sdk_available: oldTool.hasSDK || false,
+            sdk_available: oldTool.hasSDK || oldTool.apiAvailable || false,
             sdk_languages: oldTool.sdkLanguages || [],
+            other: oldTool.integrations || [],
           },
           
-          // Pricing
+          // Pricing - preserve original details!
           pricing: {
-            free_trial: oldTool.freeTrial || false,
+            free_trial: oldTool.pricingModel === 'Freemium' || oldTool.freeTrial || false,
             plans: oldTool.pricingPlans || [],
           },
+          pricing_notes: oldTool.pricingDetails || null,
+          
+          // Market data
+          market: {
+            estimated_customers: oldTool.metrics?.customers || null,
+            funding: oldTool.metrics?.funding ? { total: oldTool.metrics.funding } : {},
+          },
+          
+          // Feedback
+          feedback: {
+            g2_rating: oldTool.metrics?.rating || null,
+          },
+          
+          // Additional metadata from old schema
+          logo_url: oldTool.logoUrl || null,
+          social_links: oldTool.socialLinks || {},
+          team_size: oldTool.teamSize || null,
+          verified: oldTool.verified || false,
+          featured: oldTool.featured || false,
+          related_articles: oldTool.relatedArticles || [],
           
           // Metadata
-          source: oldTool.source || 'Legacy migration',
-          discovered: oldTool.dateAdded || new Date().toISOString().split('T')[0],
+          source: oldTool.source || oldTool.addedBy || 'Legacy migration',
+          discovered: oldTool.addedDate || oldTool.dateAdded || new Date().toISOString().split('T')[0],
           synced_at: new Date(),
           
           // Preserve original data for reference
           _legacy_data: {
             original_id: oldTool._id,
-            migrated_at: new Date()
+            migrated_at: new Date(),
+            original_schema: {
+              category: oldTool.category,
+              subcategory: oldTool.subcategory,
+              domains: oldTool.domains,
+              tags: oldTool.tags
+            }
           }
         };
         
