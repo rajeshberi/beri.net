@@ -6,6 +6,9 @@ import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import NewsletterSignup from '@/components/NewsletterSignup';
 
+// Revalidate every 5 minutes to show new articles/tools quickly
+export const revalidate = 300;
+
 export default async function Home() {
   const newsletters = await getAllNewsletters();
   const tools = await getAllTools();

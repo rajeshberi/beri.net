@@ -10,6 +10,9 @@ export const metadata = {
   description: 'All articles from THE D[AI]LY BRIEF — Enterprise AI insights and deep dives',
 };
 
+// Revalidate every 5 minutes to show new articles quickly
+export const revalidate = 300;
+
 export default async function ArticlesPage() {
   const newsletters = await getAllNewsletters();
 
