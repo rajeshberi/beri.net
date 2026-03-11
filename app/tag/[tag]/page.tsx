@@ -36,7 +36,7 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
       <div className="relative">
         <Header />
 
-        <main className="max-w-[900px] mx-auto px-6 py-16 md:py-24">
+        <main className="max-w-[900px] mx-auto px-4 py-12 md:px-6 md:py-24">
           <ScrollReveal>
             <Link href="/tags" className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-purple-400 transition-colors mb-8">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

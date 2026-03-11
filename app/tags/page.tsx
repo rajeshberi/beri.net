@@ -26,7 +26,7 @@ export default async function TagsPage() {
       <div className="relative">
         <Header />
 
-        <main className="max-w-[900px] mx-auto px-6 py-16 md:py-24">
+        <main className="max-w-[900px] mx-auto px-4 py-12 md:px-6 md:py-24">
           <ScrollReveal>
             <div className="mb-14 space-y-3">
               <div className="text-xs font-mono text-purple-400/60 tracking-widest uppercase">Browse by Topic</div>
