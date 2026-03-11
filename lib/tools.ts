@@ -45,7 +45,7 @@ export async function getAllTools(): Promise<Tool[]> {
     const db = client.db('beri-newsletter');
     
     const tools = await db
-      .collection('ai_tools')
+      .collection('tools')
       .find({})
       .sort({ addedDate: -1 })
       .toArray();
@@ -67,7 +67,7 @@ export async function getToolBySlug(slug: string): Promise<Tool | null> {
     const client = await connectToDatabase();
     const db = client.db('beri-newsletter');
     
-    const tool = await db.collection('ai_tools').findOne({ slug });
+    const tool = await db.collection('tools').findOne({ slug });
     
     if (!tool) return null;
     
@@ -105,7 +105,7 @@ export async function getToolsByCategory(category: string): Promise<Tool[]> {
     const db = client.db('beri-newsletter');
     
     const tools = await db
-      .collection('ai_tools')
+      .collection('tools')
       .find({ category })
       .sort({ featured: -1, addedDate: -1 })
       .toArray();
@@ -128,7 +128,7 @@ export async function getToolsByDomain(domain: string): Promise<Tool[]> {
     const db = client.db('beri-newsletter');
     
     const tools = await db
-      .collection('ai_tools')
+      .collection('tools')
       .find({ domains: domain })
       .sort({ featured: -1, addedDate: -1 })
       .toArray();
@@ -153,7 +153,7 @@ export async function getToolsForArticle(articleSlug: string): Promise<Tool[]> {
     // Find tools that have this article in their relatedArticles array
     // relatedArticles can be either array of strings or array of objects with slug field
     const tools = await db
-      .collection('ai_tools')
+      .collection('tools')
       .find({
         $or: [
           { relatedArticles: articleSlug }, // Simple string array
