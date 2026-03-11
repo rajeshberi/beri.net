@@ -71,7 +71,7 @@ export default function AboutPage() {
                   A few friends asked if I could send them my weekly summaries. "Just the highlights," they said. "What actually matters."
                 </p>
                 <p>
-                  Word spread. Those friends forwarded to their networks. Within weeks, I was sending curated AI insights to 22 people — all through personal referrals. CIOs, engineering leaders, sales VPs, founders. People who needed to understand AI but didn't have time to wade through the hype.
+                  Word spread. Those friends forwarded to their networks. Within weeks, I was sending curated AI insights to 22 people — all through personal referrals. AI enthusiasts who needed to understand what actually matters without wading through the hype.
                 </p>
                 <p>
                   That's when I realized this should be a real newsletter. Not a side project sent to friends, but a proper publication open to anyone who values depth over clickbait. So I built <strong>THE D[AI]LY BRIEF</strong> — twice-weekly deep dives into enterprise AI, backed by 30+ years of building software at scale.
