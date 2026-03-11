@@ -1,480 +1,512 @@
-import { getToolBySlug } from '@/lib/tools';
-import { getAllNewsletters } from '@/lib/newsletters';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { clientConfig } from '@/lib/clientConfig';
 
-// Make this a dynamic route - tools are fetched from MongoDB at runtime
-export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // Revalidate every hour
-
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const tool = await getToolBySlug(slug);
-  if (!tool) return { title: 'Tool Not Found' };
-
-  return {
-    title: `${tool.productName} - ${tool.category} | AI Tools Directory`,
-    description: tool.description,
-    openGraph: {
-      title: tool.productName,
-      description: tool.description,
-      type: 'website',
-      images: tool.logoUrl ? [{ url: tool.logoUrl }] : [],
-    },
-  };
+async function getTool(slug: string) {
+  const res = await fetch(`${clientConfig.apiUrl}/api/tools/${slug}`, {
+    cache: 'no-store'
+  });
+  
+  if (!res.ok) return null;
+  const data = await res.json();
+  return data.tool;
 }
 
-export default async function ToolPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const tool = await getToolBySlug(slug);
+function CheckIcon({ checked }: { checked: boolean | null | undefined }) {
+  if (checked === null || checked === undefined) {
+    return <span className="text-neutral-400">—</span>;
+  }
+  return checked ? (
+    <span className="text-green-600">✅</span>
+  ) : (
+    <span className="text-neutral-400">❌</span>
+  );
+}
+
+function Section({ title, children, icon }: { title: string; children: React.ReactNode; icon?: string }) {
+  return (
+    <section className="mb-12">
+      <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+        {icon && <span>{icon}</span>}
+        {title}
+      </h2>
+      <div className="bg-white rounded-lg border border-neutral-200 p-6">
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function SnapshotCard({ snapshot }: { snapshot: any }) {
+  return (
+    <div className="bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-lg border border-neutral-300 p-6 mb-8">
+      <h3 className="text-lg font-bold mb-4">Quick Snapshot</h3>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div>
+          <div className="text-sm text-neutral-600 mb-1">Ideal Buyer</div>
+          <div className="font-semibold">{snapshot?.ideal_buyer || 'N/A'}</div>
+        </div>
+        <div>
+          <div className="text-sm text-neutral-600 mb-1">Pricing Level</div>
+          <div className="font-semibold">{snapshot?.pricing_level || 'N/A'}</div>
+        </div>
+        <div>
+          <div className="text-sm text-neutral-600 mb-1">Adoption</div>
+          <div className="font-semibold">{snapshot?.ease_of_adoption || 'N/A'}</div>
+        </div>
+        <div>
+          <div className="text-sm text-neutral-600 mb-1">Enterprise Ready</div>
+          <div className="font-semibold">{snapshot?.enterprise_ready || 'N/A'}</div>
+        </div>
+        <div>
+          <div className="text-sm text-neutral-600 mb-1">API Available</div>
+          <div className="font-semibold">{snapshot?.api_available || 'N/A'}</div>
+        </div>
+        <div>
+          <div className="text-sm text-neutral-600 mb-1">Free Trial</div>
+          <div className="font-semibold">{snapshot?.free_trial || 'N/A'}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default async function ToolPage({ params }: { params: { slug: string } }) {
+  const tool = await getTool(params.slug);
 
   if (!tool) {
     notFound();
   }
 
-  // Fetch latest articles for sidebar
-  const allArticles = await getAllNewsletters();
-  const latestArticles = allArticles.slice(0, 5);
-
-  // Check if company info exists
-  const hasCompanyInfo = tool.founded || tool.headquarters || tool.teamSize || tool.metrics?.funding;
-  const hasSocialLinks = tool.socialLinks?.twitter || tool.socialLinks?.linkedin || tool.socialLinks?.github;
+  const cap = tool.capabilities || {};
+  const sec = tool.security || {};
+  const deploy = tool.deployment || {};
+  const perf = tool.performance || {};
+  const market = tool.market || {};
+  const comp = tool.competitive || {};
 
   return (
-    <div className="min-h-screen bg-[#0a0812] text-white noise">
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-900/15 rounded-full blur-[120px]" />
-      </div>
-
-      <div className="relative">
-        <Header />
-
-        <main className="max-w-[1200px] mx-auto px-4 pt-4 pb-12 md:px-6 md:pt-8 md:pb-24">
-          <div className="grid lg:grid-cols-[1fr_320px] gap-12">
-          {/* Main Content */}
-          <div>
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-xs text-white/30 mb-6">
-            <Link href="/" className="hover:text-purple-400 transition-colors">Home</Link>
-            <span>/</span>
-            <Link href="/tools" className="hover:text-purple-400 transition-colors">Tools</Link>
-            <span>/</span>
-            <span className="text-white/50">{tool.productName}</span>
-          </nav>
-
-          {/* Hero */}
-          <div className="mb-10">
-            <div className="flex items-start gap-5 mb-5">
-              {tool.logoUrl ? (
-                <img 
-                  src={tool.logoUrl} 
-                  alt={tool.productName}
-                  className="w-16 h-16 rounded-xl object-cover shrink-0"
-                />
-              ) : (
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-white text-2xl font-bold shrink-0">
-                  {tool.productName.charAt(0)}
-                </div>
-              )}
-
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-3 mb-1">
-                  <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{tool.productName}</h1>
-                  {tool.verified && (
-                    <span className="text-purple-400 text-xl" title="Verified">✓</span>
-                  )}
-                </div>
-                <p className="text-white/40 text-sm">by {tool.vendorName}</p>
-              </div>
+    <main className="min-h-screen bg-neutral-50">
+      <article className="max-w-5xl mx-auto px-6 py-12">
+        {/* Header */}
+        <header className="mb-8">
+          <Link href="/tools" className="text-neutral-600 hover:text-neutral-900 mb-4 inline-block">
+            ← Back to Tools Directory
+          </Link>
+          <h1 className="text-5xl font-bold mb-4">{tool.name}</h1>
+          <p className="text-xl text-neutral-700 mb-4">{tool.tagline}</p>
+          
+          {tool.company && (
+            <div className="text-neutral-600 mb-2">
+              <strong>Company:</strong> {tool.company}
+              {tool.founded && ` • Founded: ${tool.founded}`}
+              {tool.headquarters && ` • HQ: ${tool.headquarters}`}
             </div>
-
-            <p className="text-lg text-white/60 leading-relaxed max-w-2xl">{tool.description}</p>
-
-            {/* Quick Meta */}
-            <div className="flex flex-wrap items-center gap-2.5 mt-5">
-              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] text-xs text-white/50">
-                {tool.category}
-              </span>
-              {tool.subcategory && (
-                <span className="px-2.5 py-1 rounded-md bg-white/[0.04] text-xs text-white/50">
-                  {tool.subcategory}
-                </span>
-              )}
-              <span className="px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-300/80 text-xs font-medium">
-                {tool.pricingModel}
-              </span>
-              {tool.apiAvailable && (
-                <span className="px-2.5 py-1 rounded-md bg-green-500/8 text-green-400/70 text-xs">
-                  API Available
-                </span>
-              )}
-            </div>
-
-            {/* CTA */}
-            <div className="mt-6">
+          )}
+          
+          <div className="flex gap-4 mb-6">
+            {tool.website && (
               <a
-                href={tool.websiteUrl}
+                href={tool.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary inline-flex items-center gap-2"
+                className="inline-block px-6 py-3 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800"
               >
                 Visit Website →
               </a>
-            </div>
+            )}
           </div>
 
-          {/* Business Domains */}
-          {tool.domains && tool.domains.length > 0 && (
-            <section className="py-6 border-t border-white/[0.06]">
-              <h2 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-3">Business Domains</h2>
-              <div className="flex flex-wrap gap-2">
-                {tool.domains.map(domain => (
-                  <span key={domain} className="px-3 py-1.5 rounded-md bg-white/[0.04] text-sm text-white/60">
-                    {domain.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                  </span>
-                ))}
-              </div>
-            </section>
+          {tool.primary_category && (
+            <div className="flex gap-2 flex-wrap">
+              <Link
+                href={`/tags/${tool.primary_category.toLowerCase().replace(/ /g, '-')}`}
+                className="px-3 py-1 bg-neutral-900 text-white rounded-full text-sm"
+              >
+                {tool.primary_category}
+              </Link>
+              {tool.secondary_categories?.map((cat: string) => (
+                <Link
+                  key={cat}
+                  href={`/tags/${cat.toLowerCase().replace(/ /g, '-')}`}
+                  className="px-3 py-1 bg-neutral-200 text-neutral-800 rounded-full text-sm hover:bg-neutral-300"
+                >
+                  {cat}
+                </Link>
+              ))}
+            </div>
           )}
+        </header>
 
-          {/* Overview */}
-          {tool.detailedAnalysis && (
-            <section className="py-6 border-t border-white/[0.06]">
-              <h2 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">Overview</h2>
-              <div className="text-[15px] text-white/60 leading-[1.8] space-y-4 max-w-2xl">
-                {tool.detailedAnalysis.split('\n').map((para, i) => (
-                  para.trim() && <p key={i}>{para}</p>
-                ))}
-              </div>
-            </section>
+        {/* Quick Snapshot */}
+        {tool.snapshot && <SnapshotCard snapshot={tool.snapshot} />}
+
+        {/* Overview */}
+        <Section title="Overview" icon="📋">
+          {tool.short_description && (
+            <p className="text-lg text-neutral-700 mb-4">{tool.short_description}</p>
           )}
-
-          {/* Market Analysis */}
-          <section className="py-6 border-t border-white/[0.06]">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-5">Market Analysis</h2>
-            <div className="space-y-6">
-              {/* Adoption & Usage */}
+          
+          <div className="grid md:grid-cols-3 gap-4 mt-6">
+            {tool.target_market && tool.target_market.length > 0 && (
               <div>
-                <h3 className="text-sm font-semibold text-white/80 mb-2 flex items-center gap-2">
-                  <span className="text-purple-400/70">📊</span>
-                  Adoption & Usage
-                </h3>
-                <p className="text-sm text-white/50 leading-relaxed max-w-2xl">
-                  {tool.productName} is used across {tool.targetAudience?.join(', ') || 'various industries'} for {tool.useCases?.[0]?.toLowerCase() || 'diverse use cases'}. 
-                  {tool.metrics?.customers && ` Serves ${tool.metrics.customers}+ customers.`}
-                  {tool.productName === 'ChatGPT' && ' Widely adopted with 900M weekly active users globally.'}
-                  {tool.productName === 'Claude' && ' Growing adoption among enterprises for complex reasoning and code generation tasks.'}
-                  {tool.productName === 'Gemini' && ' Integrated across Google Workspace, benefiting from existing enterprise user base.'}
-                </p>
-              </div>
-
-              {/* Strengths */}
-              <div>
-                <h3 className="text-sm font-semibold text-white/80 mb-2 flex items-center gap-2">
-                  <span className="text-green-400/70">✓</span>
-                  Key Strengths
-                </h3>
-                <ul className="space-y-1.5 text-sm">
-                  {tool.pricingModel === 'Open Source' && (
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-400/50 mt-0.5">•</span>
-                      <span className="text-white/55">Open-source with full control over deployment and data</span>
-                    </li>
-                  )}
-                  {tool.apiAvailable && (
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-400/50 mt-0.5">•</span>
-                      <span className="text-white/55">Well-documented API for easy integration</span>
-                    </li>
-                  )}
-                  {tool.pricingModel === 'Freemium' && (
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-400/50 mt-0.5">•</span>
-                      <span className="text-white/55">Free tier available for testing and small-scale use</span>
-                    </li>
-                  )}
-                  {tool.metrics?.funding && (
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-400/50 mt-0.5">•</span>
-                      <span className="text-white/55">Well-funded with strong backing ({tool.metrics.funding})</span>
-                    </li>
-                  )}
-                  <li className="flex items-start gap-2">
-                    <span className="text-green-400/50 mt-0.5">•</span>
-                    <span className="text-white/55">{tool.description}</span>
-                  </li>
+                <h4 className="font-semibold mb-2">Target Market</h4>
+                <ul className="text-sm space-y-1">
+                  {tool.target_market.map((m: string) => (
+                    <li key={m}>• {m}</li>
+                  ))}
                 </ul>
               </div>
-
-              {/* Considerations */}
+            )}
+            
+            {tool.deployment_model && tool.deployment_model.length > 0 && (
               <div>
-                <h3 className="text-sm font-semibold text-white/80 mb-2 flex items-center gap-2">
-                  <span className="text-yellow-400/70">⚠</span>
-                  Considerations
-                </h3>
-                <ul className="space-y-1.5 text-sm">
-                  {tool.pricingModel === 'Enterprise' && (
-                    <li className="flex items-start gap-2">
-                      <span className="text-yellow-400/50 mt-0.5">•</span>
-                      <span className="text-white/55">Enterprise-only pricing may be cost-prohibitive for smaller teams</span>
-                    </li>
-                  )}
-                  {tool.pricingModel === 'Open Source' && (
-                    <li className="flex items-start gap-2">
-                      <span className="text-yellow-400/50 mt-0.5">•</span>
-                      <span className="text-white/55">Requires technical expertise for deployment and maintenance</span>
-                    </li>
-                  )}
-                  {!tool.apiAvailable && (
-                    <li className="flex items-start gap-2">
-                      <span className="text-yellow-400/50 mt-0.5">•</span>
-                      <span className="text-white/55">Limited API access may restrict integration options</span>
-                    </li>
-                  )}
-                  <li className="flex items-start gap-2">
-                    <span className="text-yellow-400/50 mt-0.5">•</span>
-                    <span className="text-white/55">Evaluate against specific use case requirements before commitment</span>
-                  </li>
+                <h4 className="font-semibold mb-2">Deployment</h4>
+                <ul className="text-sm space-y-1">
+                  {tool.deployment_model.map((d: string) => (
+                    <li key={d}>• {d}</li>
+                  ))}
                 </ul>
               </div>
-
-              <p className="text-xs text-white/20 italic pt-2">
-                Based on public information, vendor documentation, and industry trends.
-              </p>
-            </div>
-          </section>
-
-          {/* Use Cases */}
-          {tool.useCases && tool.useCases.length > 0 && (
-            <section className="py-6 border-t border-white/[0.06]">
-              <h2 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">Use Cases</h2>
-              <div className="grid md:grid-cols-2 gap-x-8 gap-y-2">
-                {tool.useCases.map((useCase, i) => (
-                  <div key={i} className="flex items-start gap-2 py-1">
-                    <span className="text-purple-400/50 mt-0.5 text-sm">•</span>
-                    <span className="text-sm text-white/55">{useCase}</span>
-                  </div>
-                ))}
+            )}
+            
+            {tool.pricing_model && tool.pricing_model.length > 0 && (
+              <div>
+                <h4 className="font-semibold mb-2">Pricing Model</h4>
+                <ul className="text-sm space-y-1">
+                  {tool.pricing_model.map((p: string) => (
+                    <li key={p}>• {p}</li>
+                  ))}
+                </ul>
               </div>
-            </section>
-          )}
-
-          {/* Pricing Details */}
-          {tool.pricingDetails && (
-            <section className="py-6 border-t border-white/[0.06]">
-              <h2 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-3">Pricing</h2>
-              <p className="text-sm text-white/55 leading-relaxed max-w-2xl">{tool.pricingDetails}</p>
-            </section>
-          )}
-
-          {/* Company Info */}
-          {hasCompanyInfo && (
-            <section className="py-6 border-t border-white/[0.06]">
-              <h2 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">Company</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {tool.founded && (
-                  <div>
-                    <div className="text-xs text-white/30 mb-1">Founded</div>
-                    <div className="text-sm text-white/70">{tool.founded}</div>
-                  </div>
-                )}
-                {tool.headquarters && (
-                  <div>
-                    <div className="text-xs text-white/30 mb-1">Headquarters</div>
-                    <div className="text-sm text-white/70">{tool.headquarters}</div>
-                  </div>
-                )}
-                {tool.teamSize && (
-                  <div>
-                    <div className="text-xs text-white/30 mb-1">Team Size</div>
-                    <div className="text-sm text-white/70">{tool.teamSize}</div>
-                  </div>
-                )}
-                {tool.metrics?.funding && (
-                  <div>
-                    <div className="text-xs text-white/30 mb-1">Funding</div>
-                    <div className="text-sm text-white/70">{tool.metrics.funding}</div>
-                  </div>
-                )}
-              </div>
-            </section>
-          )}
-
-          {/* Social Links */}
-          {hasSocialLinks && (
-            <section className="py-6 border-t border-white/[0.06]">
-              <h2 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-3">Links</h2>
-              <div className="flex flex-wrap gap-4">
-                {tool.socialLinks?.twitter && (
-                  <a href={tool.socialLinks.twitter} target="_blank" rel="noopener" className="text-sm text-white/40 hover:text-purple-300 transition-colors">
-                    Twitter/X →
-                  </a>
-                )}
-                {tool.socialLinks?.linkedin && (
-                  <a href={tool.socialLinks.linkedin} target="_blank" rel="noopener" className="text-sm text-white/40 hover:text-purple-300 transition-colors">
-                    LinkedIn →
-                  </a>
-                )}
-                {tool.socialLinks?.github && (
-                  <a href={tool.socialLinks.github} target="_blank" rel="noopener" className="text-sm text-white/40 hover:text-purple-300 transition-colors">
-                    GitHub →
-                  </a>
-                )}
-                <a href={tool.websiteUrl} target="_blank" rel="noopener" className="text-sm text-white/40 hover:text-purple-300 transition-colors">
-                  Website →
-                </a>
-              </div>
-            </section>
-          )}
-
-          {/* Back Link */}
-          <div className="pt-8 border-t border-white/[0.06]">
-            <Link href="/tools" className="text-sm text-white/30 hover:text-purple-300 transition-colors inline-flex items-center gap-2">
-              ← Back to All Tools
-            </Link>
+            )}
           </div>
-          </div>
+        </Section>
 
-          {/* Sidebar */}
-          <aside className="space-y-6">
-            {/* Subscribe Card - Sticky */}
-            <div className="sticky top-24 z-10">
-              <div className="card card-glow p-6" style={{ backgroundColor: '#0a0812' }}>
-                <div className="space-y-4">
-                  <div className="text-sm font-semibold text-purple-400 uppercase tracking-wide">
-                    Stay Updated
-                  </div>
-                  <h3 className="text-lg font-bold leading-tight">
-                    Get AI insights every Tue & Thu
-                  </h3>
-                  <p className="text-sm text-white/50 leading-relaxed">
-                    Data-driven analysis for engineering leaders. No hype, just signal.
-                  </p>
-                  <a 
-                    href="/#newsletter" 
-                    className="btn-primary block text-center !text-sm"
-                  >
-                    Subscribe Free
-                  </a>
+        {/* Best For / Not Ideal For */}
+        {(tool.best_for?.length > 0 || tool.not_ideal_for?.length > 0) && (
+          <Section title="Best For / Not Ideal For" icon="🎯">
+            <div className="grid md:grid-cols-2 gap-6">
+              {tool.best_for && tool.best_for.length > 0 && (
+                <div>
+                  <h4 className="font-semibold text-green-700 mb-3">✅ Best For</h4>
+                  <ul className="space-y-2">
+                    {tool.best_for.map((item: string, i: number) => (
+                      <li key={i} className="text-sm">• {item}</li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
+              )}
+              
+              {tool.not_ideal_for && tool.not_ideal_for.length > 0 && (
+                <div>
+                  <h4 className="font-semibold text-yellow-700 mb-3">⚠️ Not Ideal For</h4>
+                  <ul className="space-y-2">
+                    {tool.not_ideal_for.map((item: string, i: number) => (
+                      <li key={i} className="text-sm">• {item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
+          </Section>
+        )}
 
-            {/* Tags */}
-            {tool.tags && tool.tags.length > 0 && (
-              <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
-                <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
-                  Tags
+        {/* Core Capabilities */}
+        <Section title="Core Capabilities" icon="🧠">
+          <div className="grid md:grid-cols-2 gap-x-8 gap-y-3">
+            <div className="flex items-center justify-between">
+              <span>Text Generation</span>
+              <CheckIcon checked={cap.text_generation} />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Image Generation</span>
+              <CheckIcon checked={cap.image_generation} />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Video Generation</span>
+              <CheckIcon checked={cap.video_generation} />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Audio Generation</span>
+              <CheckIcon checked={cap.audio_generation} />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Code Generation</span>
+              <CheckIcon checked={cap.code_generation} />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Workflow Automation</span>
+              <CheckIcon checked={cap.workflow_automation} />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Agent Orchestration</span>
+              <CheckIcon checked={cap.agent_orchestration} />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>API Access</span>
+              <CheckIcon checked={cap.api_access} />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Fine-tuning</span>
+              <CheckIcon checked={cap.fine_tuning} />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Multi-language</span>
+              <CheckIcon checked={cap.multi_language} />
+            </div>
+          </div>
+        </Section>
+
+        {/* Key Features */}
+        {tool.key_features && tool.key_features.length > 0 && (
+          <Section title="Key Features" icon="⚙️">
+            <ul className="space-y-3">
+              {tool.key_features.map((feature: any, i: number) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="text-green-600 mt-1">✓</span>
+                  <div>
+                    <div className="font-semibold">{feature.name || feature}</div>
+                    {feature.benefit && (
+                      <div className="text-sm text-neutral-600">{feature.benefit}</div>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </Section>
+        )}
+
+        {/* Security & Compliance */}
+        <Section title="Security & Compliance" icon="🔐">
+          <div className="grid md:grid-cols-2 gap-x-8 gap-y-3">
+            <div className="flex items-center justify-between">
+              <span>SOC 2 Type II</span>
+              <CheckIcon checked={sec.soc2_type2} />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>ISO 27001</span>
+              <CheckIcon checked={sec.iso27001} />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>GDPR / CCPA</span>
+              <CheckIcon checked={sec.gdpr_ccpa} />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Encryption (at rest/transit)</span>
+              <CheckIcon checked={sec.encryption_at_rest || sec.encryption_in_transit} />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>SSO</span>
+              <CheckIcon checked={sec.sso} />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>RBAC</span>
+              <CheckIcon checked={sec.rbac} />
+            </div>
+          </div>
+          
+          {sec.sso_methods && sec.sso_methods.length > 0 && (
+            <div className="mt-4 text-sm text-neutral-600">
+              <strong>SSO Methods:</strong> {sec.sso_methods.join(', ')}
+            </div>
+          )}
+          
+          {sec.data_retention_policy && (
+            <div className="mt-2 text-sm text-neutral-600">
+              <strong>Data Retention:</strong> {sec.data_retention_policy}
+            </div>
+          )}
+        </Section>
+
+        {/* Pricing */}
+        {tool.pricing?.plans && tool.pricing.plans.length > 0 && (
+          <Section title="Pricing" icon="💰">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b">
+                    <th className="text-left py-2 px-4">Plan</th>
+                    <th className="text-left py-2 px-4">Target User</th>
+                    <th className="text-left py-2 px-4">Pricing</th>
+                    <th className="text-left py-2 px-4">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tool.pricing.plans.map((plan: any, i: number) => (
+                    <tr key={i} className="border-b last:border-0">
+                      <td className="py-3 px-4 font-semibold">{plan.name}</td>
+                      <td className="py-3 px-4">{plan.target_user}</td>
+                      <td className="py-3 px-4">{plan.pricing_model}</td>
+                      <td className="py-3 px-4 text-sm text-neutral-600">{plan.notes}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            
+            <div className="mt-4 grid md:grid-cols-2 gap-4 text-sm">
+              {tool.pricing.free_trial && (
+                <div>
+                  <strong>Free Trial:</strong> {tool.pricing.trial_days ? `${tool.pricing.trial_days} days` : 'Yes'}
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {tool.tags.slice(0, 10).map((tag) => (
-                    <span
-                      key={tag}
-                      className="tag"
-                    >
-                      {tag}
+              )}
+              {tool.pricing.minimum_contract && (
+                <div>
+                  <strong>Minimum Contract:</strong> {tool.pricing.minimum_contract}
+                </div>
+              )}
+              {tool.pricing.volume_discounts && (
+                <div><strong>Volume Discounts:</strong> Available</div>
+              )}
+            </div>
+          </Section>
+        )}
+
+        {/* Market & Adoption */}
+        {(market.notable_clients?.length > 0 || market.estimated_customers) && (
+          <Section title="Market & Adoption" icon="📊">
+            {market.estimated_customers && (
+              <div className="mb-4">
+                <strong>Estimated Customers:</strong> {market.estimated_customers}
+              </div>
+            )}
+            
+            {market.notable_clients && market.notable_clients.length > 0 && (
+              <div className="mb-4">
+                <strong>Notable Clients:</strong> {market.notable_clients.join(', ')}
+              </div>
+            )}
+            
+            {market.industries && market.industries.length > 0 && (
+              <div className="mb-4">
+                <strong>Industries:</strong> {market.industries.join(', ')}
+              </div>
+            )}
+            
+            {market.funding?.total && (
+              <div>
+                <strong>Funding:</strong> {market.funding.total}
+                {market.funding.stage && ` (${market.funding.stage})`}
+              </div>
+            )}
+          </Section>
+        )}
+
+        {/* Strengths & Considerations */}
+        {(tool.strengths?.length > 0 || tool.considerations?.length > 0) && (
+          <Section title="Strengths & Considerations" icon="⭐">
+            <div className="grid md:grid-cols-2 gap-6">
+              {tool.strengths && tool.strengths.length > 0 && (
+                <div>
+                  <h4 className="font-semibold text-green-700 mb-3">✅ Strengths</h4>
+                  <ul className="space-y-2">
+                    {tool.strengths.map((item: string, i: number) => (
+                      <li key={i} className="text-sm">• {item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              {tool.considerations && tool.considerations.length > 0 && (
+                <div>
+                  <h4 className="font-semibold text-yellow-700 mb-3">⚠️ Considerations</h4>
+                  <ul className="space-y-2">
+                    {tool.considerations.map((item: string, i: number) => (
+                      <li key={i} className="text-sm">• {item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </Section>
+        )}
+
+        {/* Competitive Positioning */}
+        {(comp.primary_competitors?.length > 0 || comp.differentiators?.length > 0) && (
+          <Section title="Competitive Positioning" icon="🏆">
+            {comp.primary_competitors && comp.primary_competitors.length > 0 && (
+              <div className="mb-4">
+                <h4 className="font-semibold mb-2">Primary Competitors</h4>
+                <div className="flex gap-2 flex-wrap">
+                  {comp.primary_competitors.map((competitor: string, i: number) => (
+                    <span key={i} className="px-3 py-1 bg-neutral-100 rounded-full text-sm">
+                      {competitor}
                     </span>
                   ))}
                 </div>
               </div>
             )}
-
-            {/* Related Articles */}
-            {tool.relatedArticles && tool.relatedArticles.length > 0 && (
-              <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
-                <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
-                  Featured In
-                </div>
-                <div className="space-y-4">
-                  {tool.relatedArticles.slice(0, 3).map((article: any) => (
-                    <Link
-                      key={article.slug}
-                      href={`/article/${article.slug}`}
-                      className="block group"
-                    >
-                      <article>
-                        <h4 className="text-sm font-semibold leading-snug group-hover:text-purple-200 transition-colors line-clamp-2 mb-1.5">
-                          {article.title}
-                        </h4>
-                        <time className="text-xs text-white/30">
-                          {new Date(article.date).toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric',
-                            year: 'numeric'
-                          })}
-                        </time>
-                      </article>
-                    </Link>
+            
+            {comp.differentiators && comp.differentiators.length > 0 && (
+              <div>
+                <h4 className="font-semibold mb-2">Key Differentiators</h4>
+                <ul className="space-y-2">
+                  {comp.differentiators.map((diff: string, i: number) => (
+                    <li key={i} className="text-sm">• {diff}</li>
                   ))}
-                </div>
+                </ul>
               </div>
             )}
+          </Section>
+        )}
 
-            {/* Latest Articles */}
-            <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
-              <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
-                Latest Articles
-              </div>
-              <div className="space-y-4">
-                {latestArticles.map((article: any) => (
-                  <Link
-                    key={article.slug}
-                    href={`/article/${article.slug}`}
-                    className="block group"
-                  >
-                    <article>
-                      <h4 className="text-sm font-semibold leading-snug group-hover:text-purple-200 transition-colors line-clamp-2 mb-1.5">
-                        {article.title}
-                      </h4>
-                      <time className="text-xs text-white/30">
-                        {new Date(article.date).toLocaleDateString('en-US', {
-                          month: 'short',
-                          day: 'numeric',
-                          year: 'numeric'
-                        })}
-                      </time>
-                    </article>
-                  </Link>
-                ))}
-              </div>
-              <div className="mt-4 pt-4 border-t border-white/5">
-                <Link href="/articles" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">
-                  See all articles →
-                </Link>
-              </div>
-            </div>
-
-            {/* Category */}
-            <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
-              <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
-                Category
-              </div>
-              <div className="space-y-2">
-                <div className="text-sm">
-                  <span className="text-white/50">Primary:</span>{' '}
-                  <span className="text-white/90">{tool.category}</span>
+        {/* Use Cases */}
+        {tool.use_cases && tool.use_cases.length > 0 && (
+          <Section title="Use Cases" icon="🧪">
+            <div className="space-y-4">
+              {tool.use_cases.map((useCase: any, i: number) => (
+                <div key={i} className="border-l-4 border-neutral-300 pl-4">
+                  <h4 className="font-semibold mb-1">{useCase.title || useCase}</h4>
+                  {useCase.description && (
+                    <p className="text-sm text-neutral-600">{useCase.description}</p>
+                  )}
                 </div>
-                {tool.subcategory && (
-                  <div className="text-sm">
-                    <span className="text-white/50">Type:</span>{' '}
-                    <span className="text-white/90">{tool.subcategory}</span>
-                  </div>
-                )}
-              </div>
-              <div className="mt-4 pt-4 border-t border-white/5">
-                <Link href="/tools" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">
-                  Browse all tools →
-                </Link>
-              </div>
+              ))}
             </div>
-          </aside>
-          </div>
-        </main>
+          </Section>
+        )}
 
-        <Footer />
-      </div>
-    </div>
+        {/* Related Articles */}
+        {tool.mentioned_in_articles && tool.mentioned_in_articles.length > 0 && (
+          <Section title="Mentioned In" icon="📰">
+            <div className="space-y-3">
+              {tool.mentioned_in_articles.map((article: any) => (
+                <Link
+                  key={article.slug}
+                  href={`/article/${article.slug}`}
+                  className="block p-4 border border-neutral-200 rounded-lg hover:border-neutral-400 hover:shadow-sm transition"
+                >
+                  <h4 className="font-semibold mb-1">{article.title}</h4>
+                  <p className="text-sm text-neutral-600">{article.date}</p>
+                </Link>
+              ))}
+            </div>
+          </Section>
+        )}
+
+        {/* Footer Metadata */}
+        <div className="mt-12 pt-6 border-t text-sm text-neutral-600">
+          {tool.source && <div>Source: {tool.source}</div>}
+          {tool.discovered && <div>Discovered: {tool.discovered}</div>}
+          {tool.last_updated && <div>Last Updated: {tool.last_updated}</div>}
+        </div>
+      </article>
+    </main>
   );
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const tool = await getTool(params.slug);
+  
+  if (!tool) {
+    return {
+      title: 'Tool Not Found',
+    };
+  }
+
+  return {
+    title: `${tool.name} - AI Tools Directory | beri.net`,
+    description: tool.tagline || tool.short_description || `Comprehensive profile for ${tool.name}`,
+  };
 }
