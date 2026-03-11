@@ -36,7 +36,7 @@ export default async function Home() {
           {featured ? (
             <>
               {/* ===== HERO / FEATURED ===== */}
-              <section className="py-20 md:py-32">
+              <section className="pt-8 pb-16 md:pt-12 md:pb-20">
                 <ScrollReveal>
                   <Link href={`/article/${featured.slug}`} className="group block" aria-label={`Read featured article: ${featured.title}`}>
                     <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
