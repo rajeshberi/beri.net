@@ -78,13 +78,13 @@ export default function ArticleSidebar({ currentSlug, tags, relatedArticles, all
               >
                 <article>
                   <div className="label text-purple-400/70 mb-1.5">
-                    {tool.category}
+                    {tool.category || tool.primary_category}
                   </div>
                   <h4 className="text-sm font-semibold leading-snug group-hover:text-purple-200 transition-colors line-clamp-2 mb-1.5">
-                    {tool.productName}
+                    {tool.productName || tool.name}
                   </h4>
                   <p className="text-xs text-white/50 line-clamp-2">
-                    {tool.description}
+                    {tool.description || tool.tagline}
                   </p>
                 </article>
               </Link>
