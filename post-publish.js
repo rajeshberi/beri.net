@@ -33,18 +33,21 @@ async function postPublish(slug) {
     // ======================
     console.log('🔗 Step 1: Linking to mentioned tools...');
     
-    const tools = await db.collection('ai_tools').find({}).toArray();
+    const tools = await db.collection('tools').find({}).toArray();
     const content = article.content.toLowerCase();
     const title = article.title.toLowerCase();
     
     let toolsLinked = 0;
     
     for (const tool of tools) {
+      const toolName = tool.productName || tool.name;
+      const vendorName = tool.vendorName || tool.company;
+      
       const searchTerms = [
-        tool.productName.toLowerCase(),
-        tool.vendorName.toLowerCase(),
+        toolName?.toLowerCase(),
+        vendorName?.toLowerCase(),
         tool.slug
-      ];
+      ].filter(Boolean);
       
       const mentioned = searchTerms.some(term => 
         content.includes(term) || title.includes(term)
@@ -63,13 +66,13 @@ async function postPublish(slug) {
             date: article.date
           });
           
-          await db.collection('ai_tools').updateOne(
+          await db.collection('tools').updateOne(
             { _id: tool._id },
             { $set: { relatedArticles: existingArticles } }
           );
           
           toolsLinked++;
-          console.log(`   ✅ Linked to tool: ${tool.productName}`);
+          console.log(`   ✅ Linked to tool: ${toolName}`);
         }
       }
     }
