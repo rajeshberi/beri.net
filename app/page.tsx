@@ -6,8 +6,8 @@ import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import NewsletterSignup from '@/components/NewsletterSignup';
 
-// Revalidate every 30 seconds to show new articles/tools quickly
-export const revalidate = 30;
+// Revalidate every 60 seconds (can be triggered on-demand via /api/revalidate)
+export const revalidate = 60;
 
 export default async function Home() {
   const newsletters = await getAllNewsletters();
