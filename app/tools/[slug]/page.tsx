@@ -34,7 +34,8 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
     notFound();
   }
 
-  // Get latest articles for sidebar
+  // Note: Related articles (mentioned_in_articles) come from the API
+  // Fallback to latest articles only if no related articles exist
   const allArticles = await getAllNewsletters();
   const latestArticles = allArticles.slice(0, 5);
 
@@ -415,14 +416,14 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
                 </div>
               )}
 
-              {/* Featured In */}
+              {/* Featured In (Articles that mention this tool) */}
               {tool.mentioned_in_articles && tool.mentioned_in_articles.length > 0 && (
                 <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
                   <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
                     Featured In
                   </div>
                   <div className="space-y-4">
-                    {tool.mentioned_in_articles.slice(0, 3).map((article: any) => (
+                    {tool.mentioned_in_articles.map((article: any) => (
                       <Link
                         key={article.slug}
                         href={`/article/${article.slug}`}
@@ -443,14 +444,21 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
                       </Link>
                     ))}
                   </div>
+                  {tool.mentioned_in_articles.length > 5 && (
+                    <div className="mt-4 pt-4 border-t border-white/5">
+                      <Link href="/articles" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">
+                        See all articles →
+                      </Link>
+                    </div>
+                  )}
                 </div>
               )}
 
-              {/* Latest Articles */}
-              {latestArticles.length > 0 && (
+              {/* Latest Articles (only show if no related articles) */}
+              {(!tool.mentioned_in_articles || tool.mentioned_in_articles.length === 0) && latestArticles.length > 0 && (
                 <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
                   <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
-                    Latest Articles
+                    Latest From The Brief
                   </div>
                   <div className="space-y-4">
                     {latestArticles.slice(0, 3).map((article: any) => (
