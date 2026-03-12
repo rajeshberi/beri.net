@@ -29,6 +29,7 @@ async function backfillLinks() {
       const content = article.content?.toLowerCase() || '';
       const title = article.title?.toLowerCase() || '';
       let articleLinks = 0;
+      const articleToolSlugs = [];
       
       for (const tool of tools) {
         const toolName = tool.productName || tool.name;
@@ -64,11 +65,17 @@ async function backfillLinks() {
             
             articleLinks++;
             totalLinks++;
+            articleToolSlugs.push(tool.slug);
           }
         }
       }
       
-      if (articleLinks > 0) {
+      // Update article with tools array
+      if (articleToolSlugs.length > 0) {
+        await db.collection('newsletters').updateOne(
+          { _id: article._id },
+          { $set: { tools: articleToolSlugs } }
+        );
         console.log(`✅ ${article.title} → ${articleLinks} tool(s)`);
       }
     }
