@@ -454,8 +454,8 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
                 </div>
               )}
 
-              {/* Latest Articles (only show if no related articles) */}
-              {(!tool.mentioned_in_articles || tool.mentioned_in_articles.length === 0) && latestArticles.length > 0 && (
+              {/* Latest Articles */}
+              {latestArticles.length > 0 && (
                 <div className="card p-6" style={{ backgroundColor: '#0a0812' }}>
                   <div className="text-sm font-semibold text-white/40 uppercase tracking-wide mb-4">
                     Latest From The Brief
