@@ -2,7 +2,7 @@
 title: "Google Just Made AI Assistants Actually Useful for Work"
 date: 2026-03-11T20:00:00Z
 description: "Gemini in Workspace now pulls from your files and emails to auto-generate docs, sheets, and slides. The first AI tool that actually saves more time than it wastes."
-tags: ["Google", "Gemini", "Productivity", "Enterprise-AI", "Google-Workspace", "Docs", "Sheets", "Automation"]
+tags: ['Automation', 'Enterprise AI', 'Gemini', 'Google', 'Google Workspace', 'Productivity']
 image: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Solen Feyissa](https://unsplash.com/@solenfeyissa) on Unsplash"
 ---

@@ -2,7 +2,7 @@
 title: "ChatGPT Enterprise vs Claude Enterprise: The $200K Decision"
 date: 2026-03-11
 author: Rajesh Beri
-tags: [Enterprise AI, ChatGPT, Claude, AI Platforms, ROI Analysis, Cost Comparison, Enterprise Tools]
+tags: ['ChatGPT', 'Claude', 'Cost Analysis', 'Enterprise AI', 'Enterprise Software', 'ROI']
 description: "Enterprise leaders face a $200K+ annual decision: ChatGPT Enterprise or Claude Enterprise. Real usage data, hidden costs, and ROI frameworks to make the call."
 image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Stephen Dawson](https://unsplash.com/@srd844) on Unsplash"

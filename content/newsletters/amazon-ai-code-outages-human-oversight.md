@@ -4,7 +4,7 @@ date: 2026-03-11T13:00:00Z
 description: "After four high-severity incidents in a week, Amazon mandates human review of AI-generated code. The real cost of moving fast and breaking things—when 'things' is your production infrastructure."
 author: "Rajesh Beri"
 categories: ["AI", "Enterprise", "DevOps"]
-tags: ["Amazon", "AWS", "AI-Coding", "Site-Reliability", "Kiro", "DevOps", "Production-Incidents", "Code-Review"]
+tags: ['AWS', 'Amazon', 'Code AI', 'Code Review', 'DevOps', 'Production', 'Site Reliability']
 image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Markus Spiske](https://unsplash.com/@markusspiske) on Unsplash"
 draft: false

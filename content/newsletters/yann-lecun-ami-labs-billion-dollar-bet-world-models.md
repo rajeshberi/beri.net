@@ -4,7 +4,7 @@ subtitle: "AMI Labs raises $1.03B to build 'world models' — a fundamentally di
 date: "2026-03-10"
 slug: "yann-lecun-ami-labs-billion-dollar-bet-world-models"
 description: "Turing Prize winner Yann LeCun's new startup AMI Labs just raised $1.03 billion to build AI systems that understand the real world — not just text. Here's why enterprise AI buyers should pay attention."
-tags: ["AI Research", "Enterprise AI", "World Models", "Yann LeCun", "AI Funding", "AMI Labs", "JEPA"]
+tags: ['AI Funding', 'AI Research', 'Enterprise AI', 'World Models']
 image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Google DeepMind](https://unsplash.com/@googledeepmind) on Unsplash"
 ---

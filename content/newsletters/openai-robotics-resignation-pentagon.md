@@ -3,7 +3,7 @@ title: "OpenAI's Pentagon Deal Just Cost Them a Key Leader. Here's the Enterpris
 date: "2026-03-08"
 published: true
 excerpt: "When your robotics leader resigns on principle and your users uninstall your product 200% faster than normal, you didn't close a deal — you detonated your brand. The enterprise playbook for when speed kills."
-tags: ["AI Ethics", "Government Contracts", "OpenAI", "Enterprise Decision-Making", "Leadership", "Pentagon", "Anthropic"]
+tags: ['AI Ethics', 'Anthropic', 'Enterprise Decision-Making', 'Government Contracts', 'Leadership', 'OpenAI']
 image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Scott Graham](https://unsplash.com/@homajob) on Unsplash"
 type: "newsletter"

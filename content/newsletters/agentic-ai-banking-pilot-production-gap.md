@@ -4,7 +4,7 @@ description: "99% of banks plan to deploy AI agents. Only 11% actually have. Her
 slug: "agentic-ai-banking-pilot-production-gap"
 date: "2026-03-09"
 author: "Rajesh Beri"
-tags: ["agentic-ai", "banking", "enterprise-ai", "financial-services", "ai-agents", "compliance", "roi"]
+tags: ['AI Agents', 'Agentic AI', 'Banking', 'Compliance', 'Enterprise AI', 'Financial Services', 'ROI']
 image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Austin Distel](https://unsplash.com/@austindistel) on Unsplash"
 ---

@@ -3,7 +3,7 @@ title: "OpenAI and Oracle Just Blew Up Their Biggest AI Data Center Deal. Here's
 date: "2026-03-08"
 published: true
 excerpt: "The Stargate expansion in Texas is dead. Oracle couldn't close the financing, OpenAI couldn't commit to demand forecasts, and Meta is already circling. If you're betting your AI strategy on a single vendor, this is your wake-up call."
-tags: ["Infrastructure", "Enterprise", "Vendor Risk", "Cloud Strategy", "AI Hardware", "IT", "Finance", "Operations"]
+tags: ['AI Hardware', 'Cloud Strategy', 'Enterprise', 'Finance', 'IT', 'Infrastructure', 'Operations', 'Vendor Risk']
 image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Taylor Vick](https://unsplash.com/@tvick) on Unsplash"
 type: "curated"

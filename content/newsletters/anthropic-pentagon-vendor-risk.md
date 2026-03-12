@@ -3,7 +3,7 @@ title: "Anthropic vs. The Pentagon: What Enterprise AI Buyers Need to Know"
 date: "2026-03-08"
 excerpt: "When a $200M government contract collapses over AI ethics, every CIO needs to understand the vendor risk implications. Plus: OpenAI's $110B round, new federal procurement rules, and why AI is creating jobs (not killing them)."
 author: "Rajesh Beri"
-tags: ["Enterprise AI", "Vendor Risk", "Government Contracts", "AI Governance", "OpenAI", "Anthropic"]
+tags: ['AI Governance', 'Anthropic', 'Enterprise AI', 'Government Contracts', 'OpenAI', 'Vendor Risk']
 category: "Weekly Digest"
 image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Markus Spiske](https://unsplash.com/@markusspiske) on Unsplash"

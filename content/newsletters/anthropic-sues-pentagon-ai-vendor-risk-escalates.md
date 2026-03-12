@@ -2,7 +2,7 @@
 title: "Anthropic Sues Pentagon: The Vendor Risk Wake-Up Call Every Enterprise Needs"
 description: "Anthropic filed a federal lawsuit against the Pentagon over AI usage restrictions. This isn't just about military contracts — it's a canary in the coal mine for enterprise AI vendor risk. Here's what procurement teams need to know."
 date: 2026-03-10
-tags: ["anthropic", "vendor-risk", "ai-governance", "enterprise-ai", "compliance", "procurement"]
+tags: ['AI Governance', 'Anthropic', 'Compliance', 'Enterprise AI', 'Procurement', 'Vendor Risk']
 image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Claire Anderson](https://unsplash.com/@claireandy) on Unsplash"
 slug: "anthropic-sues-pentagon-ai-vendor-risk-escalates"

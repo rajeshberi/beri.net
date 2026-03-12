@@ -3,7 +3,7 @@ title: "The Government Just Cut Off Anthropic Overnight. Here's Why You Should C
 date: "2026-03-06"
 published: true
 excerpt: "The Pentagon designated Anthropic a 'supply-chain risk' and killed their federal contracts overnight. If any part of your business runs on Claude, stop what you're doing and read this."
-tags: ["Enterprise", "AI Policy", "Anthropic", "Claude", "Vendor Risk", "Government", "IT", "Legal", "Finance", "Operations", "Sales", "HR", "Product Management"]
+tags: ['AI Policy', 'Anthropic', 'Claude', 'Enterprise', 'Finance', 'Government', 'HR', 'IT', 'Legal', 'Operations', 'Product Management', 'Sales', 'Vendor Risk']
 image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Scott Graham](https://unsplash.com/@homajob) on Unsplash"
 type: "curated"

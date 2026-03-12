@@ -3,7 +3,7 @@ title: "Claude Just Learned to Loop: Why Scheduled Tasks Change Everything for E
 date: "2026-03-08"
 excerpt: "Anthropic quietly shipped the most useful feature since Cowork itself — automated recurring tasks that run while you sleep. Here's what this means for operations teams, sales leaders, and anyone tired of manually compiling the same reports every week."
 author: "Rajesh Beri"
-tags: ["Claude", "AI Automation", "Cowork", "Enterprise AI", "Productivity", "Recurring Tasks"]
+tags: ['AI Automation', 'Claude', 'Enterprise AI', 'Productivity', 'Recurring Tasks']
 category: "Product Analysis"
 image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Kevin Ku](https://unsplash.com/@ikukevk) on Unsplash"

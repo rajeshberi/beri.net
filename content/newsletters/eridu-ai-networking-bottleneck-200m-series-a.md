@@ -2,7 +2,7 @@
 title: "The $200M Bet That Your AI Data Center Is Fundamentally Broken"
 description: "Eridu emerges from stealth with $200M to rebuild AI networking from the ground up. When GPUs scale 10x/year but switches only 2x every 2-3 years, billions in infrastructure spend is being wasted. Here's why networking just became AI's biggest bottleneck."
 date: 2026-03-11
-tags: ["AI Infrastructure", "Data Centers", "Enterprise AI", "Networking", "Eridu", "AI Funding", "Drew Perkins"]
+tags: ['AI Funding', 'AI Infrastructure', 'Data Centers', 'Enterprise AI', 'Networking']
 image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Taylor Vick](https://unsplash.com/@tvick) on Unsplash"
 ---

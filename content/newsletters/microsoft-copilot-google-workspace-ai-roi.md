@@ -2,7 +2,7 @@
 title: "Microsoft 365 Copilot vs Google Workspace AI: The $30/User Truth"
 date: 2026-03-11
 author: Rajesh Beri
-tags: [Enterprise AI, Microsoft 365, Google Workspace, Productivity, ROI, Enterprise Software]
+tags: ['Enterprise AI', 'Enterprise Software', 'Google Workspace', 'Microsoft 365', 'Productivity', 'ROI']
 description: "$30/user/month adds up fast. Microsoft 365 Copilot vs Google Workspace AI for 1,000 employees: which actually saves money? Real ROI data from enterprise deployments."
 image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Scott Graham](https://unsplash.com/@homajob) on Unsplash"

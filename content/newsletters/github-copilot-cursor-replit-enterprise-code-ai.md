@@ -2,7 +2,7 @@
 title: "GitHub Copilot vs Cursor vs Replit: Enterprise Code AI Battle"
 date: 2026-03-11
 author: Rajesh Beri
-tags: [Enterprise AI, GitHub Copilot, Cursor, Replit, Developer Tools, Code AI, Productivity]
+tags: ['Code AI', 'Cursor', 'Developer Tools', 'Enterprise AI', 'GitHub Copilot', 'Productivity', 'Replit']
 description: "500-engineer orgs spend $300K/year on code AI. Which platform actually delivers ROI? Real productivity data from 3 Fortune 500 deployments."
 image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Clément Hél](https://unsplash.com/@clemhlrdt) on Unsplash"

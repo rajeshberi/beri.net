@@ -3,7 +3,7 @@ title: "Chrome Just Turned Every Website Into an AI Tool: What WebMCP Means for 
 date: "2026-03-08"
 excerpt: "Google shipped WebMCP in Chrome 146, and it's not just another browser feature—it's a fundamental shift in how AI agents interact with the web. Here's why CTOs and product leaders need to pay attention, and what it means for your development roadmap."
 author: "Rajesh Beri"
-tags: ["WebMCP", "Chrome", "AI Agents", "Web Standards", "Enterprise AI", "Browser Automation", "MCP"]
+tags: ['AI Agents', 'Browser Automation', 'Enterprise AI', 'MCP', 'Web Standards']
 category: "Infrastructure"
 image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Markus Spiske](https://unsplash.com/@markusspiske) on Unsplash"

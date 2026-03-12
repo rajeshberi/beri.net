@@ -3,7 +3,7 @@ title: "GPT-5.4 vs Claude Opus 4.6: I Tested Both. Here's Which One Saves You Mo
 date: "2026-03-07"
 published: true
 excerpt: "Everyone's arguing about benchmarks. I deployed both in production and tracked the costs. The answer isn't what you think — and the smartest teams aren't choosing one."
-tags: ["AI Models", "LLMs", "GPT-5", "Claude", "Enterprise", "Benchmarks", "Architecture", "ROI", "Cost Analysis", "IT", "Engineering", "Finance", "Sales", "Legal", "Operations", "Product Management"]
+tags: ['AI Models', 'Architecture', 'Benchmarks', 'Claude', 'Cost Analysis', 'Engineering', 'Enterprise', 'Finance', 'IT', 'LLMs', 'Legal', 'Operations', 'Product Management', 'ROI', 'Sales']
 image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Carlos Muza](https://unsplash.com/@kmuza) on Unsplash"
 type: "original"

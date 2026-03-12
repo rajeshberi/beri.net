@@ -3,7 +3,7 @@ title: "Your CTO Wants AI Agents Everywhere. Here's What Actually Happens Next."
 date: "2026-02-27"
 published: true
 excerpt: "79% of organizations say they're using AI agents. Having watched dozens of these rollouts, I can tell you: most of them are chatbots wearing a trench coat. Here's the reality check."
-tags: ["AI Agents", "Enterprise", "Sales", "Operations", "Finance", "ROI", "Deployment", "IT", "Legal", "Marketing", "HR", "Product Management", "Engineering"]
+tags: ['AI Agents', 'Deployment', 'Engineering', 'Enterprise', 'Finance', 'HR', 'IT', 'Legal', 'Marketing', 'Operations', 'Product Management', 'ROI', 'Sales']
 image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Possessed Photography](https://unsplash.com/@possessedphotography) on Unsplash"
 type: "curated"

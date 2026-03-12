@@ -3,7 +3,7 @@ title: "Broadcom Just Said '$100 Billion' and I Nearly Spit Out My Coffee"
 date: "2026-02-24"
 published: true
 excerpt: "Broadcom raised its AI infrastructure forecast to $100B. I've been in enterprise tech long enough to know what that number actually means for your budget — and it's not what the headlines say."
-tags: ["Infrastructure", "AI Hardware", "Enterprise", "Budget", "Cost Analysis", "IT", "Finance", "Operations", "Engineering", "Product Management"]
+tags: ['AI Hardware', 'Budget', 'Cost Analysis', 'Engineering', 'Enterprise', 'Finance', 'IT', 'Infrastructure', 'Operations', 'Product Management']
 image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [Alexandre Debiève](https://unsplash.com/@alexkixa) on Unsplash"
 type: "curated"

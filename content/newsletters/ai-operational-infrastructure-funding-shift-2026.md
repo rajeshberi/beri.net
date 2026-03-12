@@ -4,7 +4,7 @@ description: "While everyone obsesses over GPT-5 vs Claude Opus, investors just 
 slug: "ai-operational-infrastructure-funding-shift-2026"
 date: "2026-03-09"
 author: "Rajesh Beri"
-tags: ["enterprise-ai", "ai-infrastructure", "agentic-ai", "venture-capital", "ai-agents", "enterprise-software", "ai-governance"]
+tags: ['AI Agents', 'AI Governance', 'AI Infrastructure', 'Agentic AI', 'Enterprise AI', 'Enterprise Software', 'Venture Capital']
 image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1792&h=1024&auto=format&fit=crop&q=80"
 imageCredit: "Photo by [NASA](https://unsplash.com/@nasa) on Unsplash"
 ---

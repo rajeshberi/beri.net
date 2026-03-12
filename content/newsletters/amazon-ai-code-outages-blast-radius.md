@@ -2,8 +2,7 @@
 title: "When AI Code Goes to Production: Amazon's 'High Blast Radius' Wake-Up Call"
 date: 2026-03-10
 author: Rajesh Beri
-tags:
-  - AI Safety
+tags: ['- AI Safety']
   - Enterprise AI
   - DevOps
   - Amazon
