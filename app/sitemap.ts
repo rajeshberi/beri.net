@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getAllNewsletters } from '@/lib/newsletters';
 import { getAllTools } from '@/lib/tools';
+import { getAllEvents } from '@/lib/events';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.beri.net';
@@ -10,6 +11,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   
   // Get all tools
   const tools = await getAllTools();
+  
+  // Get all events
+  const events = await getAllEvents();
   
   // Get all unique tags
   const allTags = Array.from(
@@ -38,6 +42,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/tools`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/events`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.9,
@@ -91,5 +101,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
   
-  return [...staticPages, ...newsletterPages, ...toolPages, ...tagPages];
+  // Event pages
+  const eventPages: MetadataRoute.Sitemap = events.map(event => ({
+    url: `${baseUrl}/events/${event.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+  
+  return [...staticPages, ...newsletterPages, ...toolPages, ...eventPages, ...tagPages];
 }
