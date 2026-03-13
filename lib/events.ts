@@ -1,5 +1,24 @@
 import { connectToDatabase } from './mongodb';
 
+export async function getAllEvents() {
+  try {
+    const client = await connectToDatabase();
+    const db = client.db('beri-newsletter');
+    const collection = db.collection('events');
+    
+    const events = await collection
+      .find({})
+      .sort({ date_start: 1 })
+      .project({ _id: 0 })
+      .toArray();
+    
+    return events;
+  } catch (error) {
+    console.error('Error fetching all events:', error);
+    return [];
+  }
+}
+
 export async function getUpcomingEvents(limit = 5) {
   try {
     const client = await connectToDatabase();
