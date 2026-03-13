@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 async function getEvent(slug: string) {
@@ -23,7 +23,8 @@ async function getEvent(slug: string) {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const data = await getEvent(params.slug);
+  const { slug } = await params;
+  const data = await getEvent(slug);
   
   if (!data || !data.event) {
     return {
@@ -40,7 +41,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function EventDetailPage({ params }: Props) {
-  const data = await getEvent(params.slug);
+  const { slug } = await params;
+  const data = await getEvent(slug);
   
   if (!data || !data.event) {
     notFound();
