@@ -261,7 +261,7 @@ export default async function EventDetailPage({ params }: Props) {
       </div>
       
       {/* Related Content */}
-      {(related.tools?.length > 0 || related.articles?.length > 0 || related.similarEvents?.length > 0) && (
+      {(related.tools?.length > 0 || related.articles?.length > 0) && (
         <div className="mt-16 pt-12 border-t">
           <h2 className="text-3xl font-bold mb-8">Related Content</h2>
           
