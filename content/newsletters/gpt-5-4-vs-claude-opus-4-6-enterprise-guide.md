@@ -64,6 +64,8 @@ OpenAI combined coding (from GPT-5.3 Codex), computer control, full-resolution v
 
 **Pricing:** $2.50/M tokens input, $15.00/M output. 1M token context window (GA, not beta).
 
+For a complete breakdown of GPT-5.4 pricing including hidden costs like long-context surcharges and data residency fees, see our [detailed enterprise pricing guide](/article/gpt-5-4-pricing-guide-2026-enterprise).
+
 ## Claude Opus 4.6: The Specialist
 
 Anthropic built Claude with depth over breadth. This is the model you deploy when accuracy matters more than speed and code quality is non-negotiable.
@@ -81,6 +83,8 @@ Anthropic built Claude with depth over breadth. This is the model you deploy whe
 **Pricing:** $5.00/M tokens input, $25.00/M output. 200K context (GA), 1M (beta).
 
 **The cost gap matters:** Claude costs 2x on input and 1.67x on output. At scale, that compounds fast. Claude Sonnet 4.6 (79.6% SWE-Bench) is the middle-tier option that 70% of users prefer over the previous version.
+
+For a [complete comparison of enterprise AI pricing](/article/chatgpt-vs-claude-enterprise-200k-decision) including ChatGPT Enterprise vs Claude Enterprise contracts, volume discounts, and total cost of ownership, see our dedicated analysis.
 
 ## The Framework That Actually Helps
 
@@ -123,7 +127,9 @@ Build a model router — an abstraction layer between your app and the model API
 GPT-5.4  Claude  Gemini
 ```
 
-**Why this matters right now:** This week, the [US government terminated Anthropic's federal contracts overnight](/newsletter/us-ai-guidelines-anthropic-pentagon-clash). If your stack was hardcoded to Claude, you'd be scrambling. With a routing layer, you update one config and keep running. Multi-model isn't just performance optimization — it's business continuity.
+**Why this matters right now:** This week, the [US government terminated Anthropic's federal contracts overnight](/article/us-ai-guidelines-anthropic-pentagon-clash). If your stack was hardcoded to Claude, you'd be scrambling. With a routing layer, you update one config and keep running. Multi-model isn't just performance optimization — it's business continuity.
+
+Understanding [vendor risk considerations when choosing AI providers](/article/us-ai-guidelines-anthropic-pentagon-clash) has become essential for enterprise AI strategy.
 
 **Practical routing rules that work:**
 
@@ -174,11 +180,31 @@ And stop arguing about benchmarks on Twitter. Nobody's mind has ever been change
 
 *I'm building a model cost calculator that compares GPT-5.4, Claude, and Gemini across common enterprise workflows. Want early access? [Connect with me on LinkedIn](https://www.linkedin.com/in/rberi/) and I'll send it when it's ready.*
 
+For teams also evaluating [AI coding assistants like GitHub Copilot, Cursor, and Replit](/article/github-copilot-cursor-replit-enterprise-code-ai), the model choice impacts which IDE tools integrate best.
+
+And if you're comparing broader [enterprise AI platforms like Microsoft 365 Copilot vs Google Workspace AI](/article/microsoft-copilot-google-workspace-ai-roi), the underlying model capabilities (GPT vs Gemini) drive pricing and ROI.
+
+---
+
+## Related Guides
+
+Want to dive deeper? Check out these related analyses:
+
+- [GPT-5.4 Pricing Guide 2026: Hidden Costs Every Enterprise Buyer Needs to Know](/article/gpt-5-4-pricing-guide-2026-enterprise) — Complete cost breakdown including long-context surcharges, Pro tier premiums, and volume discounts
+- [Claude Opus 4.6 Production Review: 30 Days, 12,000 API Calls, Real Performance Data](/article/claude-opus-4-6-production-review-30-day-test) — Real-world deployment testing with cost and quality metrics
+- [GPT-5.4 vs Claude Opus 4.6 for Coding: Which AI Writes Better Production Code?](/article/gpt-5-4-vs-claude-opus-4-6-coding-comparison) — Head-to-head coding benchmarks across Python, JavaScript, and SQL
+- [How to Choose Between GPT-5.4 and Claude Opus 4.6: The 5-Minute Decision Framework](/article/how-to-choose-gpt-5-4-vs-claude-opus-4-6-decision-guide) — Answer 5 questions and know which model to buy
+- [GPT-5.4 vs Claude Opus 4.6 Benchmarks: Every Number That Actually Matters](/article/gpt-5-4-vs-claude-opus-4-6-performance-benchmarks) — Comprehensive benchmark comparison with sources
+
+---
+
 ## Related Reading
 
-- [I Let Claude Run My Desktop For a Week](/newsletter/claude-cowork-enterprise-review) — Hands-on review of Claude's enterprise coworker plugins with ROI analysis.
-- [Broadcom's $100B AI Forecast](/newsletter/broadcom-100-billion-ai-forecast-infrastructure) — The infrastructure costs behind running these models at scale.
-- [The Government Just Cut Off Anthropic](/newsletter/us-ai-guidelines-anthropic-pentagon-clash) — Why multi-model architecture isn't optional anymore.
+- [ChatGPT Enterprise vs Claude Enterprise: The $200K Decision](/article/chatgpt-vs-claude-enterprise-200k-decision) — Full enterprise pricing and contract analysis
+- [Microsoft 365 Copilot vs Google Workspace AI: The $30/User Truth](/article/microsoft-copilot-google-workspace-ai-roi) — Enterprise productivity AI comparison
+- [GitHub Copilot vs Cursor vs Replit: Which AI Coding Assistant Wins?](/article/github-copilot-cursor-replit-enterprise-code-ai) — Developer tool comparison
+- [OpenAI's $110B Funding: What It Means for Enterprise Buyers](/article/openai-110b-round-investors-suppliers-circular-financing) — Strategic positioning and vendor stability
+- [The Government Just Cut Off Anthropic](/article/us-ai-guidelines-anthropic-pentagon-clash) — Vendor risk and why multi-model architecture isn't optional
 
 ---
 
