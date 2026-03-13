@@ -23,6 +23,7 @@ export default function Header({ showCategoryNav = false }: HeaderProps) {
               <Link href="/about" className="nav-link hidden sm:block">About</Link>
               <Link href="/articles" className="nav-link hidden sm:block">Articles</Link>
               <Link href="/tools" className="nav-link hidden sm:block">Tools</Link>
+              <Link href="/events" className="nav-link hidden sm:block">Events</Link>
               <Link href="/search" className="nav-link hidden sm:block">Search</Link>
               <Link href="/tags" className="nav-link hidden sm:block">Topics</Link>
               <a href="#newsletter" className="btn-primary !py-2.5 !px-5 !text-sm !rounded-lg hidden sm:inline-block">

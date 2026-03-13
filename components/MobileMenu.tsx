@@ -76,6 +76,13 @@ export default function MobileMenu() {
               Tools
             </Link>
             <Link
+              href="/events"
+              className="text-xl font-bold uppercase tracking-wider text-white py-5 border-b border-white/10 active:text-purple-400"
+              onClick={() => setIsOpen(false)}
+            >
+              Events
+            </Link>
+            <Link
               href="/search"
               className="text-xl font-bold uppercase tracking-wider text-white py-5 border-b border-white/10 active:text-purple-400"
               onClick={() => setIsOpen(false)}
