@@ -1,5 +1,6 @@
 import { getAllNewsletters } from '@/lib/newsletters';
 import { getAllTools } from '@/lib/tools';
+import { getUpcomingEvents } from '@/lib/events';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -12,6 +13,7 @@ export const revalidate = 60;
 export default async function Home() {
   const newsletters = await getAllNewsletters();
   const tools = await getAllTools();
+  const upcomingEvents = await getUpcomingEvents(5);
   const featured = newsletters[0];
   const latest = newsletters.slice(1, 7);
   const newTools = tools
@@ -234,6 +236,76 @@ export default async function Home() {
                                   {tool.pricingModel || (Array.isArray(tool.pricing_model) ? tool.pricing_model[0] : tool.pricing_model)}
                                 </span>
                               </div>
+                            </article>
+                          </Link>
+                        </ScrollReveal>
+                      ))}
+                    </div>
+                  </section>
+                </ScrollReveal>
+              )}
+
+              {/* ===== UPCOMING AI EVENTS ===== */}
+              {upcomingEvents.length > 0 && (
+                <ScrollReveal>
+                  <section className="pb-16">
+                    <div className="flex items-center justify-between mb-10">
+                      <div>
+                        <h3 className="heading-md text-white/90">Upcoming AI Events</h3>
+                        <p className="text-white/40 text-sm mt-2">Conferences, webinars, and workshops worth attending</p>
+                      </div>
+                      <Link href="/events" className="text-sm text-purple-400 hover:text-purple-300 font-semibold transition-colors inline-flex items-center gap-1 group/link">
+                        View all events
+                        <span className="transition-transform duration-200 group-hover/link:translate-x-0.5">→</span>
+                      </Link>
+                    </div>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {upcomingEvents.slice(0, 3).map((event: any, i: number) => (
+                        <ScrollReveal key={event.slug} delay={i * 50}>
+                          <Link href={`/events/${event.slug}`} className="group block h-full">
+                            <article className="card card-glow h-full flex flex-col p-6 hover:border-purple-500/30 transition-all">
+                              {/* Event Type Badge */}
+                              {event.event_type && (
+                                <div className="mb-3">
+                                  <span className="px-2 py-1 rounded bg-blue-500/10 text-blue-400 text-xs font-semibold">
+                                    {event.event_type}
+                                  </span>
+                                </div>
+                              )}
+
+                              {/* Event Name */}
+                              <h4 className="font-bold text-base mb-2 group-hover:text-purple-200 transition-colors line-clamp-2">
+                                {event.name}
+                              </h4>
+
+                              {/* Tagline */}
+                              {event.tagline && (
+                                <p className="text-sm text-white/60 mb-4 line-clamp-2 flex-1">
+                                  {event.tagline}
+                                </p>
+                              )}
+
+                              {/* Date */}
+                              <div className="flex items-center gap-2 text-xs text-white/40 mb-2">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                {new Date(event.date_start).toLocaleDateString('en-US', {
+                                  month: 'short',
+                                  day: 'numeric',
+                                  year: 'numeric'
+                                })}
+                              </div>
+
+                              {/* Location */}
+                              {event.location && (
+                                <div className="flex items-center gap-2 text-xs text-white/40">
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                  </svg>
+                                  {event.location.virtual ? 'Virtual' : `${event.location.city}, ${event.location.country}`}
+                                </div>
+                              )}
                             </article>
                           </Link>
                         </ScrollReveal>
