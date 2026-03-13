@@ -56,6 +56,20 @@ function loadTool(filePath) {
     data.file_path = path.relative(TOOLS_DIR, filePath);
     data.synced_at = new Date();
     
+    // CRITICAL: Convert date strings to Date objects for MongoDB sorting
+    if (data.discovered && typeof data.discovered === 'string') {
+      data.discovered = new Date(data.discovered);
+    }
+    if (data.last_updated && typeof data.last_updated === 'string') {
+      data.last_updated = new Date(data.last_updated);
+    }
+    if (data.addedDate && typeof data.addedDate === 'string') {
+      data.addedDate = new Date(data.addedDate);
+    }
+    if (data.lastUpdated && typeof data.lastUpdated === 'string') {
+      data.lastUpdated = new Date(data.lastUpdated);
+    }
+    
     // Ensure required fields
     if (!data.name) {
       throw new Error('Missing required field: name');
