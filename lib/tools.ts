@@ -121,7 +121,7 @@ export async function getAllTools(): Promise<Tool[]> {
     const tools = await db
       .collection('tools')
       .find({})
-      .sort({ addedDate: -1 })
+      .sort({ discovered: -1, _id: -1 }) // Sort by discovered date (newest first), fallback to _id
       .toArray();
     
     return tools.map(tool => ({
@@ -129,6 +129,7 @@ export async function getAllTools(): Promise<Tool[]> {
       _id: undefined,
       addedDate: tool.addedDate?.toISOString(),
       lastUpdated: tool.lastUpdated?.toISOString(),
+      discovered: tool.discovered?.toISOString(),
     })) as any;
   } catch (error) {
     console.error('Error fetching tools:', error);
@@ -181,7 +182,7 @@ export async function getToolsByCategory(category: string): Promise<Tool[]> {
     const tools = await db
       .collection('tools')
       .find({ category })
-      .sort({ featured: -1, addedDate: -1 })
+      .sort({ featured: -1, discovered: -1, _id: -1 })
       .toArray();
     
     return tools.map(tool => ({
@@ -189,6 +190,7 @@ export async function getToolsByCategory(category: string): Promise<Tool[]> {
       _id: undefined,
       addedDate: tool.addedDate?.toISOString(),
       lastUpdated: tool.lastUpdated?.toISOString(),
+      discovered: tool.discovered?.toISOString(),
     })) as any;
   } catch (error) {
     console.error('Error fetching tools by category:', error);
@@ -204,7 +206,7 @@ export async function getToolsByDomain(domain: string): Promise<Tool[]> {
     const tools = await db
       .collection('tools')
       .find({ domains: domain })
-      .sort({ featured: -1, addedDate: -1 })
+      .sort({ featured: -1, discovered: -1, _id: -1 })
       .toArray();
     
     return tools.map(tool => ({
@@ -212,6 +214,7 @@ export async function getToolsByDomain(domain: string): Promise<Tool[]> {
       _id: undefined,
       addedDate: tool.addedDate?.toISOString(),
       lastUpdated: tool.lastUpdated?.toISOString(),
+      discovered: tool.discovered?.toISOString(),
     })) as any;
   } catch (error) {
     console.error('Error fetching tools by domain:', error);
@@ -234,7 +237,7 @@ export async function getToolsForArticle(articleSlug: string): Promise<Tool[]> {
           { 'relatedArticles.slug': articleSlug } // Array of objects with slug field
         ]
       })
-      .sort({ featured: -1, addedDate: -1 })
+      .sort({ featured: -1, discovered: -1, _id: -1 })
       .limit(5)
       .toArray();
     
@@ -243,6 +246,7 @@ export async function getToolsForArticle(articleSlug: string): Promise<Tool[]> {
       _id: undefined,
       addedDate: tool.addedDate?.toISOString(),
       lastUpdated: tool.lastUpdated?.toISOString(),
+      discovered: tool.discovered?.toISOString(),
       relatedArticles: [], // Don't need nested articles for sidebar
     })) as any;
   } catch (error) {
