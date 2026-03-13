@@ -305,30 +305,7 @@ export default async function EventDetailPage({ params }: Props) {
             )}
           </div>
           
-          {/* Similar Events */}
-          {related.similarEvents?.length > 0 && (
-            <div className="mt-8">
-              <h3 className="text-xl font-bold mb-4">Similar Events</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {related.similarEvents.map((similarEvent: any) => (
-                  <Link
-                    key={similarEvent.slug}
-                    href={`/events/${similarEvent.slug}`}
-                    className="block bg-gray-50 p-4 rounded hover:shadow transition-shadow"
-                  >
-                    <div className="font-semibold mb-2">{similarEvent.name}</div>
-                    <div className="text-sm text-gray-600">
-                      {new Date(similarEvent.date_start).toLocaleDateString('en-US', { 
-                        month: 'short', 
-                        day: 'numeric', 
-                        year: 'numeric' 
-                      })}
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
+
         </div>
       )}
         </main>
