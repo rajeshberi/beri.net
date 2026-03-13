@@ -1,6 +1,6 @@
 ---
 title: "GPT-5.4 vs Claude Opus 4.6 for Coding: Which AI Writes Better Production Code?"
-date: "2026-03-13"
+date: "2026-03-11"
 published: true
 excerpt: "Ran 200 coding tasks head-to-head: Python, JavaScript, SQL benchmarks. Claude wins on code quality (80.8% SWE-Bench), GPT wins on speed and tool integration. Here are the side-by-side results."
 tags: ['Engineering & Dev Tools', 'AI Models & Platforms', 'Code AI', 'Benchmarks', 'Python', 'JavaScript']

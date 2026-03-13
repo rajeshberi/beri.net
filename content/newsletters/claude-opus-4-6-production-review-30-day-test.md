@@ -1,6 +1,6 @@
 ---
 title: "Claude Opus 4.6 Production Review: 30 Days, 12,000 API Calls, Real Performance Data"
-date: "2026-03-13"
+date: "2026-03-10"
 published: true
 excerpt: "Deployed Claude Opus 4.6 in a production codebase for 30 days. Tracked every API call, measured code quality, and compared costs. Here's what $8,400 bought us — and where Claude beat GPT-5.4."
 tags: ['AI Models & Platforms', 'Engineering & Dev Tools', 'Operations & Productivity', 'Claude', 'Code AI', 'Benchmarks', 'Cost Analysis']

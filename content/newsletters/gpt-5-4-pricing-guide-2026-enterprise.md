@@ -1,6 +1,6 @@
 ---
 title: "GPT-5.4 Pricing Guide 2026: Hidden Costs Every Enterprise Buyer Needs to Know"
-date: "2026-03-13"
+date: "2026-03-09"
 published: true
 excerpt: "OpenAI's pricing page says $2.50/M tokens. The real cost is 2-4x higher once you factor in long-context surcharges, Pro tiers, and data residency. Here's what $100K actually buys you."
 tags: ['AI Models & Platforms', 'ROI & Finance', 'AI Strategy', 'Enterprise', 'Cost Analysis', 'GPT', 'LLMs']
