@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import ScrollReveal from '@/components/ScrollReveal';
 
 interface Event {
   name: string;
@@ -30,10 +33,7 @@ export default function EventsClient() {
   const [filters, setFilters] = useState({
     status: 'upcoming',
     eventType: '',
-    location: '',
-    topic: '',
-    virtual: '',
-    free: ''
+    virtual: ''
   });
 
   useEffect(() => {
@@ -70,158 +70,165 @@ export default function EventsClient() {
     });
   };
 
-  if (loading) {
-    return (
-      <div className="container mx-auto px-4 py-12">
-        <div className="text-center">Loading events...</div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="container mx-auto px-4 py-12">
-        <div className="text-center text-red-600">Error: {error}</div>
-      </div>
-    );
-  }
-
   return (
-    <div className="container mx-auto px-4 py-12">
-      {/* Header */}
-      <div className="mb-12">
-        <h1 className="text-4xl font-bold mb-4">AI Events Directory</h1>
-        <p className="text-xl text-gray-600">
-          Discover upcoming AI conferences, webinars, workshops, and meetups worldwide
-        </p>
+    <div className="min-h-screen bg-[#0a0812] text-white noise">
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-900/15 rounded-full blur-[120px]" />
       </div>
 
-      {/* Filters */}
-      <div className="bg-gray-50 p-6 rounded-lg mb-8">
-        <h2 className="text-lg font-semibold mb-4">Filter Events</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <label className="block text-sm font-medium mb-2">Status</label>
-            <select
-              value={filters.status}
-              onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-              className="w-full border rounded px-3 py-2"
-            >
-              <option value="upcoming">Upcoming</option>
-              <option value="ongoing">Ongoing</option>
-              <option value="past">Past</option>
-              <option value="">All</option>
-            </select>
-          </div>
-          
-          <div>
-            <label className="block text-sm font-medium mb-2">Event Type</label>
-            <select
-              value={filters.eventType}
-              onChange={(e) => setFilters({ ...filters, eventType: e.target.value })}
-              className="w-full border rounded px-3 py-2"
-            >
-              <option value="">All Types</option>
-              <option value="conference">Conference</option>
-              <option value="webinar">Webinar</option>
-              <option value="workshop">Workshop</option>
-              <option value="meetup">Meetup</option>
-              <option value="summit">Summit</option>
-            </select>
-          </div>
-          
-          <div>
-            <label className="block text-sm font-medium mb-2">Virtual</label>
-            <select
-              value={filters.virtual}
-              onChange={(e) => setFilters({ ...filters, virtual: e.target.value })}
-              className="w-full border rounded px-3 py-2"
-            >
-              <option value="">All Events</option>
-              <option value="true">Virtual Only</option>
-              <option value="false">In-Person Only</option>
-            </select>
-          </div>
-        </div>
-      </div>
+      <div className="relative">
+        <Header />
 
-      {/* Events Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {events.length === 0 ? (
-          <div className="col-span-full text-center py-12 text-gray-500">
-            No events found matching your filters.
-          </div>
-        ) : (
-          events.map((event) => (
-            <Link
-              key={event.slug}
-              href={`/events/${event.slug}`}
-              className="block bg-white border rounded-lg p-6 hover:shadow-lg transition-shadow"
-            >
-              {/* Event Type Badge */}
-              {event.event_type && (
-                <div className="mb-3">
-                  <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">
-                    {event.event_type}
-                  </span>
+        <main className="max-w-[1200px] mx-auto px-4 py-12 md:px-6 md:py-24">
+          {/* Hero */}
+          <ScrollReveal>
+            <div className="mb-16 text-center">
+              <div className="label text-purple-400/60 mb-4">AI Events Directory</div>
+              <h1 className="heading-xl mb-6">
+                Discover AI Conferences & Events
+              </h1>
+              <p className="text-xl text-white/60 max-w-2xl mx-auto">
+                {loading ? 'Loading...' : `${events.length} upcoming AI conferences, workshops, and meetups worldwide`}
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Filters */}
+          <ScrollReveal delay={100}>
+            <div className="card card-glow p-6 mb-12">
+              <div className="grid md:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm text-white/60 mb-2">Status</label>
+                  <select
+                    value={filters.status}
+                    onChange={(e) => setFilters({...filters, status: e.target.value})}
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-purple-500/50"
+                  >
+                    <option value="upcoming">Upcoming</option>
+                    <option value="ongoing">Ongoing</option>
+                    <option value="">All Events</option>
+                  </select>
                 </div>
-              )}
-              
-              {/* Event Name */}
-              <h3 className="text-xl font-bold mb-2">{event.name}</h3>
-              
-              {/* Tagline */}
-              {event.tagline && (
-                <p className="text-gray-600 text-sm mb-4">{event.tagline}</p>
-              )}
-              
-              {/* Date */}
-              <div className="flex items-center text-sm text-gray-700 mb-2">
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                {formatDate(event.date_start)}
-                {event.date_end && ` - ${formatDate(event.date_end)}`}
+                
+                <div>
+                  <label className="block text-sm text-white/60 mb-2">Format</label>
+                  <select
+                    value={filters.virtual}
+                    onChange={(e) => setFilters({...filters, virtual: e.target.value})}
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-purple-500/50"
+                  >
+                    <option value="">All Formats</option>
+                    <option value="true">Virtual</option>
+                    <option value="false">In-Person</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm text-white/60 mb-2">Type</label>
+                  <select
+                    value={filters.eventType}
+                    onChange={(e) => setFilters({...filters, eventType: e.target.value})}
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-purple-500/50"
+                  >
+                    <option value="">All Types</option>
+                    <option value="conference">Conference</option>
+                    <option value="workshop">Workshop</option>
+                    <option value="webinar">Webinar</option>
+                    <option value="meetup">Meetup</option>
+                  </select>
+                </div>
               </div>
-              
-              {/* Location */}
-              {event.location && (
-                <div className="flex items-center text-sm text-gray-700 mb-2">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  {event.location.virtual ? 'Virtual' : `${event.location.city}, ${event.location.country}`}
-                  {event.location.hybrid && ' (Hybrid)'}
-                </div>
-              )}
-              
-              {/* Pricing */}
-              {event.pricing?.type && (
-                <div className="flex items-center text-sm text-gray-700 mb-4">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  {event.pricing.type}
-                </div>
-              )}
-              
-              {/* Topics */}
-              {event.topics && event.topics.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {event.topics.slice(0, 3).map((topic, idx) => (
-                    <span key={idx} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
-                      {topic}
-                    </span>
-                  ))}
-                  {event.topics.length > 3 && (
-                    <span className="text-gray-500 text-xs">+{event.topics.length - 3} more</span>
-                  )}
-                </div>
-              )}
-            </Link>
-          ))
-        )}
+            </div>
+          </ScrollReveal>
+
+          {/* Events Grid */}
+          {loading ? (
+            <div className="text-center py-12 text-white/50">
+              <p>Loading events...</p>
+            </div>
+          ) : error ? (
+            <div className="text-center py-12 text-red-400">
+              <p>Error: {error}</p>
+            </div>
+          ) : events.length === 0 ? (
+            <div className="text-center py-12 text-white/50">
+              <p>No events found matching your filters.</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {events.map((event, index) => (
+                <ScrollReveal key={event.slug} delay={index * 50}>
+                  <Link href={`/events/${event.slug}`} className="block group">
+                    <div className="card card-glow h-full p-6 hover:border-purple-500/50 transition-all">
+                      {/* Event Type Badge */}
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="px-2.5 py-1 bg-purple-500/20 text-purple-300 text-xs font-medium rounded-full">
+                          {event.event_type || 'Conference'}
+                        </span>
+                        {event.location?.virtual && (
+                          <span className="px-2.5 py-1 bg-blue-500/20 text-blue-300 text-xs font-medium rounded-full">
+                            Virtual
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Event Name */}
+                      <h3 className="text-lg font-bold mb-2 group-hover:text-purple-200 transition-colors line-clamp-2">
+                        {event.name}
+                      </h3>
+
+                      {/* Tagline */}
+                      {event.tagline && (
+                        <p className="text-sm text-white/60 mb-4 line-clamp-2">
+                          {event.tagline}
+                        </p>
+                      )}
+
+                      {/* Date */}
+                      <div className="flex items-center gap-2 text-sm text-white/50 mb-2">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span>
+                          {formatDate(event.date_start)}
+                          {event.date_end && event.date_end !== event.date_start && ` - ${formatDate(event.date_end)}`}
+                        </span>
+                      </div>
+
+                      {/* Location */}
+                      {event.location && (event.location.city || event.location.country) && (
+                        <div className="flex items-center gap-2 text-sm text-white/50">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          <span>
+                            {event.location.city}
+                            {event.location.city && event.location.country && ', '}
+                            {event.location.country}
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Topics */}
+                      {event.topics && event.topics.length > 0 && (
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {event.topics.slice(0, 3).map((topic, i) => (
+                            <span key={i} className="px-2 py-0.5 bg-white/5 text-white/60 text-xs rounded">
+                              {topic}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              ))}
+            </div>
+          )}
+        </main>
+
+        <Footer />
       </div>
     </div>
   );
