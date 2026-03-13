@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     // Connect to MongoDB
     const client = new MongoClient(MONGODB_URI);
     await client.connect();
-    const db = client[MONGODB_DB];
+    const db = client.db(MONGODB_DB);
     const subscribers = db.collection('subscribers');
 
     // Check if already subscribed
