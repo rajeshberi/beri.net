@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
+import EmailPopup from "@/components/EmailPopup";
 
 export const metadata: Metadata = {
   title: "THE D[AI]LY BRIEF | Enterprise AI Insights by Rajesh Beri",
@@ -59,6 +60,8 @@ export default function RootLayout({
           `}
         </Script>
         {children}
+        <EmailPopup type="exit" headlineVariant="urgency" />
+        <EmailPopup type="scroll" headlineVariant="default" />
       </body>
     </html>
   );

@@ -13,7 +13,7 @@ import TableOfContents from '@/components/TableOfContents';
 import ShareButtons from '@/components/ShareButtons';
 import InlineSubscribe from '@/components/InlineSubscribe';
 import ArticleSidebar from '@/components/ArticleSidebar';
-// ExitIntent and ScrollSubscribePrompt removed - too many subscribe prompts
+import InlineEmailSignup from '@/components/InlineEmailSignup';
 
 // Enable dynamic params for articles added after build
 export const dynamicParams = true;
@@ -183,7 +183,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ slu
             />
 
             {/* Mid-article subscribe prompt */}
-            <InlineSubscribe />
+            <InlineEmailSignup />
 
             {/* Bottom share */}
             <div className="mt-12 pt-8 border-t border-white/5">

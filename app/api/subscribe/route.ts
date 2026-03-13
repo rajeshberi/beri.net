@@ -6,7 +6,7 @@ const MONGODB_DB = process.env.MONGODB_DB || 'beri-newsletter';
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, name } = await request.json();
+    const { email, name, source = 'website' } = await request.json();
 
     // Validate email
     if (!email || !email.includes('@')) {
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
       name: name.trim(),
       status: 'active',
       subscribed_date: new Date(),
-      source: 'website',
+      source: source,
       tags: [],
       preferences: {
         frequency: 'twice_weekly',
