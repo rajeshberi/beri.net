@@ -17,8 +17,8 @@ export async function GET(request: NextRequest) {
     const soc2 = searchParams.get('soc2');
     const search = searchParams.get('search');
     const limit = parseInt(searchParams.get('limit') || '100');
-    const sortBy = searchParams.get('sort') || 'name';
-    const sortOrder = searchParams.get('order') === 'desc' ? -1 : 1;
+    const sortBy = searchParams.get('sort') || 'discovered';
+    const sortOrder = searchParams.get('order') ? (searchParams.get('order') === 'desc' ? -1 : 1) : (sortBy === 'discovered' ? -1 : 1);
     
     const client = await connectToDatabase();
     const db = client.db('beri-newsletter');
