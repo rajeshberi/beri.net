@@ -1,21 +1,47 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { connectToDatabase } from '@/lib/mongodb';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 async function getEvent(slug: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-  
   try {
-    const res = await fetch(`${baseUrl}/api/events/${slug}`, {
-      next: { revalidate: 3600 } // Revalidate every hour
-    });
+    const client = await connectToDatabase();
+    const db = client.db('beri-newsletter');
     
-    if (!res.ok) return null;
-    return res.json();
+    const event = await db.collection('events').findOne(
+      { slug },
+      { projection: { _id: 0 } }
+    );
+    
+    if (!event) return null;
+    
+    // Get related tools (if event mentions them)
+    const relatedTools = await db.collection('tools')
+      .find({ slug: { $in: event.related_tools || [] } })
+      .project({ name: 1, slug: 1, tagline: 1, _id: 0 })
+      .limit(5)
+      .toArray();
+    
+    // Get related articles
+    const relatedArticles = await db.collection('newsletters')
+      .find({ slug: { $in: event.related_articles || [] } })
+      .project({ title: 1, slug: 1, excerpt: 1, date: 1, _id: 0 })
+      .limit(5)
+      .toArray();
+    
+    return {
+      event,
+      related: {
+        tools: relatedTools,
+        articles: relatedArticles
+      }
+    };
   } catch (error) {
     console.error('Error fetching event:', error);
     return null;
@@ -61,13 +87,21 @@ export default async function EventDetailPage({ params }: Props) {
   };
   
   return (
-    <div className="container mx-auto px-4 py-12">
-      {/* Breadcrumb */}
-      <div className="mb-6 text-sm text-gray-600">
-        <Link href="/events" className="hover:text-blue-600">Events</Link>
-        <span className="mx-2">/</span>
-        <span>{event.name}</span>
+    <div className="min-h-screen bg-[#0a0812] text-white noise">
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-900/15 rounded-full blur-[120px]" />
       </div>
+
+      <div className="relative">
+        <Header />
+
+        <main className="max-w-[1200px] mx-auto px-4 py-12 md:px-6 md:py-24">
+          {/* Breadcrumb */}
+          <div className="mb-6 text-sm text-white/50">
+            <Link href="/events" className="hover:text-purple-400 transition-colors">Events</Link>
+            <span className="mx-2">/</span>
+            <span className="text-white/70">{event.name}</span>
+          </div>
       
       {/* Event Header */}
       <div className="mb-8">
