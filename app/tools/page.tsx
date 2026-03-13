@@ -5,9 +5,9 @@ import ScrollReveal from '@/components/ScrollReveal';
 import ToolCard from '@/components/ToolCard';
 import Link from 'next/link';
 
-// Make this a dynamic route - tools are fetched from MongoDB at runtime
+// Force dynamic rendering - no caching
 export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 0;
 
 export const metadata = {
   title: 'AI Tools Directory | THE D[AI]LY BRIEF',
@@ -15,7 +15,10 @@ export const metadata = {
 };
 
 export default async function ToolsPage() {
+  console.log('[Tools Page] Fetching tools...');
   const tools = await getAllTools();
+  console.log('[Tools Page] Fetched', tools.length, 'tools');
+  
   const categories = await getCategories();
   const domains = await getDomains();
 
@@ -62,47 +65,98 @@ export default async function ToolsPage() {
 
           {/* Tools Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {tools.map((tool, i) => (
-              <ToolCard key={tool.slug} tool={tool} delay={i * 50} />
-            ))}
+            {tools.length === 0 ? (
+              <div className="col-span-full text-center py-12 text-white/50">
+                <p>No tools found. This might be a database connection issue.</p>
+                <p className="text-sm mt-2">Check Vercel logs for errors.</p>
+              </div>
+            ) : (
+              tools.map((tool, index) => (
+                <ScrollReveal key={tool.slug} delay={index * 50}>
+                  <ToolCard tool={tool} />
+                </ScrollReveal>
+              ))
+            )}
           </div>
 
-          {/* Categories */}
+          {/* Category Browse */}
           <ScrollReveal delay={200}>
             <div className="mt-16">
               <h2 className="heading-md mb-8">Browse by Category</h2>
               <div className="grid md:grid-cols-2 gap-4">
-                {categories.map((cat: any) => (
-                  <Link 
-                    key={cat.slug} 
-                    href={`/tools?category=${cat.slug}`}
-                    className="card card-glow p-6 hover:border-purple-500/30 transition-all group"
-                  >
-                    <h3 className="font-bold mb-2 group-hover:text-purple-200 transition-colors">
-                      {cat.name}
-                    </h3>
-                    <p className="text-sm text-white/50">{cat.description}</p>
-                  </Link>
-                ))}
+                <Link href="/tools?category=ai-infrastructure" className="card card-glow p-6 hover:border-purple-500/30 transition-all group">
+                  <h3 className="font-bold mb-2 group-hover:text-purple-200 transition-colors">AI Infrastructure</h3>
+                  <p className="text-sm text-white/50">Model training platforms, MLOps, AI dev frameworks</p>
+                </Link>
+                <Link href="/tools?category=generative-ai" className="card card-glow p-6 hover:border-purple-500/30 transition-all group">
+                  <h3 className="font-bold mb-2 group-hover:text-purple-200 transition-colors">Generative AI</h3>
+                  <p className="text-sm text-white/50">Text, image, video, code generation tools</p>
+                </Link>
+                <Link href="/tools?category=enterprise-ai" className="card card-glow p-6 hover:border-purple-500/30 transition-all group">
+                  <h3 className="font-bold mb-2 group-hover:text-purple-200 transition-colors">Enterprise AI Applications</h3>
+                  <p className="text-sm text-white/50">AI agents, automation, business applications</p>
+                </Link>
+                <Link href="/tools?category=developer-tools" className="card card-glow p-6 hover:border-purple-500/30 transition-all group">
+                  <h3 className="font-bold mb-2 group-hover:text-purple-200 transition-colors">AI Developer Tools</h3>
+                  <p className="text-sm text-white/50">APIs, databases, testing tools for AI developers</p>
+                </Link>
+                <Link href="/tools?category=productivity" className="card card-glow p-6 hover:border-purple-500/30 transition-all group">
+                  <h3 className="font-bold mb-2 group-hover:text-purple-200 transition-colors">AI Productivity</h3>
+                  <p className="text-sm text-white/50">Writing, note-taking, meeting assistants</p>
+                </Link>
+                <Link href="/tools?category=data-analytics" className="card card-glow p-6 hover:border-purple-500/30 transition-all group">
+                  <h3 className="font-bold mb-2 group-hover:text-purple-200 transition-colors">AI for Data & Analytics</h3>
+                  <p className="text-sm text-white/50">Data labeling, synthetic data, analytics</p>
+                </Link>
+                <Link href="/tools?category=security-governance" className="card card-glow p-6 hover:border-purple-500/30 transition-all group">
+                  <h3 className="font-bold mb-2 group-hover:text-purple-200 transition-colors">AI Security & Governance</h3>
+                  <p className="text-sm text-white/50">Security, compliance, risk management</p>
+                </Link>
               </div>
             </div>
           </ScrollReveal>
 
-          {/* Domains */}
+          {/* Domain Browse */}
           <ScrollReveal delay={300}>
             <div className="mt-16">
               <h2 className="heading-md mb-8">Browse by Business Domain</h2>
               <div className="flex flex-wrap gap-3">
-                {domains.map((domain: any) => (
-                  <Link
-                    key={domain.slug}
-                    href={`/tools?domain=${domain.slug}`}
-                    className="px-4 py-2 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 transition-all text-sm"
-                  >
-                    <span className="mr-2">{domain.icon}</span>
-                    {domain.name}
-                  </Link>
-                ))}
+                <Link href="/tools?domain=sales" className="px-4 py-2 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 transition-all text-sm">
+                  <span className="mr-2">💼</span>Sales
+                </Link>
+                <Link href="/tools?domain=marketing" className="px-4 py-2 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 transition-all text-sm">
+                  <span className="mr-2">📢</span>Marketing
+                </Link>
+                <Link href="/tools?domain=customer-success" className="px-4 py-2 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 transition-all text-sm">
+                  <span className="mr-2">🤝</span>Customer Success
+                </Link>
+                <Link href="/tools?domain=finance" className="px-4 py-2 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 transition-all text-sm">
+                  <span className="mr-2">💰</span>Finance & Accounting
+                </Link>
+                <Link href="/tools?domain=hr" className="px-4 py-2 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 transition-all text-sm">
+                  <span className="mr-2">👥</span>Human Resources
+                </Link>
+                <Link href="/tools?domain=operations" className="px-4 py-2 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 transition-all text-sm">
+                  <span className="mr-2">⚙️</span>Operations
+                </Link>
+                <Link href="/tools?domain=engineering" className="px-4 py-2 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 transition-all text-sm">
+                  <span className="mr-2">💻</span>Product & Engineering
+                </Link>
+                <Link href="/tools?domain=legal" className="px-4 py-2 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 transition-all text-sm">
+                  <span className="mr-2">⚖️</span>Legal & Compliance
+                </Link>
+                <Link href="/tools?domain=data" className="px-4 py-2 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 transition-all text-sm">
+                  <span className="mr-2">📊</span>Data & Analytics
+                </Link>
+                <Link href="/tools?domain=executive" className="px-4 py-2 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 transition-all text-sm">
+                  <span className="mr-2">🎯</span>Executive & Strategy
+                </Link>
+                <Link href="/tools?domain=it-security" className="px-4 py-2 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 transition-all text-sm">
+                  <span className="mr-2">🔐</span>IT & Security
+                </Link>
+                <Link href="/tools?domain=general" className="px-4 py-2 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 transition-all text-sm">
+                  <span className="mr-2">🌐</span>General/Cross-Functional
+                </Link>
               </div>
             </div>
           </ScrollReveal>
