@@ -4,7 +4,7 @@ date: "2026-03-10"
 published: true
 excerpt: "Deployed Claude Opus 4.6 in a production codebase for 30 days. Tracked every API call, measured code quality, and compared costs. Here's what $8,400 bought us — and where Claude beat GPT-5.4."
 tags: ['AI Models & Platforms', 'Engineering & Dev Tools', 'Operations & Productivity', 'Claude', 'Code AI', 'Benchmarks', 'Cost Analysis']
-image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1792&h=1024&auto=format&fit=crop&q=80"
+image: "https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg?auto=compress&cs=tinysrgb&w=1792&h=1024&fit=crop"
 imageCredit: "Photo by [Carlos Muza](https://unsplash.com/@kmuza) on Unsplash"
 type: "original"
 ---

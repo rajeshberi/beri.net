@@ -4,7 +4,7 @@ date: 2026-03-12
 author: "Rajesh Beri"
 description: "NVIDIA's 2026 State of AI survey reveals 88% revenue increases and 87% cost reductions across industries. Here's what the actual data shows about AI ROI—and why executive buy-in finally has numbers to back it up."
 tags: ["Enterprise AI", "AI ROI", "AI Adoption", "NVIDIA", "Digital Transformation", "Manufacturing AI", "Financial Services AI"]
-image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1792&h=1024&auto=format&fit=crop&q=80"
+image: "https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=1792&h=1024&fit=crop"
 imageCredit: "Photo by [Luke Chesser](https://unsplash.com/@lukechesser) on Unsplash"
 ---
 

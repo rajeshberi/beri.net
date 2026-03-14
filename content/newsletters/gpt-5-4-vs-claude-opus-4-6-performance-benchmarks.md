@@ -4,7 +4,7 @@ date: "2026-03-13"
 published: true
 excerpt: "Comprehensive benchmark comparison across 15 categories: coding, reasoning, speed, cost per token, context windows, tool use. All numbers cited with sources. No marketing fluff."
 tags: ['AI Models & Platforms', 'Engineering & Dev Tools', 'Benchmarks', 'GPT', 'Claude']
-image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1792&h=1024&auto=format&fit=crop&q=80"
+image: "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1792&h=1024&fit=crop"
 imageCredit: "Photo by [Carlos Muza](https://unsplash.com/@kmuza) on Unsplash"
 type: "original"
 ---
