@@ -6,8 +6,8 @@ excerpt: "If your AI systems are scattered across departments with no central ov
 date: "2026-03-14"
 author: "Rajesh Beri"
 tags: ["AI Governance", "AI Strategy", "Enterprise AI", "Risk Management", "Compliance", "ServiceNow"]
-image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200"
-imageCredit: "Photo by [Stephen Dawson](https://unsplash.com/@dawson2406) on Unsplash"
+image: "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1200"
+imageCredit: "Photo by [Lukas](https://www.pexels.com/@goumbik) on Pexels"
 ---
 
 If your organization is deploying AI across multiple departments, you're likely facing a governance nightmare. Teams are spinning up AI systems using OpenAI, Anthropic, Azure, internal models—all without central oversight. Your CISO is worried about data exposure. Legal is asking about EU AI Act compliance. Finance wants to know what you're spending on AI licenses.
@@ -36,8 +36,8 @@ But the problem isn't just regulatory. It's operational. When Marketing is using
 
 AI Control Tower gives you a single platform to manage all of this. Not just track it—actually govern it from ideation through deployment and decommissioning.
 
-![Enterprise governance dashboard](https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&auto=format&fit=crop&q=80)
-*Photo by [Startaê Team](https://unsplash.com/@startaeteam) on Unsplash*
+![Enterprise governance dashboard](https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1200)
+*Photo by [Lukas](https://www.pexels.com/@goumbik) on Pexels*
 
 ## What AI Control Tower Actually Does
 
@@ -81,8 +81,8 @@ The business impact: Faster audit responses (days instead of weeks). Reduced com
 
 As we've covered in our [analysis of enterprise AI adoption patterns](/article/ai-agents-enterprise-adoption-2026), the companies moving AI from pilot to production fastest are the ones with governance frameworks already in place.
 
-![Compliance framework visualization](https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&auto=format&fit=crop&q=80)
-*Photo by [Scott Graham](https://unsplash.com/@homajob) on Unsplash*
+![Compliance framework visualization](https://images.pexels.com/photos/669619/pexels-photo-669619.jpeg?auto=compress&cs=tinysrgb&w=1200)
+*Photo by [Lukas](https://www.pexels.com/@goumbik) on Pexels*
 
 ### Operational Efficiency
 
@@ -128,8 +128,8 @@ Legal, privacy, and marketing sign-off are required. The system is monitored for
 
 Business impact: Revenue growth through targeted marketing. Customer trust through transparent data use. Regulatory compliance with GDPR, CCPA, and local privacy laws.
 
-![Data analysis workspace](https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80)
-*Photo by [Luke Chesser](https://unsplash.com/@lukechesser) on Unsplash*
+![Data analysis workspace](https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200)
+*Photo by [Fauxels](https://www.pexels.com/@fauxels) on Pexels*
 
 ## What CIOs and CTOs Need to Know
 
@@ -188,8 +188,8 @@ Roll out to all departments. Expand AI inventory to 100+ systems. Refine playboo
 
 Change management is critical. The companies that succeed start with high-risk AI (credit scoring, hiring, healthcare), pilot in one department to prove value before rolling out enterprise-wide, train dedicated AI stewards to manage governance workflows, and communicate value by showing teams how governance accelerates (not slows) AI deployment.
 
-![Team collaboration](https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop&q=80)
-*Photo by [Annie Spratt](https://unsplash.com/@anniespratt) on Unsplash*
+![Team collaboration](https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1200)
+*Photo by [Fauxels](https://www.pexels.com/@fauxels) on Pexels*
 
 ## What This Means for Your Organization
 
