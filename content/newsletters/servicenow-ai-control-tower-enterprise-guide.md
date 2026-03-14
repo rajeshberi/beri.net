@@ -6,14 +6,9 @@ excerpt: "ServiceNow's AI Control Tower provides centralized governance for ente
 date: "2026-03-14"
 author: "Rajesh Beri"
 category: "AI Strategy"
-tags:
-  - "AI Governance"
-  - "AI Strategy"
-  - "Enterprise AI"
-  - "Risk Management"
-  - "Compliance"
-  - "ServiceNow"
-featured_image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200"
+tags: ["AI Governance", "AI Strategy", "Enterprise AI", "Risk Management", "Compliance", "ServiceNow"]
+image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200"
+imageCredit: "Photo by [Stephen Dawson](https://unsplash.com/@dawson2406) on Unsplash"
 reading_time: 12
 ---
 
