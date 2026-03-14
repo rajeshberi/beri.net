@@ -120,12 +120,15 @@ The race is on. If Adecco hits their 50% target, every HR, recruiting, and talen
 
 Either way, enterprise agentic AI just moved from "interesting trend" to "competitive necessity" for labor-intensive industries.
 
-## Sources & Further Reading
+## Continue Reading
 
-- [Adecco Group Agentforce Announcement](https://hrtechcube.com/adecco-group-to-scale-agentic-ai-with-agentforce-license-deal/)
-- [NVIDIA State of AI Report 2026](https://blogs.nvidia.com/blog/state-of-ai-report-2026/)
-- [Salesforce Agentforce Platform Overview](https://www.salesforce.com/agentforce/)
+**Enterprise AI & Agentic AI:**
+- [NVIDIA's 2026 State of AI: The Hard ROI Numbers Every CFO Needs](/article/nvidia-2026-state-of-ai-roi-numbers-every-cfo-needs) — Real data on AI ROI from 3,200+ organizations
+- [Salesforce Dreamforce 2026](/events/salesforce-dreamforce-2026) — Learn more about Agentforce at the world's largest software conference
+- [Why Enterprise AI Adoption Still Lags in 2026](/article/ai-agents-enterprise-adoption-2026) — The pilot-to-production gap
 
----
+What's your experience with agentic AI deployments? Have you seen similar productivity gains? Share your thoughts on [LinkedIn](https://www.linkedin.com/in/rberi/) or [Twitter/X](https://x.com/rajeshberi).
 
-**About the Author:** Rajesh Beri is Head of AI Engineering at a Fortune 500 security company and publisher of THE D*AI*LY BRIEF, a newsletter focused on Enterprise AI for technical and business leaders.
+— Rajesh
+
+*Sources: [Adecco Group Agentforce Announcement](https://hrtechcube.com/adecco-group-to-scale-agentic-ai-with-agentforce-license-deal/), [NVIDIA State of AI Report 2026](https://blogs.nvidia.com/blog/state-of-ai-report-2026/), [Salesforce Agentforce Platform](https://www.salesforce.com/agentforce/)*
